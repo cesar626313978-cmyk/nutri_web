@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 220" width="920" height="220" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&amp;family=Atkinson+Hyperlegible:wght@700&amp;display=swap');
+      .brand-title {
+        font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+        font-size: 82px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+      .brand-sub {
+        font-family: 'Atkinson Hyperlegible', Montserrat, -apple-system, sans-serif;
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 3.5px;
+        fill: #165B2E;
+      }
+    </style>
+  </defs>
+
+  <!-- Official Symbol (Horizontal) -->
+  <g id="official-symbol" transform="translate(15, 10)">
+    <!-- Supporting Palm -->
+    <path
+      d="M 52 148 C 68 140 86 138 104 140 C 122 142 138 134 148 122 C 146 135 134 150 114 154 C 94 158 78 168 64 176 C 68 166 70 156 52 148 Z"
+      fill="#165B2E"
+    />
+    <path
+      d="M 98 146 C 116 142 134 136 152 118 C 140 131 122 142 102 149 Z"
+      fill="#237A38"
+    />
+
+    <!-- Letter 'N' -->
+    <path
+      d="M 40 48 C 36 48 32 46 30 44 L 30 52 L 38 52 L 38 144 C 32 146 30 148 28 150 L 28 156 L 54 156 L 54 150 C 50 148 48 146 44 144 L 44 68 L 96 156 L 110 156 L 110 52 L 100 52 C 100 58 98 64 94 68 L 94 134 L 46 54 L 40 48 Z"
+      fill="#165B2E"
+    />
+
+    <!-- Letter 'D' Arch -->
+    <path
+      d="M 76 28 C 124 28 174 62 174 104 C 174 142 142 174 96 176 C 118 166 150 142 150 104 C 150 68 116 40 76 38 L 76 28 Z"
+      fill="#EB5A18"
+    />
+
+    <!-- Head -->
+    <circle cx="120" cy="74" r="10.5" fill="#EB5A18" />
+
+    <!-- Sprouting Body -->
+    <path
+      d="M 120 88 C 113 88 106 94 102 102 C 108 99 114 100 118 104 C 112 116 100 128 90 136 C 104 128 120 110 126 96 C 132 108 138 114 146 116 C 140 108 134 100 132 94 C 129 89 125 88 120 88 Z"
+      fill="#237A38"
+    />
+
+    <!-- Nutrition Leaf -->
+    <path
+      d="M 130 72 C 130 72 150 46 156 42 C 160 56 148 76 136 82 C 131 80 130 76 130 72 Z"
+      fill="#165B2E"
+    />
+    <path
+      d="M 132 72 Q 142 60 152 48"
+      stroke="#FFFFFF"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      fill="none"
+    />
+  </g>
+
+  <!-- Typography (Horizontal) -->
+  <g id="official-typography" transform="translate(240, 0)">
+    <text x="0" y="118" class="brand-title">
+      <tspan fill="#165B2E">Nutri</tspan><tspan fill="#EB5A18">Diversa</tspan>
+    </text>
+    <g transform="translate(0, 165)">
+      <line x1="0" y1="-7" x2="48" y2="-7" stroke="#165B2E" stroke-width="2" stroke-linecap="round" />
+      <text x="64" y="0" class="brand-sub">ASOCIACIÓN DE NUTRICIÓN EN LA DISCAPACIDAD</text>
+      <line x1="624" y1="-7" x2="672" y2="-7" stroke="#165B2E" stroke-width="2" stroke-linecap="round" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --color-forest: #1B5E20;
+    --color-leaf: #2E7D32;
+    --color-accent: #E65100;
+    --color-accent-hover: #EF6C00;
+    --color-bg-light: #F9FBF9;
+    --color-surface: #FFFFFF;
+    --color-border: #D1E7DD;
+    --color-text: #121212;
+  }
+
+  body {
+    font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    background-color: var(--color-bg-light);
+    color: var(--color-text);
+  }
+
+  /* Universal high-contrast visible focus ring */
+  :focus-visible {
+    outline: 3px solid #E65100 !important;
+    outline-offset: 2px !important;
+  }
+
+  /* High contrast mode adjustments */
+  html.high-contrast :focus-visible {
+    outline: 3px solid #FFFF00 !important;
+    outline-offset: 3px !important;
+  }
+}
+
+/* Accessibility skip-to-content link */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 1rem;
+  z-index: 10000;
+  background-color: #1B5E20;
+  color: #FFFFFF;
+  padding: 0.875rem 1.5rem;
+  font-weight: 700;
+  border-radius: 0 0 0.5rem 0.5rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  transition: top 0.15s ease-in-out;
+  text-decoration: underline;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Dynamic font scales */
+html.font-scale-100 {
+  font-size: 16px;
+}
+html.font-scale-115 {
+  font-size: 18.5px;
+}
+html.font-scale-130 {
+  font-size: 21px;
+}
+
+/* High Contrast Mode rules (WCAG AAA - UNE-EN 301549) */
+html.high-contrast,
+html.high-contrast body {
+  background-color: #000000 !important;
+  color: #FFFF00 !important;
+}
+
+html.high-contrast .card-surface,
+html.high-contrast .bg-white,
+html.high-contrast .bg-neutral-50,
+html.high-contrast .bg-emerald-50,
+html.high-contrast .bg-emerald-100,
+html.high-contrast .bg-amber-50,
+html.high-contrast .bg-[#F9FBF9] {
+  background-color: #0a0a0a !important;
+  border-color: #FFFF00 !important;
+  color: #FFFFFF !important;
+}
+
+html.high-contrast .text-neutral-900,
+html.high-contrast .text-neutral-800,
+html.high-contrast .text-neutral-700,
+html.high-contrast .text-[#121212],
+html.high-contrast .text-emerald-950,
+html.high-contrast .text-emerald-900 {
+  color: #FFFFFF !important;
+}
+
+html.high-contrast .text-neutral-600,
+html.high-contrast .text-neutral-500,
+html.high-contrast .text-neutral-400 {
+  color: #FFFFE0 !important;
+}
+
+html.high-contrast .border,
+html.high-contrast .border-t,
+html.high-contrast .border-b,
+html.high-contrast .border-l,
+html.high-contrast .border-r,
+html.high-contrast .border-neutral-200,
+html.high-contrast .border-neutral-300,
+html.high-contrast .border-emerald-200,
+html.high-contrast .border-emerald-100 {
+  border-color: #FFFF00 !important;
+}
+
+html.high-contrast a {
+  color: #FFFF00 !important;
+  text-decoration: underline !important;
+}
+
+html.high-contrast a:hover {
+  background-color: #FFFF00 !important;
+  color: #000000 !important;
+}
+
+html.high-contrast button {
+  border: 2px solid #FFFF00 !important;
+}
+
+html.high-contrast .btn-primary,
+html.high-contrast button.bg-emerald-800,
+html.high-contrast button.bg-emerald-700,
+html.high-contrast a.bg-emerald-800,
+html.high-contrast a.bg-emerald-700 {
+  background-color: #FFFF00 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+html.high-contrast .btn-accent,
+html.high-contrast button.bg-amber-700,
+html.high-contrast button.bg-amber-600,
+html.high-contrast a.bg-amber-700 {
+  background-color: #FFD700 !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+html.high-contrast .bg-emerald-900,
+html.high-contrast .bg-emerald-950 {
+  background-color: #111111 !important;
+  border: 2px solid #FFFF00 !important;
+}
+
+/* Touch targets >= 48px */
+.min-touch-target {
+  min-height: 48px;
+  min-width: 48px;
+}
+
+/* Easy reading card highlights */
+.easy-reading-box {
+  background-color: #F0FDF4;
+  border-left: 6px solid #1B5E20;
+}
+
+html.high-contrast .easy-reading-box {
+  background-color: #141414 !important;
+  border-left: 6px solid #FFFF00 !important;
+}
+
+/* Support for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+    scroll-behavior: auto !important;
+  }
+}

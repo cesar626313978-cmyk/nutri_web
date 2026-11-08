@@ -1,0 +1,142 @@
+{
+  "entities": {
+    "SiteConfig": {
+      "title": "Site Configuration",
+      "description": "Global CMS settings including logos, theme colors, typography, hero texts, contact information, and partner program details",
+      "type": "object",
+      "properties": {
+        "logoType": { "type": "string", "enum": ["vector", "custom_url"] },
+        "logoUrl": { "type": "string", "maxLength": 2048 },
+        "logoTitleFirst": { "type": "string", "maxLength": 100 },
+        "logoTitleSecond": { "type": "string", "maxLength": 100 },
+        "logoSubtitle": { "type": "string", "maxLength": 255 },
+        "primaryColor": { "type": "string", "maxLength": 30 },
+        "secondaryColor": { "type": "string", "maxLength": 30 },
+        "accentColor": { "type": "string", "maxLength": 30 },
+        "fontFamily": { "type": "string", "maxLength": 50 },
+        "headingFont": { "type": "string", "maxLength": 50 },
+        "heroTitle": { "type": "string", "maxLength": 255 },
+        "heroSubtitle": { "type": "string", "maxLength": 1000 },
+        "heroButtonText": { "type": "string", "maxLength": 100 },
+        "heroButtonLink": { "type": "string", "maxLength": 255 },
+        "heroImageUrl": { "type": "string", "maxLength": 2048 },
+        "aboutMission": { "type": "string", "maxLength": 2000 },
+        "aboutVision": { "type": "string", "maxLength": 2000 },
+        "aboutHistory": { "type": "string", "maxLength": 4000 },
+        "contactEmail": { "type": "string", "maxLength": 150 },
+        "contactPhone": { "type": "string", "maxLength": 50 },
+        "contactAddress": { "type": "string", "maxLength": 255 },
+        "contactSchedule": { "type": "string", "maxLength": 255 },
+        "partnerPerksTitle": { "type": "string", "maxLength": 255 },
+        "partnerPerksDesc": { "type": "string", "maxLength": 2000 },
+        "updatedAt": { "type": "string", "maxLength": 50 },
+        "updatedBy": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["primaryColor", "secondaryColor", "updatedAt"]
+    },
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User profile with role-based access control (admin, presidente, secretario, vocal, socio, usuario)",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "maxLength": 128 },
+        "email": { "type": "string", "maxLength": 150 },
+        "displayName": { "type": "string", "maxLength": 150 },
+        "photoURL": { "type": "string", "maxLength": 2048 },
+        "role": {
+          "type": "string",
+          "enum": ["admin", "presidente", "secretario", "vocal", "socio", "usuario"]
+        },
+        "memberNumber": { "type": "string", "maxLength": 50 },
+        "canEditSite": { "type": "boolean" },
+        "canPublishArticles": { "type": "boolean" },
+        "canManageUsers": { "type": "boolean" },
+        "canManageFiles": { "type": "boolean" },
+        "status": { "type": "string", "enum": ["active", "pending", "suspended"] },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["userId", "email", "role", "createdAt"]
+    },
+    "Article": {
+      "title": "Article",
+      "description": "CMS news and blog articles with member-only visibility and rich accessibility content",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 300 },
+        "slug": { "type": "string", "maxLength": 150 },
+        "excerpt": { "type": "string", "maxLength": 1000 },
+        "category": { "type": "string", "maxLength": 100 },
+        "content": { "type": "string", "maxLength": 50000 },
+        "easyReadingContent": { "type": "string", "maxLength": 50000 },
+        "coverImageUrl": { "type": "string", "maxLength": 2048 },
+        "authorId": { "type": "string", "maxLength": 128 },
+        "authorName": { "type": "string", "maxLength": 150 },
+        "authorRole": { "type": "string", "maxLength": 100 },
+        "visibility": { "type": "string", "enum": ["public", "members_only"] },
+        "status": { "type": "string", "enum": ["published", "draft", "archived"] },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "updatedAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "title", "content", "authorId", "visibility", "status", "createdAt"]
+    },
+    "PartnerResource": {
+      "title": "Partner Resource",
+      "description": "Exclusive perks, documents, discounts, and guides for association partners (socios) and board members",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "title": { "type": "string", "maxLength": 255 },
+        "category": { "type": "string", "maxLength": 100 },
+        "description": { "type": "string", "maxLength": 2000 },
+        "fileOrLinkUrl": { "type": "string", "maxLength": 2048 },
+        "accessTier": { "type": "string", "enum": ["all_members", "board_only"] },
+        "createdAt": { "type": "string", "maxLength": 50 },
+        "createdBy": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["id", "title", "accessTier", "createdAt", "createdBy"]
+    },
+    "MediaFile": {
+      "title": "Media File",
+      "description": "Uploaded image, graphic, or document registered in the CMS media library",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 255 },
+        "url": { "type": "string", "maxLength": 1000000 },
+        "type": { "type": "string", "enum": ["image", "document", "logo"] },
+        "size": { "type": "string", "maxLength": 50 },
+        "uploadedBy": { "type": "string", "maxLength": 128 },
+        "createdAt": { "type": "string", "maxLength": 50 }
+      },
+      "required": ["id", "name", "url", "type", "uploadedBy", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/site_config/{configId}": {
+      "schema": { "$ref": "SiteConfig" },
+      "description": "CMS site-wide configuration document (colors, typography, hero, logos, contacts)"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "User profiles, roles (admin, presidente, secretario, vocal, socio, usuario) and granular permissions"
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "Admin registry indexed by UID for zero-latency role lookups in security rules"
+    },
+    "/articles/{articleId}": {
+      "schema": { "$ref": "Article" },
+      "description": "Association blog posts, news, and specialized nutritional/disability content"
+    },
+    "/partner_resources/{resourceId}": {
+      "schema": { "$ref": "PartnerResource" },
+      "description": "Exclusive perks, agreements, and guides reserved for registered socios and board"
+    },
+    "/media_files/{fileId}": {
+      "schema": { "$ref": "MediaFile" },
+      "description": "Media library assets used across the CMS website"
+    }
+  }
+}

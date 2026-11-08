@@ -1,0 +1,6 @@
+{
+  "name": "Asociación NutriDiversa - Nutrición y Discapacidad",
+  "description": "Plataforma institucional de la Asociación NutriDiversa (RNA 632919). Promoción de la salud y nutrición adaptada a personas con discapacidad, TEA y dependencia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

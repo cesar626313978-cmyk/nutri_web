@@ -1,0 +1,171 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 0. Global Safety Net
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isVerifiedUser() {
+      return isSignedIn() && (request.auth.token.email_verified == true || request.auth.token.firebase.sign_in_provider == 'google.com');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isSuperAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'cesar626313978@gmail.com' ||
+        (request.auth.token.keys().hasAll(['email']) && request.auth.token.email.lower() == 'cesar626313978@gmail.com') ||
+        exists(/databases/$(database)/documents/admins/$(request.auth.uid))
+      );
+    }
+
+    function isBoardMember() {
+      return isSuperAdmin() || (
+        isSignedIn() && (
+          exists(/databases/$(database)/documents/users/$(request.auth.uid)) && (
+            get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'presidente', 'secretario', 'vocal'] ||
+            get(/databases/$(database)/documents/users/$(request.auth.uid)).data.canEditSite == true
+          )
+        )
+      );
+    }
+
+    function isMember() {
+      return isSuperAdmin() || (
+        isSignedIn() && (
+          exists(/databases/$(database)/documents/users/$(request.auth.uid)) && (
+            get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role in ['admin', 'presidente', 'secretario', 'vocal', 'socio']
+          )
+        )
+      );
+    }
+
+    // Entity Validators
+    function isValidSiteConfig(data) {
+      return data.primaryColor is string && data.primaryColor.size() <= 30 &&
+             data.secondaryColor is string && data.secondaryColor.size() <= 30 &&
+             data.updatedAt is string && data.updatedAt.size() <= 50;
+    }
+
+    function isValidUserProfile(data) {
+      return data.userId is string && data.userId.size() <= 128 &&
+             data.email is string && data.email.size() <= 150 &&
+             data.role in ['admin', 'presidente', 'secretario', 'vocal', 'socio', 'usuario'] &&
+             data.createdAt is string && data.createdAt.size() <= 50;
+    }
+
+    function isValidArticle(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.title is string && data.title.size() <= 300 &&
+             data.content is string && data.content.size() <= 50000 &&
+             data.authorId is string && data.authorId.size() <= 128 &&
+             data.visibility in ['public', 'members_only'] &&
+             data.status in ['published', 'draft', 'archived'] &&
+             data.createdAt is string && data.createdAt.size() <= 50;
+    }
+
+    function isValidPartnerResource(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.title is string && data.title.size() <= 255 &&
+             data.accessTier in ['all_members', 'board_only'] &&
+             data.createdAt is string && data.createdAt.size() <= 50 &&
+             data.createdBy is string && data.createdBy.size() <= 128;
+    }
+
+    function isValidMediaFile(data) {
+      return data.id is string && data.id.size() <= 128 &&
+             data.name is string && data.name.size() <= 255 &&
+             data.url is string && data.url.size() <= 1040000 &&
+             data.type in ['image', 'document', 'logo'] &&
+             data.uploadedBy is string && data.uploadedBy.size() <= 128 &&
+             data.createdAt is string && data.createdAt.size() <= 50;
+    }
+
+    // 1. Site Configuration Collection
+    match /site_config/{configId} {
+      allow get: if true;
+      allow list: if true;
+      allow create, update: if isValidId(configId) && (isBoardMember() || isSuperAdmin()) && isValidSiteConfig(incoming());
+      allow delete: if isValidId(configId) && isSuperAdmin();
+    }
+
+    // 2. Admins Registry
+    match /admins/{adminId} {
+      allow read: if isSuperAdmin();
+      allow write: if isValidId(adminId) && isSuperAdmin();
+    }
+
+    // 3. User Profiles Collection
+    match /users/{userId} {
+      allow get: if isValidId(userId) && (request.auth.uid == userId || isBoardMember());
+      allow list: if isBoardMember();
+      allow create: if isValidId(userId) && isSignedIn() && request.auth.uid == userId &&
+                      isValidUserProfile(incoming()) &&
+                      (incoming().role == 'usuario' || isSuperAdmin());
+      allow update: if isValidId(userId) && isSignedIn() && isValidUserProfile(incoming()) && (
+        isSuperAdmin() ||
+        (isBoardMember() && incoming().userId == existing().userId) ||
+        (request.auth.uid == userId && incoming().userId == existing().userId && incoming().role == existing().role)
+      );
+      allow delete: if isValidId(userId) && isSuperAdmin();
+    }
+
+    // 4. Articles Collection
+    match /articles/{articleId} {
+      allow get: if isValidId(articleId) && (
+        resource.data.visibility == 'public' || isMember()
+      );
+      allow list: if resource.data.visibility == 'public' || isMember();
+      allow create: if isValidId(articleId) && isBoardMember() &&
+                      isValidArticle(incoming()) &&
+                      incoming().authorId == request.auth.uid;
+      allow update: if isValidId(articleId) && isBoardMember() &&
+                      isValidArticle(incoming()) &&
+                      incoming().authorId == existing().authorId &&
+                      incoming().createdAt == existing().createdAt;
+      allow delete: if isValidId(articleId) && isBoardMember();
+    }
+
+    // 5. Partner Resources Collection
+    match /partner_resources/{resourceId} {
+      allow get: if isValidId(resourceId) && isMember();
+      allow list: if isMember();
+      allow create: if isValidId(resourceId) && isBoardMember() &&
+                      isValidPartnerResource(incoming()) &&
+                      incoming().createdBy == request.auth.uid;
+      allow update: if isValidId(resourceId) && isBoardMember() &&
+                      isValidPartnerResource(incoming()) &&
+                      incoming().createdBy == existing().createdBy &&
+                      incoming().createdAt == existing().createdAt;
+      allow delete: if isValidId(resourceId) && isBoardMember();
+    }
+
+    // 6. Media Files Collection
+    match /media_files/{fileId} {
+      allow get: if true;
+      allow list: if true;
+      allow create: if isValidId(fileId) && (isBoardMember() || isSuperAdmin()) &&
+                      isValidMediaFile(incoming());
+      allow update: if isValidId(fileId) && (isBoardMember() || isSuperAdmin()) &&
+                      isValidMediaFile(incoming());
+      allow delete: if isValidId(fileId) && (isBoardMember() || isSuperAdmin());
+    }
+  }
+}
