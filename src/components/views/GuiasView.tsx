@@ -30,23 +30,24 @@ export const GuiasView: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#FFFDF8]">
+    <div className="w-full bg-white">
       {/* Resumen sencillo opcional */}
       {easyReading && (
         <section
-          aria-label="Resumen sencillo de guías y recursos"
-          className="bg-[#EAF5EF] border-b border-[#176B50]/25 py-5 px-4 sm:px-6 lg:px-8"
+          aria-label="Resumen sencillo de recursos y guías"
+          className="bg-[#EAF5EF] border-b border-[#1D3532]/20 py-5 px-4 sm:px-6 lg:px-8"
         >
           <div className="max-w-5xl mx-auto flex items-start gap-3">
-            <Info className="w-6 h-6 text-[#176B50] shrink-0 mt-0.5" aria-hidden="true" />
+            <Info className="w-6 h-6 text-[#1D3532] shrink-0 mt-0.5" aria-hidden="true" />
             <div className="space-y-1 text-[#20282E]">
               <p className="font-bold text-base text-[#1D3532]">
                 Resumen sencillo de esta página:
               </p>
               <p className="text-base leading-relaxed max-w-[65ch]">
-                Aquí puedes leer gratis 4 guías claras sobre selectividad alimentaria, texturas y
-                rutinas en las comidas, y conocer los próximos materiales que prepararemos en el
-                proyecto piloto de Alicante. Estos textos son educativos y no sustituyen al médico.
+                Aquí puedes leer gratis nuestras primeras 4 guías de lectura clara sobre
+                alimentación inclusiva: selectividad alimentaria, texturas y olores, cómo observar
+                una comida sin presión y la diferencia entre educación alimentaria y tratamiento
+                nutricional.
               </p>
             </div>
           </div>
@@ -56,27 +57,27 @@ export const GuiasView: React.FC = () => {
       {/* Encabezado y aviso de transparencia */}
       <section className="bg-[#F7F3EB] border-b border-[#E6E2D8] py-12 sm:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
-          <p className="uppercase tracking-[0.12em] text-[0.85rem] font-bold text-[#D96820]">
-            RECURSOS Y DIVULGACIÓN BASADA EN LA EVIDENCIA
+          <p className="uppercase tracking-[0.1em] text-xs sm:text-[0.85rem] font-bold text-[#A94F1D]">
+            RECURSOS Y GUÍAS · DIVULGACIÓN DE LECTURA CLARA
           </p>
 
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#1D3532] leading-[1.15]">
-            Guías y educación alimentaria accesible
+            Recursos y educación alimentaria accesible
           </h1>
 
-          {/* Aviso de transparencia obligatorio (sin Comité Técnico Asesor fantasma) */}
-          <div className="bg-white rounded-2xl border border-[#E6E2D8] border-l-4 border-l-[#176B50] p-5 sm:p-6 flex items-start gap-3.5 shadow-2xs">
-            <ShieldCheck className="w-6 h-6 text-[#176B50] shrink-0 mt-0.5" aria-hidden="true" />
+          {/* Aviso de transparencia obligatorio */}
+          <div className="bg-white rounded-2xl border border-[#E6E2D8] border-l-4 border-l-[#1D3532] p-5 sm:p-6 flex items-start gap-3.5 shadow-2xs">
+            <ShieldCheck className="w-6 h-6 text-[#1D3532] shrink-0 mt-0.5" aria-hidden="true" />
             <p className="text-base text-[#20282E] leading-relaxed max-w-[65ch]">
-              Materiales divulgativos elaborados por el equipo de NutriDiversa a partir de
-              literatura científica actualizada. Estos textos tienen carácter exclusivamente
-              educativo e informativo y no sustituyen la consulta con profesionales sanitarios.
+              Materiales divulgativos elaborados por la Asociación NutriDiversa a partir de
+              literatura científica de referencia. Estos textos tienen carácter exclusivamente
+              educativo e informativo y no sustituyen la consulta médica.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Primeras 4 fichas/artículos reales y legibles */}
+      {/* Primeras 4 guías divulgativas de lectura clara */}
       <section
         aria-labelledby="fichas-publicadas-heading"
         className="py-12 sm:py-16 border-b border-[#E6E2D8]"
@@ -87,11 +88,11 @@ export const GuiasView: React.FC = () => {
               id="fichas-publicadas-heading"
               className="font-serif text-2xl sm:text-3xl font-bold text-[#1D3532]"
             >
-              Fichas y artículos divulgativos publicados
+              Primeras 4 guías divulgativas sobre alimentación inclusiva
             </h2>
-            <p className="text-base text-[#5A6670]">
-              Selecciona cualquier ficha para desplegar su lectura completa, fuentes de referencia y
-              límites de alcance.
+            <p className="text-base text-[#20282E]">
+              Selecciona cualquier guía para desplegar su lectura completa, autoría institucional,
+              fuentes de referencia y aviso de alcance.
             </p>
           </div>
 
@@ -104,19 +105,19 @@ export const GuiasView: React.FC = () => {
                   className="bg-white rounded-2xl border border-[#E6E2D8] overflow-hidden shadow-2xs"
                 >
                   <div className="p-6 sm:p-8 space-y-4">
-                    <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-[#5A6670]">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full font-bold bg-[#EAF5EF] text-[#176B50]">
-                        Ficha {idx + 1} · {article.category}
+                    <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-[#20282E]">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full font-bold bg-[#EAF5EF] text-[#1D3532]">
+                        Guía {idx + 1} · {article.category}
                       </span>
                       <span className="inline-flex items-center gap-1.5">
-                        <Calendar className="w-4 h-4 text-[#176B50]" aria-hidden="true" />
+                        <Calendar className="w-4 h-4 text-[#1D3532]" aria-hidden="true" />
                         <span>{article.date}</span>
                       </span>
                       <span className="inline-flex items-center gap-1.5">
-                        <Clock className="w-4 h-4 text-[#176B50]" aria-hidden="true" />
+                        <Clock className="w-4 h-4 text-[#1D3532]" aria-hidden="true" />
                         <span>{article.readTime}</span>
                       </span>
-                      <span className="font-medium text-[#20282E]">
+                      <span className="font-bold text-[#1D3532]">
                         Autoría: {article.author}
                       </span>
                     </div>
@@ -125,7 +126,7 @@ export const GuiasView: React.FC = () => {
                       {article.title}
                     </h3>
 
-                    <p className="text-base text-[#5A6670] leading-relaxed max-w-[65ch]">
+                    <p className="text-base text-[#20282E] leading-relaxed max-w-[65ch]">
                       {article.excerpt}
                     </p>
 
@@ -158,8 +159,8 @@ export const GuiasView: React.FC = () => {
                         onClick={() => handleReadArticle(article)}
                         className="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border border-[#E6E2D8] bg-[#FFFDF8] hover:bg-[#F7F3EB] text-[#20282E] font-medium text-sm transition-colors"
                       >
-                        <Volume2 className="w-4 h-4 text-[#176B50]" aria-hidden="true" />
-                        <span>Escuchar ficha</span>
+                        <Volume2 className="w-4 h-4 text-[#1D3532]" aria-hidden="true" />
+                        <span>Escuchar guía</span>
                       </button>
                     </div>
                   </div>
@@ -188,9 +189,9 @@ export const GuiasView: React.FC = () => {
                       <div className="pt-4 border-t border-[#E6E2D8] grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div className="space-y-2">
                           <h5 className="text-sm font-bold uppercase tracking-wider text-[#1D3532]">
-                            Fuentes de referencia
+                            Fuentes científicas de referencia
                           </h5>
-                          <ul className="list-disc list-inside text-sm text-[#5A6670] space-y-1">
+                          <ul className="list-disc list-inside text-sm text-[#20282E] space-y-1">
                             {article.sources.map((src, i) => (
                               <li key={i}>{src}</li>
                             ))}
@@ -198,7 +199,7 @@ export const GuiasView: React.FC = () => {
                         </div>
 
                         <div className="bg-[#F7F3EB] rounded-xl p-4 border border-[#E6E2D8] text-sm text-[#20282E] space-y-1">
-                          <p className="font-bold text-[#1D3532]">Límites del contenido:</p>
+                          <p className="font-bold text-[#1D3532]">Aviso de alcance:</p>
                           <p>{article.limitsNote}</p>
                         </div>
                       </div>
@@ -211,11 +212,11 @@ export const GuiasView: React.FC = () => {
         </div>
       </section>
 
-      {/* Próximos recursos en preparación (4 tarjetas marcadas con etiqueta «En preparación - Piloto 2026/2027») */}
+      {/* Próximos recursos en preparación */}
       <section aria-labelledby="proximos-recursos-heading" className="py-12 sm:py-16 bg-[#F7F3EB]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-2">
-            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#D96820]">
+            <p className="uppercase tracking-[0.1em] text-xs font-bold text-[#A94F1D]">
               COCREACIÓN CON FAMILIAS
             </p>
             <h2
@@ -224,7 +225,7 @@ export const GuiasView: React.FC = () => {
             >
               Próximos recursos en preparación
             </h2>
-            <p className="text-base text-[#5A6670] max-w-[65ch]">
+            <p className="text-base text-[#20282E] max-w-[65ch]">
               Nuevas guías prácticas que se elaborarán y evaluarán a partir de la fase de escucha
               del proyecto piloto:
             </p>
@@ -237,14 +238,14 @@ export const GuiasView: React.FC = () => {
                 className="bg-white rounded-2xl border border-[#E6E2D8] p-6 space-y-3 flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#F7F3EB] text-[#D96820] border border-[#E6E2D8]">
-                    <Sparkles className="w-3.5 h-3.5" aria-hidden="true" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#F7F3EB] text-[#A94F1D] border border-[#E6E2D8]">
+                    <Sparkles className="w-3.5 h-3.5 text-[#D96820]" aria-hidden="true" />
                     <span>{item.statusTag}</span>
                   </span>
                   <h3 className="font-serif text-xl font-bold text-[#1D3532] leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-base text-[#5A6670] leading-relaxed">{item.description}</p>
+                  <p className="text-base text-[#20282E] leading-relaxed">{item.description}</p>
                 </div>
               </div>
             ))}

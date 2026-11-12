@@ -9,39 +9,57 @@ interface RouteSEO {
 
 const ROUTE_SEO_MAP: Record<RoutePath, RouteSEO> = {
   '/': {
-    title: 'NutriDiversa | Alimentación y nutrición inclusiva para personas con discapacidad y familias',
+    title: 'NutriDiversa | Alimentación y nutrición accesibles para personas con discapacidad y sus familias',
     description:
-      'Asociación sin ánimo de lucro de ámbito nacional con sede en Alicante. Educación alimentaria accesible e iniciativas para familias, discapacidad y autismo.',
-    announceText: 'Página de inicio. NutriDiversa: alimentación y nutrición inclusiva.',
+      'Asociación estatal sin ánimo de lucro de nutrición inclusiva y discapacidad (RNA 632919). Información, recursos y proyectos educativos para personas con discapacidad y familias.',
+    announceText: 'Página de inicio. NutriDiversa: Asociación de Nutrición en la Discapacidad.',
+  },
+  '/que-hacemos': {
+    title: 'Qué hacemos: líneas de actuación y colectivos | NutriDiversa',
+    description:
+      'Conoce las cuatro líneas de actuación de NutriDiversa: información accesible, escucha y participación, educación alimentaria y trabajo con entidades en toda España.',
+    announceText: 'Qué hacemos: líneas de actuación y colectivos.',
   },
   '/proyecto': {
-    title: 'Proyecto piloto de alimentación y autismo en Alicante | NutriDiversa',
+    title: 'Primer proyecto piloto: Alimentación y autismo (6 a 12 años) | NutriDiversa',
     description:
-      'Iniciativa educativa en preparación para familias de menores autistas de 6 a 12 años en Alicante. Abordamos selectividad, texturas y rutinas.',
-    announceText: 'El proyecto piloto de alimentación y autismo en Alicante.',
+      'Primer proyecto piloto educativo en preparación en la provincia de Alicante para familias con menores autistas de 6 a 12 años.',
+    announceText: 'Primer proyecto piloto: Alimentación y autismo en familias con menores de 6 a 12 años.',
+  },
+  '/recursos': {
+    title: 'Recursos y guías de educación alimentaria accesible | NutriDiversa',
+    description:
+      'Guías divulgativas y recursos prácticos sobre selectividad alimentaria, texturas, observación de comidas y educación alimentaria comunitaria.',
+    announceText: 'Recursos y guías de educación alimentaria accesible.',
   },
   '/guias': {
-    title: 'Guías y educación alimentaria accesible | NutriDiversa',
+    title: 'Recursos y guías de educación alimentaria accesible | NutriDiversa',
     description:
-      'Recursos prácticos y artículos divulgativos sobre selectividad alimentaria, texturas, comunicación en las comidas y nutrición inclusiva.',
-    announceText: 'Guías y educación alimentaria accesible.',
+      'Guías divulgativas y recursos prácticos sobre selectividad alimentaria, texturas, observación de comidas y educación alimentaria comunitaria.',
+    announceText: 'Recursos y guías de educación alimentaria accesible.',
+  },
+  '/conocenos': {
+    title: 'Conócenos, Junta Directiva y Transparencia | NutriDiversa',
+    description:
+      'Misión, valores, composición íntegra de la Junta Directiva, cuotas de personas asociadas y documentación oficial de la Asociación NutriDiversa.',
+    announceText: 'Conócenos: misión, Junta Directiva, cuotas y transparencia.',
   },
   '/asociacion': {
-    title: 'La asociación: misión, ámbitos de actuación y cómo asociarse | NutriDiversa',
+    title: 'Conócenos, Junta Directiva y Transparencia | NutriDiversa',
     description:
-      'Conoce la misión de NutriDiversa, nuestros ámbitos de actuación en discapacidad, enfermedades raras y dependencia, y cómo formar parte.',
-    announceText: 'La asociación: quiénes somos, junta directiva y cómo asociarse.',
+      'Misión, valores, composición íntegra de la Junta Directiva, cuotas de personas asociadas y documentación oficial de la Asociación NutriDiversa.',
+    announceText: 'Conócenos: misión, Junta Directiva, cuotas y transparencia.',
   },
   '/contacto': {
-    title: 'Contacto para familias, entidades y profesionales | NutriDiversa',
+    title: 'Contacto para familias, entidades y personas asociadas | NutriDiversa',
     description:
-      'Canales de contacto diferenciados para familias interesadas en el proyecto piloto, entidades colaboradoras, voluntariado y personas asociadas.',
-    announceText: 'Contacto segmentado para familias, entidades, profesionales y personas asociadas.',
+      'Formularios independientes para familias interesadas en el proyecto piloto, entidades colaboradoras y solicitudes de alta o voluntariado.',
+    announceText: 'Contacto segmentado para familias, entidades y personas asociadas.',
   },
   '/transparencia': {
-    title: 'Transparencia, Estatutos y datos registrales | NutriDiversa',
+    title: 'Transparencia, Junta Directiva, Estatutos y datos registrales | NutriDiversa',
     description:
-      'Información identificativa, inscripción en el Registro Nacional de Asociaciones (RNA 632919), NIF G22670707, Estatutos y gobernanza de NutriDiversa.',
+      'Datos registrales oficiales (RNA 632919, NIF G22670707), Junta Directiva, Estatutos y documentación institucional de NutriDiversa.',
     announceText: 'Portal de transparencia, estatutos y datos registrales.',
   },
   '/privacidad': {
@@ -59,23 +77,22 @@ const ROUTE_SEO_MAP: Record<RoutePath, RouteSEO> = {
   '/cookies': {
     title: 'Política de cookies y almacenamiento local | NutriDiversa',
     description:
-      'Información sobre el uso exclusivo de almacenamiento local técnico para recordar las preferencias de lectura en www.nutridiversa.org.',
+      'Información sobre el almacenamiento local técnico y configuración de cookies conforme a la Guía de la AEPD en www.nutridiversa.org.',
     announceText: 'Política de cookies y almacenamiento local.',
   },
   '/accesibilidad': {
     title: 'Declaración y compromiso de accesibilidad | NutriDiversa',
     description:
-      'Compromiso voluntario de accesibilidad tomando como referencia técnica las pautas WCAG 2.2 nivel AA en www.nutridiversa.org.',
+      'Compromiso voluntario de accesibilidad tomando como referencia las pautas WCAG en www.nutridiversa.org.',
     announceText: 'Declaración y compromiso de accesibilidad.',
   },
 };
 
 function normalizePath(rawPath: string): RoutePath {
   const clean = rawPath.split('?')[0].split('#')[0].replace(/\/+$/, '') || '/';
-  // Map legacy routes gracefully
   if (clean === '/servicios') return '/proyecto';
-  if (clean === '/actualidad') return '/guias';
-  if (clean === '/conocenos' || clean === '/colabora' || clean === '/socios') return '/asociacion';
+  if (clean === '/actualidad' || clean === '/guias') return '/recursos';
+  if (clean === '/asociacion' || clean === '/colabora' || clean === '/socios') return '/conocenos';
   if (clean in ROUTE_SEO_MAP) {
     return clean as RoutePath;
   }
@@ -94,7 +111,6 @@ function extractProfileFromSearch(search: string): ContactProfileTab | null {
 }
 
 interface AccessibilityContextType {
-  // Simple summary mode ("Resumen sencillo" in Opciones de lectura)
   easyReading: boolean;
   setEasyReading: (val: boolean | ((prev: boolean) => boolean)) => void;
   toggleEasyReading: () => void;
@@ -134,7 +150,6 @@ interface AccessibilityContextType {
 const AccessibilityContext = createContext<AccessibilityContextType | undefined>(undefined);
 
 export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Load initial preferences from localStorage using the exact keys documented in /cookies
   const [easyReading, setEasyReadingState] = useState<boolean>(() => {
     try {
       return localStorage.getItem('nutridiversa_simple_summary') === 'true';
@@ -173,7 +188,6 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
   const [announcement, setAnnouncement] = useState<string>('');
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
-  // Web Speech API states
   const [isSpeaking, setIsSpeaking] = useState<boolean>(false);
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [currentSpeechTitle, setCurrentSpeechTitle] = useState<string>('');
@@ -185,18 +199,15 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
     }, 4000);
   }, []);
 
-  const setEasyReading = useCallback(
-    (val: boolean | ((prev: boolean) => boolean)) => {
-      setEasyReadingState((prev) => {
-        const next = typeof val === 'function' ? val(prev) : val;
-        try {
-          localStorage.setItem('nutridiversa_simple_summary', String(next));
-        } catch {}
-        return next;
-      });
-    },
-    []
-  );
+  const setEasyReading = useCallback((val: boolean | ((prev: boolean) => boolean)) => {
+    setEasyReadingState((prev) => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      try {
+        localStorage.setItem('nutridiversa_simple_summary', String(next));
+      } catch {}
+      return next;
+    });
+  }, []);
 
   const toggleEasyReading = useCallback(() => {
     setEasyReadingState((prev) => {
@@ -213,18 +224,15 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
     });
   }, [announce]);
 
-  const setHighContrast = useCallback(
-    (val: boolean | ((prev: boolean) => boolean)) => {
-      setHighContrastState((prev) => {
-        const next = typeof val === 'function' ? val(prev) : val;
-        try {
-          localStorage.setItem('nutridiversa_contrast', next ? 'high' : 'warm');
-        } catch {}
-        return next;
-      });
-    },
-    []
-  );
+  const setHighContrast = useCallback((val: boolean | ((prev: boolean) => boolean)) => {
+    setHighContrastState((prev) => {
+      const next = typeof val === 'function' ? val(prev) : val;
+      try {
+        localStorage.setItem('nutridiversa_contrast', next ? 'high' : 'warm');
+      } catch {}
+      return next;
+    });
+  }, []);
 
   const toggleHighContrast = useCallback(() => {
     setHighContrastState((prev) => {
@@ -233,9 +241,7 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
         localStorage.setItem('nutridiversa_contrast', next ? 'high' : 'warm');
       } catch {}
       announce(
-        next
-          ? 'Modo de alto contraste activado.'
-          : 'Diseño cálido predeterminado activado.'
+        next ? 'Modo de alto contraste activado.' : 'Diseño cálido predeterminado activado.'
       );
       return next;
     });
@@ -278,7 +284,6 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
     setFontScale('100');
   }, [setFontScale]);
 
-  // Synchronize CSS classes on document.documentElement
   useEffect(() => {
     const root = document.documentElement;
     if (highContrast) {
@@ -294,7 +299,6 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
     root.classList.add(`font-scale-${fontScale}`);
   }, [fontScale]);
 
-  // Update SEO document.title and meta description whenever activeRoute changes
   useEffect(() => {
     const seo = ROUTE_SEO_MAP[activeRoute] || ROUTE_SEO_MAP['/'];
     document.title = seo.title;
@@ -312,7 +316,6 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
     }
   }, [activeRoute]);
 
-  // Listen to browser Back/Forward buttons (popstate)
   useEffect(() => {
     const handlePopState = () => {
       const route = normalizePath(window.location.pathname);
@@ -326,7 +329,6 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
 
-  // Speech Synthesis logic
   const stopSpeech = useCallback(() => {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
       window.speechSynthesis.cancel();
@@ -427,7 +429,8 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
 
   const navigateTo = useCallback(
     (routeWithOptionalQuery: string) => {
-      const [pathPart, queryPart] = routeWithOptionalQuery.split('?');
+      const [pathAndQuery, hashPart] = routeWithOptionalQuery.split('#');
+      const [pathPart, queryPart] = pathAndQuery.split('?');
       const normalized = normalizePath(pathPart);
 
       if (queryPart) {
@@ -440,7 +443,10 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
       setActiveRoute(normalized);
 
       if (typeof window !== 'undefined') {
-        const targetUrl = queryPart ? `${normalized}?${queryPart}` : normalized;
+        let targetUrl = queryPart ? `${normalized}?${queryPart}` : normalized;
+        if (hashPart) {
+          targetUrl += `#${hashPart}`;
+        }
         try {
           window.history.pushState({}, '', targetUrl);
         } catch {}
@@ -450,7 +456,18 @@ export const AccessibilityProvider: React.FC<{ children: ReactNode }> = ({ child
           setIsPaused(false);
           setCurrentSpeechTitle('');
         }
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (hashPart) {
+          setTimeout(() => {
+            const targetEl = document.getElementById(hashPart);
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth' });
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+          }, 60);
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       }
 
       const seo = ROUTE_SEO_MAP[normalized] || ROUTE_SEO_MAP['/'];

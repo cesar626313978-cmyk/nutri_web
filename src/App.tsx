@@ -3,6 +3,7 @@ import { AccessibilityProvider, useAccessibility } from './context/Accessibility
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { HomeView } from './components/views/HomeView';
+import { QueHacemosView } from './components/views/QueHacemosView';
 import { ProyectoView } from './components/views/ProyectoView';
 import { GuiasView } from './components/views/GuiasView';
 import { AsociacionView } from './components/views/AsociacionView';
@@ -21,11 +22,15 @@ const MainAppContent: React.FC = () => {
   const renderView = () => {
     switch (activeRoute) {
       case '/':
-        return <HomeView />;
+        return <HomeView showPilotInHero={true} />;
+      case '/que-hacemos':
+        return <QueHacemosView />;
       case '/proyecto':
         return <ProyectoView />;
+      case '/recursos':
       case '/guias':
         return <GuiasView />;
+      case '/conocenos':
       case '/asociacion':
         return <AsociacionView />;
       case '/contacto':
@@ -41,12 +46,12 @@ const MainAppContent: React.FC = () => {
       case '/accesibilidad':
         return <AccesibilidadView />;
       default:
-        return <HomeView />;
+        return <HomeView showPilotInHero={true} />;
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FFFDF8] text-[#20282E] transition-colors">
+    <div className="min-h-screen flex flex-col bg-white text-[#20282E] transition-colors">
       <Header />
 
       <main id="main-content" className="flex-grow focus:outline-none" tabIndex={-1}>

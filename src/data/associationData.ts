@@ -10,14 +10,17 @@ import {
 export const INSTITUTIONAL_DATA = {
   name: 'Asociación de Nutrición en la Discapacidad (NutriDiversa)',
   shortName: 'NutriDiversa',
+  fullBrandTitle: 'NutriDiversa — Asociación de Nutrición en la Discapacidad',
+  subtitle: '— Asociación de Nutrición en la Discapacidad —',
   abbreviation: 'NutriDiversa',
   acronym: 'ND',
   nif: 'G22670707',
-  motto: 'Una alimentación más comprensible y accesible para cada familia',
-  subtitle: 'Promoción de la salud y nutrición inclusiva',
+  motto: 'Alimentación y nutrición accesibles para personas con discapacidad y sus familias',
+  secondaryMotto: 'Una alimentación más comprensible y accesible para cada familia',
   nature:
     'Asociación sin ánimo de lucro de ámbito estatal, acogida a la Ley Orgánica 1/2002, de 22 de marzo, reguladora del Derecho de Asociación.',
   year: 'Noviembre de 2026',
+  logoUrl: '/assets/aistudio/logo_horiz_tran_sin_c690c1cd.png',
   nationalRegistry: {
     number: '632919',
     section: 'Sección 1',
@@ -28,13 +31,13 @@ export const INSTITUTIONAL_DATA = {
     cifCode: 'G22670707',
   },
   headquarters: {
-    address: 'C/ Polop, 30, Esc. 1, 4º O, 03015 Alicante (España)',
-    street: 'Calle Polop, número 30, Escalera 1, 4º O',
+    address: 'C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante (España)',
+    street: 'Calle Polop, número 30, Escalera 1, 4.º O',
     postalCode: '03015',
     city: 'Alicante',
     province: 'Alicante',
     country: 'España',
-    display: 'C/ Polop, 30, Esc. 1, 4º O, 03015 Alicante (España)',
+    display: 'C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante',
   },
   contact: {
     email: 'info@nutridiversa.org',
@@ -43,18 +46,13 @@ export const INSTITUTIONAL_DATA = {
     transparenciaEmail: 'info@nutridiversa.org',
     website: 'www.nutridiversa.org',
     websiteUrl: 'https://www.nutridiversa.org',
-    phone: '',
-    phoneFormatted: '',
-    whatsapp: '',
-    whatsappFormatted: '',
-    bizumOngCode: '',
   },
   mission:
     'Contribuir a mejorar la alimentación, la nutrición y la salud de las personas con discapacidad, las personas autistas, las afectadas por enfermedades raras y las que se encuentran en situación de dependencia, mediante iniciativas basadas en la evidencia científica y orientadas por un enfoque de nutrición inclusiva, teniendo en cuenta también el bienestar de sus familias y personas cuidadoras.',
   vision:
     'Conseguir que la alimentación y la nutrición inclusivas formen parte habitual de la promoción de la salud en el ámbito de la discapacidad, el autismo, las enfermedades raras y las situaciones de dependencia, facilitando el acceso a una alimentación adecuada en condiciones de igualdad y con los apoyos necesarios.',
   natureAndLimits:
-    'Actividad de educación alimentaria. No realiza diagnósticos, dietas personalizadas ni tratamientos clínicos, y no sustituye la atención sanitaria.',
+    'Proyecto exclusivamente educativo y comunitario en fase de preparación. No ofrece diagnósticos médicos, dietas personalizadas ni tratamientos clínicos.',
   fiscalNote:
     'Información fiscal transparente: NutriDiversa es una asociación sin ánimo de lucro inscrita en el Registro Nacional de Asociaciones. Actualmente se encuentra en su fase inicial de actividad y no cuenta todavía con la declaración de utilidad pública prevista en la Ley 49/2002, por lo que las cuotas y aportaciones no generan derecho a deducción fiscal en el IRPF o Impuesto de Sociedades. Emitimos el correspondiente justificante oficial de pago o aportación.',
   statutes: {
@@ -71,252 +69,321 @@ export const INSTITUTIONAL_DATA = {
   },
 };
 
+/**
+ * 2.1. Corrección Urgente 1: Composición Literal de la Junta Directiva (PROHIBIDO ALTERAR)
+ */
 export const BOARD_MEMBERS: BoardMember[] = [
   {
-    name: 'Inmaculada Concepción Sánchez-Cañete',
     role: 'Presidencia',
-    duty: 'Representación institucional de la asociación, impulso estratégico de la misión estatal y coordinación general de las líneas de actuación.',
-    bio: 'Impulsora de NutriDiversa comprometida con la promoción de la salud, la nutrición inclusiva y el apoyo educativo a las personas con discapacidad y a sus familias.',
-    easyReadingBio:
-      'Ocupa la Presidencia de la Junta Directiva y representa a la asociación.',
+    name: 'Inmaculada Checa Lorente',
+    duty: 'Representación institucional de la asociación, dirección de la Asamblea General y de la Junta Directiva, e impulso de los fines estatutarios a nivel estatal.',
+    bio: 'Desempeña la Presidencia de la Asociación de Nutrición en la Discapacidad (NutriDiversa) de forma gratuita y sin remuneración.',
+    easyReadingBio: 'Ocupa la Presidencia de NutriDiversa y representa a la asociación.',
   },
   {
-    name: 'Iván Carabaño',
     role: 'Secretaría',
-    duty: 'Coordinación administrativa, custodia de actas y registro de personas asociadas, y atención directa a las solicitudes recibidas.',
-    bio: 'Responsable de la gestión documental y estatutaria de la entidad, así como de la tramitación de solicitudes de información, colaboración e inscripción.',
-    easyReadingBio:
-      'Ocupa la Secretaría. Coordina la administración y responde a las solicitudes de las familias y personas asociadas.',
+    name: 'Silvia Andrea Costa Méndez',
+    duty: 'Coordinación administrativa, custodia de libros oficiales, actas y registro de personas asociadas, y tramitación de comunicaciones y solicitudes.',
+    bio: 'Desempeña la Secretaría de la Junta Directiva de forma gratuita y sin remuneración.',
+    easyReadingBio: 'Ocupa la Secretaría. Coordina la documentación y atiende las solicitudes recibidas.',
   },
   {
-    name: 'César',
     role: 'Tesorería',
-    duty: 'Gestión económica, presupuestaria y documental, emisión de justificantes de cuotas y aportaciones, y preparación del balance anual.',
-    bio: 'Encargado de la administración transparente de los recursos económicos destinados a los materiales educativos y actividades de la asociación.',
-    easyReadingBio:
-      'Ocupa la Tesorería. Gestiona el presupuesto y los justificantes de las cuotas y aportaciones.',
+    name: 'César Hernández Moreno',
+    duty: 'Gestión económica, contable y presupuestaria, administración de cuotas y aportaciones, emisión de justificantes de pago y formulación de cuentas anuales.',
+    bio: 'Desempeña la Tesorería de la Junta Directiva de forma gratuita y sin remuneración.',
+    easyReadingBio: 'Ocupa la Tesorería. Gestiona el presupuesto y emite los justificantes de pago.',
+  },
+  {
+    role: 'Vocalía 1',
+    name: 'Almudena Gómez de Cadiñanos Sastre',
+    duty: 'Apoyo al desarrollo de los programas educativos, proyectos de nutrición inclusiva y comisiones de trabajo de la Junta Directiva.',
+    bio: 'Desempeña la Vocalía 1 de la Junta Directiva de forma gratuita y sin remuneración.',
+    easyReadingBio: 'Ocupa la Vocalía 1 y colabora en el desarrollo de los proyectos educativos.',
+  },
+  {
+    role: 'Vocalía 2',
+    name: 'Victoria Muñoz Bañón',
+    duty: 'Impulso de la participación social, relación con familias y entidades colaboradoras y apoyo a las actividades comunitarias de la asociación.',
+    bio: 'Desempeña la Vocalía 2 de la Junta Directiva de forma gratuita y sin remuneración.',
+    easyReadingBio: 'Ocupa la Vocalía 2 y apoya las actividades con familias y entidades.',
+  },
+];
+
+/**
+ * FRANJA 3: BANDA DE CONFIANZA (DATOS VERIFICADOS)
+ */
+export const TRUST_BAND_ITEMS = [
+  {
+    label: 'Naturaleza',
+    value: 'Asociación sin ánimo de lucro (Registro Nacional de Asociaciones nº 632919)',
+  },
+  {
+    label: 'Alcance',
+    value: 'Ámbito estatal',
+  },
+  {
+    label: 'Sede',
+    value: 'Alicante',
+  },
+  {
+    label: 'Enfoque',
+    value: 'Educación alimentaria accesible y participativa (no asistencial ni clínica)',
+  },
+];
+
+/**
+ * FRANJA 4: QUÉ HACEMOS (#que-hacemos)
+ */
+export const WHAT_WE_DO_LINES = [
+  {
+    id: 'informacion-accesible',
+    title: 'Información accesible',
+    description:
+      'Adaptamos conocimientos sobre alimentación y nutrición a un lenguaje claro, cotidiano y libre de tecnicismos innecesarios.',
+  },
+  {
+    id: 'escucha-participacion',
+    title: 'Escucha y participación',
+    description:
+      'Partimos de las experiencias reales de las personas con discapacidad, sus familias y personas cuidadoras antes de diseñar cualquier recurso.',
+  },
+  {
+    id: 'educacion-alimentaria',
+    title: 'Educación alimentaria',
+    description:
+      'Impulsamos talleres, guías prácticas y actividades comunitarias que respetan los distintos perfiles sensoriales, motores o cognitivos.',
+  },
+  {
+    id: 'trabajo-entidades',
+    title: 'Trabajo con entidades',
+    description:
+      'Colaboramos con asociaciones, centros educativos, universidades y profesionales para sumar conocimiento y llegar a más familias.',
   },
 ];
 
 export const NATIONAL_ACTION_SCOPES = [
   {
-    id: 'tea',
-    title: 'Trastorno del Espectro del Autismo (TEA)',
-    description:
-      'Apoyo ante la hiper o hiporreactividad sensorial, selectividad alimentaria y estructuración de rutinas en la mesa.',
-  },
-  {
     id: 'discapacidad-general',
     title: 'Discapacidad intelectual, física y sensorial',
     description:
-      'Adaptación de guías nutricionales y entornos de comida para fomentar la autonomía y prevenir problemas asociados.',
+      'Adaptación de guías nutricionales, apoyos cotidianos y entornos de comida para fomentar la autonomía y prevenir dificultades asociadas.',
+  },
+  {
+    id: 'tea',
+    title: 'Trastorno del Espectro del Autismo (TEA)',
+    description:
+      'Orientación ante la hiper o hiporreactividad sensorial, selectividad alimentaria y estructuración de rutinas predecibles en la mesa.',
   },
   {
     id: 'enfermedades-raras-dependencia',
     title: 'Enfermedades raras y situaciones de dependencia',
     description:
-      'Orientación educativa cotidiana para familias y personas cuidadoras que afrontan necesidades alimentarias específicas.',
+      'Educación alimentaria cotidiana para personas y familias que afrontan necesidades de apoyo específicas en su alimentación diaria.',
   },
   {
     id: 'apoyo-respiro-familias',
-    title: 'Apoyo y respiro informativo a familias',
+    title: 'Apoyo a familias y personas cuidadoras',
     description:
-      'Traducción de la evidencia científica a materiales comprensibles, prácticos y libres de tecnicismos.',
+      'Traducción de la evidencia científica a materiales comprensibles, prácticos y pensados para acompañar a quienes cuidan cada día.',
   },
 ];
 
+/**
+ * FRANJA 5: 4 pasos del proyecto piloto
+ */
 export const PILOT_STEPS_HOME = [
   {
     number: 1,
     title: 'Escuchamos',
     description:
-      'Recogemos experiencias, dificultades cotidianas y prioridades reales de las familias.',
+      'Recogemos experiencias, dificultades cotidianas y prioridades de madres, padres, tutores y personas cuidadoras.',
   },
   {
     number: 2,
     title: 'Preparamos',
     description:
-      'Creamos materiales claros, prácticos y accesibles ajustados a sus necesidades.',
+      'Creamos materiales claros, prácticos y accesibles a partir de sus necesidades reales.',
   },
   {
     number: 3,
     title: 'Compartimos',
     description:
-      'Realizamos una primera actividad educativa orientada a las personas cuidadoras.',
+      'Realizamos una primera actividad educativa gratuita orientada a las familias participantes.',
   },
   {
     number: 4,
     title: 'Mejoramos',
     description:
-      'Evaluamos la utilidad, comprensión y accesibilidad de los recursos generados.',
+      'Evaluamos la utilidad, comprensión y accesibilidad de los recursos para seguir mejorándolos.',
   },
 ];
 
 export const PUBLISHED_GUIDES: GuideArticle[] = [
   {
-    id: 'selectividad-alimentaria-autismo-cuando-consultar',
-    title: 'Qué es la selectividad alimentaria en el autismo y cuándo consultar a un profesional sanitario',
-    slug: 'selectividad-alimentaria-autismo-cuando-consultar',
-    category: 'Alimentación y Autismo',
+    id: 'selectividad-alimentaria-cuando-pedir-valoracion',
+    title: 'Qué es la selectividad alimentaria y cuándo pedir valoración profesional',
+    slug: 'selectividad-alimentaria-cuando-pedir-valoracion',
+    category: 'Alimentación Inclusiva',
     date: 'Noviembre de 2026',
     readTime: '5 min de lectura',
-    author: 'Equipo de NutriDiversa',
+    author: 'Asociación NutriDiversa',
     excerpt:
       'Diferencia entre preferencia selectiva, hiperreactividad sensorial y señales de alerta médica o nutricional que requieren valoración sanitaria.',
     simpleSummary:
-      'Muchas niñas y niños con autismo comen pocos alimentos distintos por cómo sienten las texturas o los olores. En esta guía explicamos qué podemos observar con calma en casa y en qué momentos es importante acudir al pediatra o al nutricionista clínico.',
+      'Muchas personas con discapacidad o autismo aceptan pocos alimentos distintos por cómo sienten las texturas o los olores. En esta guía explicamos qué podemos observar con calma en casa y cuándo acudir al médico o nutricionista clínico.',
     sections: [
       {
-        heading: '1. ¿Qué entendemos por selectividad alimentaria en el espectro autista?',
+        heading: '1. ¿Qué entendemos por selectividad alimentaria?',
         paragraphs: [
-          'En la infancia es frecuente atravesar etapas de rechazo a nuevos alimentos (neofobia alimentaria). Sin embargo, en menores en el espectro autista, la selectividad alimentaria suele ser más intensa y persistente, y a menudo está vinculada a la forma en que su sistema nervioso procesa los estímulos sensoriales, la necesidad de predictibilidad o las dificultades motoras orales.',
-          'Una preferencia selectiva habitual permite mantener un repertorio suficiente de alimentos dentro de los distintos grupos nutricionales, mientras que una restricción severa reduce drásticamente la variedad de alimentos aceptados por textura, marca, color, temperatura o forma de presentación.',
+          'En muchas etapas del desarrollo es habitual mostrar cautela ante alimentos nuevos. Sin embargo, en personas con discapacidad o en el espectro autista, la selectividad alimentaria puede ser más intensa y persistente, y suele relacionarse con el procesamiento sensorial, la necesidad de rutinas predecibles o dificultades motoras orales.',
+          'Una preferencia selectiva moderada permite mantener alimentos de los principales grupos nutricionales, mientras que una restricción acusada limita de forma severa el repertorio aceptado según textura, temperatura, color o presentación.',
         ],
       },
       {
         heading: '2. Factores cotidianos que conviene distinguir',
         paragraphs: [
-          'Antes de intervenir en la mesa, resulta útil observar si el rechazo responde a hipersensibilidad táctil u olfativa, a cansancio acumulado al final del día, a cambios imprevistos en la vajilla o el entorno, o bien a molestias físicas al masticar o tragar.',
-          'Comprender que la negativa a probar un alimento no es una conducta de oposición voluntaria, sino con frecuencia una respuesta de malestar sensorial o ansiedad ante la incertidumbre, ayuda a reducir la presión sobre el menor y sobre la propia familia.',
+          'Antes de intervenir en la mesa, ayuda observar si el rechazo se relaciona con hipersensibilidad táctil u olfativa, cansancio acumulado, cambios imprevistos en el entorno o molestias físicas al masticar o tragar.',
+          'Comprender que el rechazo a un alimento suele responder a malestar sensorial o incertidumbre —y no a una conducta voluntaria de desafío— contribuye a rebajar la tensión familiar.',
         ],
       },
       {
-        heading: '3. Señales de alerta: ¿cuándo consultar a un profesional sanitario?',
+        heading: '3. Señales de alerta: ¿cuándo pedir valoración profesional?',
         paragraphs: [
-          'La educación alimentaria familiar nunca sustituye la valoración clínica. Se recomienda acudir a pediatría, gastroenterología o a un profesional de la nutrición clínica colegiado cuando se observe cualquiera de estas señales:',
-          '• Pérdida de peso, estancamiento en el crecimiento o cansancio inusual. • Exclusión completa de grupos enteros de alimentos (por ejemplo, ninguna fuente de proteínas o ninguna fruta/verdura en ninguna textura) durante periodos prolongados. • Tos frecuente, atragantamientos, arcadas intensas o dolor al tragar. • Estreñimiento crónico severo, diarrea persistente, dolor abdominal recurrente o vómitos.',
+          'La educación alimentaria comunitaria nunca sustituye la consulta clínica. Conviene solicitar valoración en pediatría, medicina de familia, gastroenterología o nutrición clínica colegiada ante cualquiera de estas señales:',
+          '• Pérdida de peso, estancamiento ponderal o fatiga inusual. • Exclusión completa de grupos enteros de alimentos durante periodos prolongados. • Tos frecuente, atragantamientos, arcadas intensas o dolor al tragar. • Estreñimiento severo, diarrea persistente, dolor abdominal recurrente o vómitos.',
         ],
       },
     ],
     sources: [
-      'Guías de práctica clínica sobre trastornos del espectro autista en pediatría (Sistema Nacional de Salud).',
-      'Revisiones científicas sobre procesamiento sensorial y selectividad alimentaria en la infancia (Journal of Autism and Developmental Disorders).',
+      'Guías de práctica clínica del Sistema Nacional de Salud sobre alimentación y neurodesarrollo.',
+      'Revisiones científicas sobre procesamiento sensorial y selectividad alimentaria.',
     ],
     limitsNote:
-      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye el diagnóstico ni la consulta con profesionales sanitarios.',
+      'Recurso divulgativo elaborado por la Asociación NutriDiversa (Noviembre 2026). Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta médica ni el tratamiento nutricional.',
   },
   {
-    id: 'texturas-olores-presentacion-procesamiento-sensorial',
-    title: 'Texturas, olores y presentación de los alimentos: cómo influye el procesamiento sensorial en la mesa',
-    slug: 'texturas-olores-presentacion-procesamiento-sensorial',
-    category: 'Procesamiento Sensorial',
+    id: 'texturas-olores-presentacion-alimentos',
+    title: 'Texturas, olores y presentación de los alimentos',
+    slug: 'texturas-olores-presentacion-alimentos',
+    category: 'Entorno y Sentidos',
     date: 'Noviembre de 2026',
     readTime: '4 min de lectura',
-    author: 'Equipo de NutriDiversa',
+    author: 'Asociación NutriDiversa',
     excerpt:
-      'Pautas cotidianas para reducir la sobrecarga sensorial en el entorno de la comida y facilitar una relación más predecible con los alimentos.',
+      'Cómo influye el procesamiento sensorial en la mesa y qué ajustes cotidianos ayudan a reducir la sobrecarga sensorial durante las comidas.',
     simpleSummary:
-      'Comer utiliza todos los sentidos a la vez: la vista, el olfato, el tacto en la boca y hasta el oído al masticar. Aquí compartimos ideas prácticas para que el comedor de casa sea un lugar más tranquilo y predecible.',
+      'Comer utiliza todos los sentidos a la vez: la vista, el olfato, el tacto en la boca y el oído. Aquí compartimos ideas prácticas para que el comedor de casa sea un lugar más tranquilo y predecible.',
     sections: [
       {
-        heading: '1. Comer es una experiencia multisensorial compleja',
+        heading: '1. Comer es una experiencia multisensorial',
         paragraphs: [
-          'Antes siquiera de llevarse un alimento a la boca, la persona recibe información visual (colores, brillo, mezcla de ingredientes en el plato) y olfativa (vapores de cocción, olores intensos de otros comensales). Al introducir el alimento en la boca intervienen el tacto intraoral, la temperatura, la consistencia y el sonido de la masticación.',
-          'Cuando existe hiperreactividad sensorial, estímulos que pasan desapercibidos para otras personas —como los grumos en un puré, la mezcla de salsa con arroz o el olor del pescado cocinado— pueden percibirse como abrumadores o desagradables.',
+          'Antes de probar un alimento, la persona recibe estímulos visuales (colores, brillo, mezcla de ingredientes) y olfativos (vapores de cocción, olores del comedor). Al comer intervienen además el tacto intraoral, la temperatura, la consistencia y el sonido al masticar.',
+          'Cuando existe hiperreactividad sensorial, detalles cotidianos como la presencia de grumos, la mezcla de salsas o los olores intensos pueden percibirse como desagradables o abrumadores.',
         ],
       },
       {
-        heading: '2. Ajustes ambientales para reducir la sobrecarga sensorial',
+        heading: '2. Ajustes sencillos en el entorno y en el plato',
         paragraphs: [
-          '• Cuidar el ambiente del comedor: ventilar el espacio antes de sentarse a la mesa para atenuar olores intensos, evitar ruidos fuertes de televisión o electrodomésticos y procurar una iluminación suave.',
-          '• Cuidar la presentación visual: para muchas niñas y niños resulta más predecible servir los alimentos separados en el plato (o en platos con compartimentos) sin que se toquen entre sí ni lleven salsas añadidas por encima.',
+          '• Cuidar el ambiente del comedor: ventilar antes de comer para atenuar olores fuertes, reducir ruidos de fondo y mantener una iluminación agradable.',
+          '• Presentación clara y predecible: a muchas personas les aporta seguridad ver los alimentos separados en el plato, sin mezclar texturas líquidas y sólidas de forma imprevista.',
         ],
       },
       {
-        heading: '3. Respeto a las texturas preferidas como punto de partida',
+        heading: '3. Partir de las texturas bien toleradas',
         paragraphs: [
-          'Identificar si la persona tolera mejor texturas crujientes y secas, o bien texturas homogéneas y suaves, permite ofrecer variaciones pequeñas y seguras sin forzar cambios bruscos que generen rechazo o aversión.',
+          'Conocer si la persona acepta mejor texturas crujientes y secas o texturas suaves y homogéneas permite proponer pequeños acercamientos progresivos sin forzar situaciones de angustia.',
         ],
       },
     ],
     sources: [
-      'Literatura científica sobre integración sensorial y alimentación en el desarrollo infantil.',
-      'Manuales de buenas prácticas en apoyo conductual positivo y accesibilidad cognitiva en el hogar.',
+      'Literatura científica sobre integración sensorial y alimentación cotidiana.',
+      'Manuales de buenas prácticas en accesibilidad cognitiva y apoyo familiar.',
     ],
     limitsNote:
-      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye la valoración de terapia ocupacional, logopedia o nutrición clínica.',
+      'Recurso divulgativo elaborado por la Asociación NutriDiversa (Noviembre 2026). Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta médica.',
   },
   {
-    id: 'como-observar-comida-en-casa-sin-estres',
-    title: 'Cómo observar una comida en casa sin convertirla en una situación de estrés',
-    slug: 'como-observar-comida-en-casa-sin-estres',
-    category: 'Rutinas y Bienestar Familiar',
+    id: 'como-observar-comida-sin-convertirla-en-prueba',
+    title: 'Cómo observar una comida sin convertirla en una prueba',
+    slug: 'como-observar-comida-sin-convertirla-en-prueba',
+    category: 'Bienestar Familiar',
     date: 'Noviembre de 2026',
     readTime: '4 min de lectura',
-    author: 'Equipo de NutriDiversa',
+    author: 'Asociación NutriDiversa',
     excerpt:
-      'Estrategias prácticas para rebajar la tensión familiar, anticipar rutinas predecibles y observar con calma qué ocurre durante las comidas.',
+      'Pautas prácticas para acompañar las comidas en casa reduciendo la presión, anticipando rutinas y observando con serenidad qué facilita la calma.',
     simpleSummary:
-      'Cuando hay dificultades para comer, toda la familia puede sentir mucha preocupación y cansancio. En esta ficha proponemos pautas sencillas para anticipar las comidas y reducir el estrés en la mesa.',
+      'Cuando comer cuesta, toda la familia puede sentir mucha tensión. En esta guía compartimos ideas para que la hora de la comida no se viva como un examen y sea un momento más tranquilo.',
     sections: [
       {
-        heading: '1. El impacto emocional del momento de la comida en quienes cuidan',
+        heading: '1. Aliviar la sensación de examen en la mesa',
         paragraphs: [
-          'Las familias y personas cuidadoras afrontan a diario la preocupación de si su hijo, hija o familiar estará recibiendo una nutrición suficiente. Esa inquietud legítima puede hacer que el momento de sentarse a la mesa se viva con tensión anticipatoria.',
-          'Reducir la exigencia inmediata en cada toma y priorizar un clima tranquilo es el primer paso para que la mesa vuelva a ser un espacio seguro de convivencia.',
+          'La preocupación constante por si un familiar come suficiente puede convertir cada comida en una situación de evaluación continua. Cuando la persona percibe esa vigilancia o insistencia en cada bocado, es frecuente que aumente su bloqueo o rechazo.',
+          'Priorizar un ambiente sereno y predecible ayuda a que el comedor recupere su función de espacio cotidiano de convivencia.',
         ],
       },
       {
-        heading: '2. Rutinas predecibles y anticipación visual',
+        heading: '2. Anticipación y tiempos razonables',
         paragraphs: [
-          '• Anticipar qué va a ocurrir: avisar unos minutos antes de pasar al comedor y mostrar de forma visual o con lenguaje claro qué alimentos habrá en la mesa ayuda a reducir la incertidumbre.',
-          '• Mantener horarios y tiempos razonables: procurar que la duración de la comida sea predecible (por ejemplo, entre 20 y 30 minutos), evitando prolongar la permanencia en la mesa cuando aparece fatiga o malestar.',
+          '• Avisar con antelación antes de sentarse a la mesa y explicar de forma sencilla qué comida habrá ese día reduce la incertidumbre.',
+          '• Acordar duraciones razonables para la comida evita prolongar innecesariamente la permanencia en la mesa cuando ya ha aparecido cansancio.',
         ],
       },
       {
-        heading: '3. Observar sin presionar',
+        heading: '3. Registrar observaciones fuera del momento de la comida',
         paragraphs: [
-          'Anotar durante unos días en una libreta qué alimentos se aceptan con tranquilidad, en qué momento del día hay mejor disposición y qué factores del entorno facilitan la calma permite a la familia detectar patrones útiles sin necesidad de negociar o insistir en cada bocado.',
+          'Anotar en otro momento del día qué alimentos resultan más cómodos, qué horarios funcionan mejor y qué apoyos facilitan la tranquilidad permite compartir información muy valiosa sin añadir presión durante la comida.',
         ],
       },
     ],
     sources: [
-      'Guías de apoyo familiar y promoción del bienestar de personas cuidadoras en el ámbito de la discapacidad.',
-      'Evidencia sobre entorno familiar responsivo en educación alimentaria infantil.',
+      'Guías de promoción del bienestar familiar y apoyo a personas cuidadoras.',
+      'Evidencia sobre entornos alimentarios responsivos y libres de presión.',
     ],
     limitsNote:
-      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta con profesionales sanitarios.',
+      'Recurso divulgativo elaborado por la Asociación NutriDiversa (Noviembre 2026). Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta médica.',
   },
   {
-    id: 'diferencia-educacion-alimentaria-y-tratamiento-clinico',
-    title: 'Diferencia entre educación alimentaria comunitaria y tratamiento nutricional clínico',
-    slug: 'diferencia-educacion-alimentaria-y-tratamiento-clinico',
+    id: 'diferencia-educacion-alimentaria-y-tratamiento-nutricional',
+    title: 'Diferencia entre educación alimentaria y tratamiento nutricional',
+    slug: 'diferencia-educacion-alimentaria-y-tratamiento-nutricional',
     category: 'Transparencia y Rigor',
     date: 'Noviembre de 2026',
     readTime: '4 min de lectura',
-    author: 'Equipo de NutriDiversa',
+    author: 'Asociación NutriDiversa',
     excerpt:
-      'Guía clara sobre qué puede aportar una asociación sin ánimo de lucro como NutriDiversa y cuándo acudir a pediatría, gastroenterología o dietistas-nutricionistas clínicos.',
+      'Explicación clara sobre el papel educativo y comunitario de una asociación como NutriDiversa frente al diagnóstico médico y el tratamiento nutricional clínico.',
     simpleSummary:
-      'Explicamos con total claridad qué hace NutriDiversa (educación alimentaria, talleres y guías comprensibles) y qué corresponde siempre a los médicos y profesionales sanitarios (diagnósticos, tratamientos y dietas personalizadas).',
+      'Explicamos con claridad qué hace NutriDiversa (información accesible, talleres y guías educativas) y qué corresponde siempre a los profesionales sanitarios (diagnósticos, tratamientos y dietas clínicas personalizadas).',
     sections: [
       {
-        heading: '1. ¿Qué es la educación alimentaria comunitaria e inclusiva?',
+        heading: '1. ¿Qué aporta la educación alimentaria comunitaria?',
         paragraphs: [
-          'La educación alimentaria comunitaria tiene por finalidad facilitar información comprensible, recursos prácticos, talleres divulgativos y apoyos visuales para que las personas con discapacidad y sus familias comprendan mejor los hábitos saludables y reduzcan barreras cotidianas en su entorno.',
-          'Desde una asociación como NutriDiversa escuchamos las necesidades de los colectivos, traducimos el conocimiento científico a formatos claros y promovemos la participación y el apoyo mutuo entre familias y entidades.',
+          'La educación alimentaria comunitaria acerca conocimientos comprensibles, herramientas de observación cotidiana, talleres participativos y apoyos visuales para que las personas con discapacidad y sus familias dispongan de recursos útiles en su día a día.',
+          'Desde NutriDiversa escuchamos las necesidades reales de las familias, traducimos la evidencia científica a un lenguaje claro y colaboramos con entidades sociales y educativas.',
         ],
       },
       {
-        heading: '2. ¿Qué es el tratamiento nutricional clínico e individualizado?',
+        heading: '2. ¿Qué comprende el tratamiento nutricional clínico?',
         paragraphs: [
-          'El abordaje clínico comprende la valoración antropométrica y bioquímica individual, el diagnóstico médico o nutricional de patologías o déficits, la prescripción de dietas terapéuticas personalizadas, la pauta de suplementos nutricionales y la rehabilitación clínica de la deglución (disfagia).',
-          'Estas actuaciones son competencia exclusiva de profesionales sanitarios titulados y colegiados (medicina, pediatría, enfermería, dietistas-nutricionistas clínicos, logopedas y terapeutas ocupacionales en centros sanitarios).',
+          'El tratamiento nutricional clínico incluye la valoración diagnóstica individual, el estudio antropométrico y analítico, la prescripción de pautas dietéticas terapéuticas personalizadas, la indicación de suplementos y la rehabilitación de trastornos de la deglución.',
+          'Estas actuaciones corresponden exclusivamente a profesionales sanitarios titulados y colegiados en el ámbito asistencial.',
         ],
       },
       {
-        heading: '3. Dos ámbitos que se respetan y complementan',
+        heading: '3. Información clara para proteger a las familias',
         paragraphs: [
-          'Tener claros estos límites protege a las familias frente a falsas promesas o intervenciones sin respaldo científico. NutriDiversa nunca realiza diagnósticos ni prescribe dietas o suplementos, y orienta siempre hacia los servicios sanitarios cuando una situación requiere valoración clínica individual.',
+          'Distinguir ambos planos garantiza la seguridad de las personas y evita confusiones. NutriDiversa no realiza diagnósticos ni tratamientos clínicos y recomienda acudir siempre a los servicios sanitarios ante cualquier duda de salud.',
         ],
       },
     ],
     sources: [
-      'Marco normativo español de ordenación de las profesiones sanitarias y promoción de la salud comunitaria.',
+      'Normativa española de ordenación de las profesiones sanitarias y promoción de la salud.',
       'Estatutos Oficiales y Dossier Institucional de la Asociación NutriDiversa (RNA 632919).',
     ],
     limitsNote:
-      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta con profesionales sanitarios.',
+      'Recurso divulgativo elaborado por la Asociación NutriDiversa (Noviembre 2026). Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta médica.',
   },
 ];
 
@@ -387,12 +454,11 @@ export const OFFICIAL_DOCUMENTS: OfficialDocument[] = [
     fileName: 'Dossier-Institucional-NutriDiversa-2026-v1.pdf',
     downloadUrl: '/documentos/Dossier-Institucional-NutriDiversa-2026-v1.pdf',
     summary:
-      'Presentación general de la entidad, misión, visión, valores, líneas estratégicas y proyecto piloto inicial de alimentación y autismo en la provincia de Alicante (16 páginas).',
+      'Presentación general de la entidad, misión, visión, valores, líneas estratégicas y primer proyecto piloto de alimentación y autismo en la provincia de Alicante (16 páginas).',
     simpleSummary:
-      'Documento de 16 páginas con la presentación general de NutriDiversa, nuestra misión y el proyecto piloto de Alicante.',
+      'Documento de 16 páginas con la presentación general de NutriDiversa, nuestra misión y el primer proyecto piloto.',
   },
 ];
 
-// Legacy exports kept compatible for any shared context imports
 export const GUIDES: GuideResource[] = [];
 export const ARTICLES: Article[] = [];

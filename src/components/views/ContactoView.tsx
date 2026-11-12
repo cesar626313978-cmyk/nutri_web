@@ -14,15 +14,16 @@ import { ContactProfileTab } from '../../types';
 export const ContactoView: React.FC = () => {
   const { contactProfile, setContactProfile, navigateTo, easyReading } = useAccessibility();
 
-  // Estados independientes para Formulario 1: Familias
+  // Formulario 1: Familias
   const [nombreFamilia, setNombreFamilia] = useState('');
   const [emailFamilia, setEmailFamilia] = useState('');
   const [municipioFamilia, setMunicipioFamilia] = useState('');
   const [mensajeFamilia, setMensajeFamilia] = useState('');
   const [checkFamilia, setCheckFamilia] = useState(false); // SIEMPRE DESMARCADA POR DEFECTO
+  const [checkComunicacionesFamilia, setCheckComunicacionesFamilia] = useState(false); // OPCIONAL DESMARCADA
   const [sentFamilia, setSentFamilia] = useState(false);
 
-  // Estados independientes para Formulario 2: Entidades y Profesionales
+  // Formulario 2: Entidades y Profesionales
   const [entidadNombre, setEntidadNombre] = useState('');
   const [personaContacto, setPersonaContacto] = useState('');
   const [emailEntidad, setEmailEntidad] = useState('');
@@ -31,9 +32,10 @@ export const ContactoView: React.FC = () => {
   );
   const [mensajeEntidad, setMensajeEntidad] = useState('');
   const [checkEntidad, setCheckEntidad] = useState(false); // SIEMPRE DESMARCADA POR DEFECTO
+  const [checkComunicacionesEntidad, setCheckComunicacionesEntidad] = useState(false); // OPCIONAL DESMARCADA
   const [sentEntidad, setSentEntidad] = useState(false);
 
-  // Estados independientes para Formulario 3: Solicitud de Alta como Persona Asociada o Voluntariado
+  // Formulario 3: Asociarse / Voluntariado
   const [nombreSocio, setNombreSocio] = useState('');
   const [dniSocio, setDniSocio] = useState('');
   const [emailSocio, setEmailSocio] = useState('');
@@ -42,6 +44,7 @@ export const ContactoView: React.FC = () => {
     'Alta como Persona Asociada (Cuota promocional fundacional 2026: 10 €/año; a partir del 01/01/2027: 30 €/año)'
   );
   const [checkSocio, setCheckSocio] = useState(false); // SIEMPRE DESMARCADA POR DEFECTO
+  const [checkComunicacionesSocio, setCheckComunicacionesSocio] = useState(false); // OPCIONAL DESMARCADA
   const [sentSocio, setSentSocio] = useState(false);
 
   const handleTabSelect = (tab: ContactProfileTab) => {
@@ -57,23 +60,22 @@ export const ContactoView: React.FC = () => {
   };
 
   return (
-    <div className="w-full bg-[#FFFDF8]">
-      {/* Resumen sencillo opcional */}
+    <div className="w-full bg-white">
       {easyReading && (
         <section
           aria-label="Resumen sencillo de contacto"
-          className="bg-[#EAF5EF] border-b border-[#176B50]/25 py-5 px-4 sm:px-6 lg:px-8"
+          className="bg-[#EAF5EF] border-b border-[#1D3532]/20 py-5 px-4 sm:px-6 lg:px-8"
         >
           <div className="max-w-5xl mx-auto flex items-start gap-3">
-            <Info className="w-6 h-6 text-[#176B50] shrink-0 mt-0.5" aria-hidden="true" />
+            <Info className="w-6 h-6 text-[#1D3532] shrink-0 mt-0.5" aria-hidden="true" />
             <div className="space-y-1 text-[#20282E]">
               <p className="font-bold text-base text-[#1D3532]">
                 Resumen sencillo de esta página:
               </p>
               <p className="text-base leading-relaxed max-w-[65ch]">
-                Aquí tienes 3 formularios separados según lo que necesites: uno para familias de
-                Alicante, otro para asociaciones o profesionales que quieran colaborar, y otro para
-                hacerte persona asociada o voluntaria. Por favor, nunca escribas datos médicos ni
+                Aquí tienes 3 formularios independientes: uno para familias interesadas en el
+                proyecto piloto, otro para entidades o profesionales que quieran colaborar, y otro
+                para asociarte o hacer voluntariado. Por favor, no escribas datos médicos ni
                 informes de salud.
               </p>
             </div>
@@ -84,39 +86,38 @@ export const ContactoView: React.FC = () => {
       {/* Cabecera de Contacto */}
       <section className="bg-[#F7F3EB] border-b border-[#E6E2D8] py-12 sm:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
-          <p className="uppercase tracking-[0.12em] text-[0.85rem] font-bold text-[#D96820]">
+          <p className="uppercase tracking-[0.1em] text-xs sm:text-[0.85rem] font-bold text-[#A94F1D]">
             ATENCIÓN DIFERENCIADA POR PERFIL
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#1D3532] leading-[1.15]">
             Contacto para familias, entidades y personas asociadas
           </h1>
-          <p className="text-base sm:text-[1.1rem] text-[#5A6670] leading-[1.6] max-w-[65ch]">
-            Selecciona el formulario que corresponde a tu perfil. La Secretaría de NutriDiversa
-            responderá a tu mensaje en un máximo de cinco días laborables.
+          <p className="text-base sm:text-[1.1rem] text-[#20282E] leading-[1.6] max-w-[65ch]">
+            Selecciona el formulario que corresponde a tu perfil. La Secretaría de NutriDiversa te
+            responderá en un máximo de cinco días laborables.
           </p>
 
           <div className="flex flex-wrap items-center gap-6 pt-2 text-sm sm:text-base text-[#20282E]">
             <span className="inline-flex items-center gap-2">
-              <Mail className="w-4 h-4 text-[#176B50]" aria-hidden="true" />
+              <Mail className="w-4 h-4 text-[#1D3532]" aria-hidden="true" />
               <a
                 href="mailto:info@nutridiversa.org"
-                className="font-bold underline text-[#176B50] hover:text-[#1D3532]"
+                className="font-bold underline text-[#1D3532]"
               >
                 info@nutridiversa.org
               </a>
             </span>
-            <span className="inline-flex items-center gap-2 text-[#5A6670]">
-              <MapPin className="w-4 h-4 text-[#176B50]" aria-hidden="true" />
-              <span>C/ Polop, 30, Esc. 1, 4º O, 03015 Alicante</span>
+            <span className="inline-flex items-center gap-2 text-[#20282E]">
+              <MapPin className="w-4 h-4 text-[#1D3532]" aria-hidden="true" />
+              <span>C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante</span>
             </span>
           </div>
         </div>
       </section>
 
-      {/* Selector de 3 pestañas independientes + Formularios */}
+      {/* Selector de 3 formularios independientes */}
       <section className="py-12 sm:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-          {/* Pestañas */}
           <div
             role="tablist"
             aria-label="Seleccionar tipo de formulario de contacto"
@@ -132,17 +133,17 @@ export const ContactoView: React.FC = () => {
               className={`min-h-[56px] p-4 rounded-2xl border text-left flex items-center gap-3.5 transition-colors ${
                 contactProfile === 'familia'
                   ? 'bg-[#1D3532] text-white border-[#1D3532] font-bold shadow-xs'
-                  : 'bg-white text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
+                  : 'bg-[#FFFDF8] text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
               }`}
             >
               <Users
                 className={`w-5 h-5 shrink-0 ${
-                  contactProfile === 'familia' ? 'text-[#EAF5EF]' : 'text-[#176B50]'
+                  contactProfile === 'familia' ? 'text-[#EAF5EF]' : 'text-[#1D3532]'
                 }`}
                 aria-hidden="true"
               />
               <div>
-                <span className="block text-base font-bold">1. Soy familiar</span>
+                <span className="block text-base font-bold">1. Familias</span>
                 <span
                   className={`block text-xs ${
                     contactProfile === 'familia' ? 'text-white/80' : 'text-[#5A6670]'
@@ -163,17 +164,17 @@ export const ContactoView: React.FC = () => {
               className={`min-h-[56px] p-4 rounded-2xl border text-left flex items-center gap-3.5 transition-colors ${
                 contactProfile === 'entidad'
                   ? 'bg-[#1D3532] text-white border-[#1D3532] font-bold shadow-xs'
-                  : 'bg-white text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
+                  : 'bg-[#FFFDF8] text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
               }`}
             >
               <Building2
                 className={`w-5 h-5 shrink-0 ${
-                  contactProfile === 'entidad' ? 'text-[#EAF5EF]' : 'text-[#176B50]'
+                  contactProfile === 'entidad' ? 'text-[#EAF5EF]' : 'text-[#1D3532]'
                 }`}
                 aria-hidden="true"
               />
               <div>
-                <span className="block text-base font-bold">2. Entidad o profesional</span>
+                <span className="block text-base font-bold">2. Entidades / Profesionales</span>
                 <span
                   className={`block text-xs ${
                     contactProfile === 'entidad' ? 'text-white/80' : 'text-[#5A6670]'
@@ -194,17 +195,17 @@ export const ContactoView: React.FC = () => {
               className={`min-h-[56px] p-4 rounded-2xl border text-left flex items-center gap-3.5 transition-colors ${
                 contactProfile === 'socio'
                   ? 'bg-[#1D3532] text-white border-[#1D3532] font-bold shadow-xs'
-                  : 'bg-white text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
+                  : 'bg-[#FFFDF8] text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
               }`}
             >
               <UserPlus
                 className={`w-5 h-5 shrink-0 ${
-                  contactProfile === 'socio' ? 'text-[#EAF5EF]' : 'text-[#176B50]'
+                  contactProfile === 'socio' ? 'text-[#EAF5EF]' : 'text-[#1D3532]'
                 }`}
                 aria-hidden="true"
               />
               <div>
-                <span className="block text-base font-bold">3. Asociarme o voluntariado</span>
+                <span className="block text-base font-bold">3. Asociarse / Voluntariado</span>
                 <span
                   className={`block text-xs ${
                     contactProfile === 'socio' ? 'text-white/80' : 'text-[#5A6670]'
@@ -216,7 +217,7 @@ export const ContactoView: React.FC = () => {
             </button>
           </div>
 
-          {/* FORMULARIO 1: FAMILIAS (Interesadas en el proyecto piloto de Alicante) */}
+          {/* FORMULARIO 1: FAMILIAS */}
           {contactProfile === 'familia' && (
             <div
               id="panel-familia"
@@ -225,13 +226,13 @@ export const ContactoView: React.FC = () => {
               className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-10 shadow-2xs space-y-6"
             >
               <div className="space-y-2 border-b border-[#E6E2D8] pb-5">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#D96820]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
                   FORMULARIO 1 · FAMILIAS
                 </span>
                 <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1D3532]">
                   Familias interesadas en el proyecto piloto de Alicante
                 </h2>
-                <p className="text-base text-[#5A6670]">
+                <p className="text-base text-[#20282E]">
                   Para madres, padres, tutores legales y personas cuidadoras de menores autistas de
                   6 a 12 años en la provincia de Alicante.
                 </p>
@@ -241,12 +242,12 @@ export const ContactoView: React.FC = () => {
                 <div
                   role="status"
                   aria-live="polite"
-                  className="bg-[#EAF5EF] border border-[#176B50] rounded-xl p-6 text-[#1D3532] flex items-start gap-3"
+                  className="bg-[#EAF5EF] border border-[#1D3532] rounded-xl p-6 text-[#1D3532] flex items-start gap-3"
                 >
-                  <CheckCircle2 className="w-6 h-6 text-[#176B50] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-6 h-6 text-[#1D3532] shrink-0 mt-0.5" aria-hidden="true" />
                   <p className="font-bold text-base sm:text-lg leading-relaxed">
-                    Hemos recibido tu solicitud correctamente. La Secretaría de NutriDiversa te
-                    responderá en un máximo de cinco días laborables al correo indicado.
+                    Hemos recibido tu solicitud. La Secretaría de NutriDiversa te responderá en un
+                    máximo de cinco días laborables.
                   </p>
                 </div>
               ) : (
@@ -263,7 +264,7 @@ export const ContactoView: React.FC = () => {
                       htmlFor="id_nombre_familia"
                       className="block text-sm font-bold text-[#20282E] mb-1.5"
                     >
-                      Nombre y apellidos <span className="text-[#D96820]">*</span>
+                      Nombre y apellidos <span className="text-[#A94F1D]">*</span>
                     </label>
                     <input
                       id="id_nombre_familia"
@@ -282,7 +283,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_email_familia"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        Correo electrónico <span className="text-[#D96820]">*</span>
+                        Correo electrónico <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_email_familia"
@@ -300,7 +301,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_municipio_familia"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        Municipio (Provincia de Alicante) <span className="text-[#D96820]">*</span>
+                        Municipio (Provincia de Alicante) <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_municipio_familia"
@@ -319,7 +320,7 @@ export const ContactoView: React.FC = () => {
                       htmlFor="id_mensaje_familia"
                       className="block text-sm font-bold text-[#20282E] mb-1.5"
                     >
-                      Comentarios o dudas generales (sin incluir datos médicos ni diagnósticos)
+                      Comentarios o dudas generales (opcional)
                     </label>
                     <textarea
                       id="id_mensaje_familia"
@@ -331,17 +332,14 @@ export const ContactoView: React.FC = () => {
                     />
                   </div>
 
-                  {/* Aviso importante de privacidad antes del botón de envío */}
                   <div className="bg-[#F7F3EB] border border-[#E6E2D8] border-l-4 border-l-[#D96820] rounded-xl p-4 text-sm text-[#20282E] leading-relaxed">
-                    <strong>Aviso importante de privacidad:</strong> Por favor,{' '}
                     <strong>
-                      no incluyas diagnósticos médicos, informes clínicos ni datos de salud
-                    </strong>{' '}
-                    tuyos ni de menores en este formulario. NutriDiversa no presta asistencia
-                    clínica y este canal es exclusivamente informativo.
+                      Por favor, no incluyas diagnósticos médicos, informes clínicos ni datos de
+                      salud en este formulario.
+                    </strong>
                   </div>
 
-                  {/* Casilla obligatoria SIEMPRE DESMARCADA POR DEFECTO */}
+                  {/* Casilla de consentimiento obligatoria (desmarcada por defecto) */}
                   <div className="flex items-start gap-3">
                     <input
                       id="id_check_familia"
@@ -350,7 +348,7 @@ export const ContactoView: React.FC = () => {
                       required
                       checked={checkFamilia}
                       onChange={(e) => setCheckFamilia(e.target.checked)}
-                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#176B50] shrink-0"
+                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#1D3532] shrink-0"
                     />
                     <label
                       htmlFor="id_check_familia"
@@ -360,27 +358,46 @@ export const ContactoView: React.FC = () => {
                       <a
                         href="/privacidad"
                         onClick={handlePrivacyLink}
-                        className="underline font-bold text-[#176B50] hover:text-[#1D3532]"
+                        className="underline font-bold text-[#1D3532]"
                       >
                         Política de Privacidad
                       </a>{' '}
-                      y consiento el tratamiento de mis datos de contacto para recibir información
-                      sobre el proyecto educativo de NutriDiversa.
+                      y consiento el tratamiento de mis datos para atender mi solicitud.{' '}
+                      <span className="text-[#A94F1D] font-bold">*</span>
+                    </label>
+                  </div>
+
+                  {/* Casilla adicional separada y opcional (nunca premarcada) */}
+                  <div className="flex items-start gap-3">
+                    <input
+                      id="id_comunicaciones_familia"
+                      name="comunicaciones_futuras_familia"
+                      type="checkbox"
+                      checked={checkComunicacionesFamilia}
+                      onChange={(e) => setCheckComunicacionesFamilia(e.target.checked)}
+                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#1D3532] shrink-0"
+                    />
+                    <label
+                      htmlFor="id_comunicaciones_familia"
+                      className="text-sm text-[#20282E] leading-relaxed cursor-pointer"
+                    >
+                      Deseo recibir comunicaciones informativas sobre futuras actividades y recursos
+                      de NutriDiversa.
                     </label>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-[#176B50] hover:bg-[#1D3532] text-white font-bold text-base transition-colors"
+                    className="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-[#A94F1D] hover:bg-[#1D3532] text-white font-bold text-base transition-colors"
                   >
-                    Quiero que me aviséis cuando se abra la participación
+                    Solicitar información para familias
                   </button>
                 </form>
               )}
             </div>
           )}
 
-          {/* FORMULARIO 2: ENTIDADES Y PROFESIONALES (Propuestas de colaboración) */}
+          {/* FORMULARIO 2: ENTIDADES Y PROFESIONALES */}
           {contactProfile === 'entidad' && (
             <div
               id="panel-entidad"
@@ -389,15 +406,15 @@ export const ContactoView: React.FC = () => {
               className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-10 shadow-2xs space-y-6"
             >
               <div className="space-y-2 border-b border-[#E6E2D8] pb-5">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#D96820]">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
                   FORMULARIO 2 · ENTIDADES Y PROFESIONALES
                 </span>
                 <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1D3532]">
                   Propuestas de colaboración institucional o técnica
                 </h2>
-                <p className="text-base text-[#5A6670]">
-                  Para asociaciones, centros educativos, entidades públicas o privadas y
-                  profesionales que deseen colaborar con NutriDiversa.
+                <p className="text-base text-[#20282E]">
+                  Para asociaciones, centros educativos, universidades y profesionales que deseen
+                  colaborar con NutriDiversa.
                 </p>
               </div>
 
@@ -405,12 +422,12 @@ export const ContactoView: React.FC = () => {
                 <div
                   role="status"
                   aria-live="polite"
-                  className="bg-[#EAF5EF] border border-[#176B50] rounded-xl p-6 text-[#1D3532] flex items-start gap-3"
+                  className="bg-[#EAF5EF] border border-[#1D3532] rounded-xl p-6 text-[#1D3532] flex items-start gap-3"
                 >
-                  <CheckCircle2 className="w-6 h-6 text-[#176B50] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-6 h-6 text-[#1D3532] shrink-0 mt-0.5" aria-hidden="true" />
                   <p className="font-bold text-base sm:text-lg leading-relaxed">
-                    Hemos recibido tu solicitud correctamente. La Secretaría de NutriDiversa te
-                    responderá en un máximo de cinco días laborables al correo indicado.
+                    Hemos recibido tu solicitud. La Secretaría de NutriDiversa te responderá en un
+                    máximo de cinco días laborables.
                   </p>
                 </div>
               ) : (
@@ -428,7 +445,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_entidad_nombre"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        Nombre de la entidad o profesional <span className="text-[#D96820]">*</span>
+                        Nombre de la entidad o profesional <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_entidad_nombre"
@@ -446,7 +463,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_persona_contacto"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        Persona de contacto <span className="text-[#D96820]">*</span>
+                        Persona de contacto <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_persona_contacto"
@@ -466,7 +483,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_email_entidad"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        Correo electrónico <span className="text-[#D96820]">*</span>
+                        Correo electrónico <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_email_entidad"
@@ -485,7 +502,7 @@ export const ContactoView: React.FC = () => {
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
                         Modalidad de colaboración propuesta{' '}
-                        <span className="text-[#D96820]">*</span>
+                        <span className="text-[#A94F1D]">*</span>
                       </label>
                       <select
                         id="id_modalidad_colaboracion"
@@ -519,7 +536,7 @@ export const ContactoView: React.FC = () => {
                       htmlFor="id_mensaje_entidad"
                       className="block text-sm font-bold text-[#20282E] mb-1.5"
                     >
-                      Breve descripción de la propuesta <span className="text-[#D96820]">*</span>
+                      Breve descripción de la propuesta <span className="text-[#A94F1D]">*</span>
                     </label>
                     <textarea
                       id="id_mensaje_entidad"
@@ -532,17 +549,14 @@ export const ContactoView: React.FC = () => {
                     />
                   </div>
 
-                  {/* Aviso importante de privacidad antes del botón de envío */}
                   <div className="bg-[#F7F3EB] border border-[#E6E2D8] border-l-4 border-l-[#D96820] rounded-xl p-4 text-sm text-[#20282E] leading-relaxed">
-                    <strong>Aviso importante de privacidad:</strong> Por favor,{' '}
                     <strong>
-                      no incluyas diagnósticos médicos, informes clínicos ni datos de salud
-                    </strong>{' '}
-                    tuyos ni de menores en este formulario. NutriDiversa no presta asistencia
-                    clínica y este canal es exclusivamente informativo.
+                      Por favor, no incluyas diagnósticos médicos, informes clínicos ni datos de
+                      salud en este formulario.
+                    </strong>
                   </div>
 
-                  {/* Casilla obligatoria SIEMPRE DESMARCADA POR DEFECTO */}
+                  {/* Casilla de consentimiento obligatoria (desmarcada por defecto) */}
                   <div className="flex items-start gap-3">
                     <input
                       id="id_check_entidad"
@@ -551,7 +565,7 @@ export const ContactoView: React.FC = () => {
                       required
                       checked={checkEntidad}
                       onChange={(e) => setCheckEntidad(e.target.checked)}
-                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#176B50] shrink-0"
+                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#1D3532] shrink-0"
                     />
                     <label
                       htmlFor="id_check_entidad"
@@ -561,27 +575,46 @@ export const ContactoView: React.FC = () => {
                       <a
                         href="/privacidad"
                         onClick={handlePrivacyLink}
-                        className="underline font-bold text-[#176B50] hover:text-[#1D3532]"
+                        className="underline font-bold text-[#1D3532]"
                       >
                         Política de Privacidad
                       </a>{' '}
-                      y consiento el tratamiento de mis datos para gestionar esta propuesta de
-                      colaboración.
+                      y consiento el tratamiento de mis datos para atender mi solicitud.{' '}
+                      <span className="text-[#A94F1D] font-bold">*</span>
+                    </label>
+                  </div>
+
+                  {/* Casilla adicional separada y opcional (nunca premarcada) */}
+                  <div className="flex items-start gap-3">
+                    <input
+                      id="id_comunicaciones_entidad"
+                      name="comunicaciones_futuras_entidad"
+                      type="checkbox"
+                      checked={checkComunicacionesEntidad}
+                      onChange={(e) => setCheckComunicacionesEntidad(e.target.checked)}
+                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#1D3532] shrink-0"
+                    />
+                    <label
+                      htmlFor="id_comunicaciones_entidad"
+                      className="text-sm text-[#20282E] leading-relaxed cursor-pointer"
+                    >
+                      Deseo recibir comunicaciones informativas sobre futuras actividades y recursos
+                      de NutriDiversa.
                     </label>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-[#176B50] hover:bg-[#1D3532] text-white font-bold text-base transition-colors"
+                    className="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-[#1D3532] hover:bg-[#176B50] text-white font-bold text-base transition-colors"
                   >
-                    Proponer una colaboración
+                    Proponer colaboración institucional
                   </button>
                 </form>
               )}
             </div>
           )}
 
-          {/* FORMULARIO 3: SOLICITUD DE ALTA COMO PERSONA ASOCIADA O VOLUNTARIADO */}
+          {/* FORMULARIO 3: ASOCIARSE O VOLUNTARIADO */}
           {contactProfile === 'socio' && (
             <div
               id="panel-socio"
@@ -590,13 +623,13 @@ export const ContactoView: React.FC = () => {
               className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-10 shadow-2xs space-y-6"
             >
               <div className="space-y-2 border-b border-[#E6E2D8] pb-5">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#D96820]">
-                  FORMULARIO 3 · ALTA ASOCIATIVA O VOLUNTARIADO
+                <span className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
+                  FORMULARIO 3 · ASOCIARSE O VOLUNTARIADO
                 </span>
                 <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1D3532]">
                   Solicitud de alta como Persona Asociada o Voluntariado
                 </h2>
-                <p className="text-base text-[#5A6670]">
+                <p className="text-base text-[#20282E]">
                   Inicia el trámite estatutario de admisión como persona asociada o de incorporación
                   al voluntariado conforme a la Ley 45/2015.
                 </p>
@@ -606,12 +639,12 @@ export const ContactoView: React.FC = () => {
                 <div
                   role="status"
                   aria-live="polite"
-                  className="bg-[#EAF5EF] border border-[#176B50] rounded-xl p-6 text-[#1D3532] flex items-start gap-3"
+                  className="bg-[#EAF5EF] border border-[#1D3532] rounded-xl p-6 text-[#1D3532] flex items-start gap-3"
                 >
-                  <CheckCircle2 className="w-6 h-6 text-[#176B50] shrink-0 mt-0.5" aria-hidden="true" />
+                  <CheckCircle2 className="w-6 h-6 text-[#1D3532] shrink-0 mt-0.5" aria-hidden="true" />
                   <p className="font-bold text-base sm:text-lg leading-relaxed">
-                    Hemos recibido tu solicitud correctamente. La Secretaría de NutriDiversa te
-                    responderá en un máximo de cinco días laborables al correo indicado.
+                    Hemos recibido tu solicitud. La Secretaría de NutriDiversa te responderá en un
+                    máximo de cinco días laborables.
                   </p>
                 </div>
               ) : (
@@ -629,7 +662,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_nombre_socio"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        Nombre y apellidos <span className="text-[#D96820]">*</span>
+                        Nombre y apellidos <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_nombre_socio"
@@ -647,7 +680,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_dni_socio"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        DNI / NIE <span className="text-[#D96820]">*</span>
+                        DNI / NIE <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_dni_socio"
@@ -667,7 +700,7 @@ export const ContactoView: React.FC = () => {
                         htmlFor="id_email_socio"
                         className="block text-sm font-bold text-[#20282E] mb-1.5"
                       >
-                        Correo electrónico <span className="text-[#D96820]">*</span>
+                        Correo electrónico <span className="text-[#A94F1D]">*</span>
                       </label>
                       <input
                         id="id_email_socio"
@@ -703,7 +736,7 @@ export const ContactoView: React.FC = () => {
                       htmlFor="id_tipo_solicitud"
                       className="block text-sm font-bold text-[#20282E] mb-1.5"
                     >
-                      Tipo de solicitud <span className="text-[#D96820]">*</span>
+                      Tipo de solicitud <span className="text-[#A94F1D]">*</span>
                     </label>
                     <select
                       id="id_tipo_solicitud"
@@ -724,17 +757,14 @@ export const ContactoView: React.FC = () => {
                     </select>
                   </div>
 
-                  {/* Aviso importante de privacidad antes del botón de envío */}
                   <div className="bg-[#F7F3EB] border border-[#E6E2D8] border-l-4 border-l-[#D96820] rounded-xl p-4 text-sm text-[#20282E] leading-relaxed">
-                    <strong>Aviso importante de privacidad:</strong> Por favor,{' '}
                     <strong>
-                      no incluyas diagnósticos médicos, informes clínicos ni datos de salud
-                    </strong>{' '}
-                    tuyos ni de menores en este formulario. NutriDiversa no presta asistencia
-                    clínica y este canal es exclusivamente informativo.
+                      Por favor, no incluyas diagnósticos médicos, informes clínicos ni datos de
+                      salud en este formulario.
+                    </strong>
                   </div>
 
-                  {/* Casilla obligatoria SIEMPRE DESMARCADA POR DEFECTO */}
+                  {/* Casilla de consentimiento obligatoria (desmarcada por defecto) */}
                   <div className="flex items-start gap-3">
                     <input
                       id="id_check_socio"
@@ -743,7 +773,7 @@ export const ContactoView: React.FC = () => {
                       required
                       checked={checkSocio}
                       onChange={(e) => setCheckSocio(e.target.checked)}
-                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#176B50] shrink-0"
+                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#1D3532] shrink-0"
                     />
                     <label
                       htmlFor="id_check_socio"
@@ -753,18 +783,37 @@ export const ContactoView: React.FC = () => {
                       <a
                         href="/privacidad"
                         onClick={handlePrivacyLink}
-                        className="underline font-bold text-[#176B50] hover:text-[#1D3532]"
+                        className="underline font-bold text-[#1D3532]"
                       >
                         Política de Privacidad
                       </a>{' '}
-                      y solicito iniciar el trámite de admisión conforme a los Estatutos de
-                      NutriDiversa.
+                      y consiento el tratamiento de mis datos para atender mi solicitud.{' '}
+                      <span className="text-[#A94F1D] font-bold">*</span>
+                    </label>
+                  </div>
+
+                  {/* Casilla adicional separada y opcional (nunca premarcada) */}
+                  <div className="flex items-start gap-3">
+                    <input
+                      id="id_comunicaciones_socio"
+                      name="comunicaciones_futuras_socio"
+                      type="checkbox"
+                      checked={checkComunicacionesSocio}
+                      onChange={(e) => setCheckComunicacionesSocio(e.target.checked)}
+                      className="mt-1 w-5 h-5 rounded border-[#E6E2D8] text-[#1D3532] shrink-0"
+                    />
+                    <label
+                      htmlFor="id_comunicaciones_socio"
+                      className="text-sm text-[#20282E] leading-relaxed cursor-pointer"
+                    >
+                      Deseo recibir comunicaciones informativas sobre futuras actividades y recursos
+                      de NutriDiversa.
                     </label>
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-[#176B50] hover:bg-[#1D3532] text-white font-bold text-base transition-colors"
+                    className="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-[#A94F1D] hover:bg-[#1D3532] text-white font-bold text-base transition-colors"
                   >
                     Enviar solicitud de inscripción
                   </button>
@@ -773,7 +822,7 @@ export const ContactoView: React.FC = () => {
             </div>
           )}
 
-          {/* Primera Capa Informativa de Protección de Datos (Visible justo debajo de los 3 formularios) */}
+          {/* Primera Capa Informativa de Protección de Datos (Visible junto a los formularios) */}
           <div className="bg-white rounded-2xl border border-[#E6E2D8] overflow-hidden shadow-2xs">
             <div className="bg-[#F7F3EB] px-6 py-4 border-b border-[#E6E2D8]">
               <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1D3532]">
@@ -797,10 +846,10 @@ export const ContactoView: React.FC = () => {
                       Responsable
                     </th>
                     <td className="py-4 px-6 text-[#20282E] block sm:table-cell">
-                      Asociación de Nutrición en la Discapacidad (NutriDiversa) · NIF: G22670707 ·{' '}
+                      Asociación de Nutrición en la Discapacidad - NutriDiversa · NIF: G22670707 ·{' '}
                       <a
                         href="mailto:info@nutridiversa.org"
-                        className="underline font-bold text-[#176B50]"
+                        className="underline font-bold text-[#1D3532]"
                       >
                         info@nutridiversa.org
                       </a>
@@ -816,7 +865,8 @@ export const ContactoView: React.FC = () => {
                     <td className="py-4 px-6 text-[#20282E] block sm:table-cell">
                       Atender tu solicitud de información sobre el proyecto piloto, gestionar
                       propuestas de colaboración institucional o tramitar tu solicitud de admisión
-                      como persona asociada o voluntaria.{' '}
+                      como persona asociada o voluntaria, y enviarte comunicaciones sobre futuras
+                      actividades únicamente si marcas la casilla opcional.{' '}
                       <strong>No se recogen ni tratan datos de salud.</strong>
                     </td>
                   </tr>
@@ -825,7 +875,7 @@ export const ContactoView: React.FC = () => {
                       scope="row"
                       className="py-4 px-6 font-bold text-[#1D3532] bg-[#FFFDF8] align-top block sm:table-cell"
                     >
-                      Legitimación
+                      Base jurídica
                     </th>
                     <td className="py-4 px-6 text-[#20282E] block sm:table-cell">
                       Consentimiento de la persona interesada (art. 6.1.a RGPD) al marcar la casilla
@@ -838,7 +888,7 @@ export const ContactoView: React.FC = () => {
                       scope="row"
                       className="py-4 px-6 font-bold text-[#1D3532] bg-[#FFFDF8] align-top block sm:table-cell"
                     >
-                      Conservación
+                      Plazo de conservación
                     </th>
                     <td className="py-4 px-6 text-[#20282E] block sm:table-cell">
                       Mientras se mantenga la relación informativa o asociativa y hasta que
@@ -854,9 +904,8 @@ export const ContactoView: React.FC = () => {
                       Destinatarios
                     </th>
                     <td className="py-4 px-6 text-[#20282E] block sm:table-cell">
-                      No se cederán datos a terceros, salvo obligación legal. Se utilizan
-                      proveedores tecnológicos de alojamiento web y correo electrónico que actúan
-                      como encargados del tratamiento bajo contrato conforme al art. 28 RGPD.
+                      Sin cesión a terceros salvo obligación legal; encargados técnicos de
+                      alojamiento y correo conforme al art. 28 RGPD.
                     </td>
                   </tr>
                   <tr>
@@ -867,22 +916,20 @@ export const ContactoView: React.FC = () => {
                       Derechos
                     </th>
                     <td className="py-4 px-6 text-[#20282E] block sm:table-cell">
-                      Puedes retirar tu consentimiento en cualquier momento y ejercer tus derechos
-                      de acceso, rectificación, supresión, oposición, limitación y portabilidad
-                      escribiendo a{' '}
+                      Acceso, rectificación, supresión, oposición, portabilidad, limitación y
+                      retirada del consentimiento en{' '}
                       <a
                         href="mailto:info@nutridiversa.org"
-                        className="underline font-bold text-[#176B50]"
+                        className="underline font-bold text-[#1D3532]"
                       >
                         info@nutridiversa.org
                       </a>
-                      , así como presentar una reclamación ante la Agencia Española de Protección de
-                      Datos (
+                      , más reclamación ante la AEPD (
                       <a
                         href="https://www.aepd.es"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="underline font-bold text-[#176B50]"
+                        className="underline font-bold text-[#1D3532]"
                       >
                         www.aepd.es
                       </a>
@@ -890,7 +937,7 @@ export const ContactoView: React.FC = () => {
                       <a
                         href="/privacidad"
                         onClick={handlePrivacyLink}
-                        className="underline font-bold text-[#176B50]"
+                        className="underline font-bold text-[#1D3532]"
                       >
                         Política de Privacidad
                       </a>

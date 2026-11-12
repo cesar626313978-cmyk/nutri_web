@@ -1,7 +1,10 @@
 export type RoutePath =
   | '/'
+  | '/que-hacemos'
   | '/proyecto'
+  | '/recursos'
   | '/guias'
+  | '/conocenos'
   | '/asociacion'
   | '/contacto'
   | '/transparencia'
@@ -10,28 +13,16 @@ export type RoutePath =
   | '/cookies'
   | '/accesibilidad';
 
-export type ContactProfileTab = 'familia' | 'entidad' | 'socio';
-
 export type TextScale = '100' | '115' | '130';
+
+export type ContactProfileTab = 'familia' | 'entidad' | 'socio';
 
 export interface BoardMember {
   name: string;
   role: string;
   duty: string;
   bio: string;
-  easyReadingBio: string;
-}
-
-export interface OfficialDocument {
-  id: string;
-  title: string;
-  version: string;
-  date: string;
-  pages: string;
-  fileName: string;
-  downloadUrl: string;
-  summary: string;
-  simpleSummary: string;
+  easyReadingBio?: string;
 }
 
 export interface GuideArticle {
@@ -59,34 +50,43 @@ export interface UpcomingGuide {
   description: string;
 }
 
+export interface OfficialDocument {
+  id: string;
+  title: string;
+  version: string;
+  date: string;
+  pages: string;
+  fileName: string;
+  downloadUrl: string;
+  summary: string;
+  simpleSummary: string;
+}
+
 export interface GuideResource {
   id: string;
   title: string;
-  subtitle: string;
-  pages: number;
+  category: string;
   format: string;
-  topics: string[];
-  description: string;
-  easyReadingDescription: string;
-  keyPoints: string[];
-  pictograms: string[];
+  pages: number;
+  updatedAt: string;
+  summary: string;
+  easyReadingSummary: string;
+  highlights: string[];
+  contentPreview?: string[];
+  downloadUrl?: string;
 }
 
 export interface Article {
   id: string;
   title: string;
   slug: string;
-  category:
-    | 'Proyectos y Pilotos'
-    | 'Nutrición Inclusiva y Derechos'
-    | 'Evidencia Científica'
-    | 'Autonomía y Familias'
-    | 'Testimonios'
-    | 'Salud y Discapacidad';
+  category: string;
   date: string;
   readTime: string;
   author: string;
-  standardContent: string[];
+  excerpt: string;
+  easyReadingExcerpt: string;
+  content: string[];
   easyReadingContent: string[];
-  audioText: string;
+  tags: string[];
 }

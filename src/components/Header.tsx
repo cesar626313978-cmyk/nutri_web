@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  Sprout,
   SlidersHorizontal,
   Volume2,
   Square,
@@ -10,6 +9,7 @@ import {
 } from 'lucide-react';
 import { useAccessibility } from '../context/AccessibilityContext';
 import { RoutePath, TextScale } from '../types';
+import { INSTITUTIONAL_DATA } from '../data/associationData';
 
 export const Header: React.FC = () => {
   const {
@@ -32,9 +32,11 @@ export const Header: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const navItems: { label: string; path: RoutePath }[] = [
-    { label: 'El proyecto', path: '/proyecto' },
-    { label: 'Guías', path: '/guias' },
-    { label: 'La asociación', path: '/asociacion' },
+    { label: 'Inicio', path: '/' },
+    { label: 'Qué hacemos', path: '/que-hacemos' },
+    { label: 'Proyecto piloto', path: '/proyecto' },
+    { label: 'Recursos', path: '/recursos' },
+    { label: 'Conócenos', path: '/conocenos' },
     { label: 'Contacto', path: '/contacto' },
   ];
 
@@ -66,7 +68,7 @@ export const Header: React.FC = () => {
 
   return (
     <header
-      className="sticky top-0 z-40 w-full bg-[#FFFDF8] border-b border-[#E6E2D8] transition-colors"
+      className="sticky top-0 z-40 w-full bg-white border-b border-[#E6E2D8] transition-colors"
       role="banner"
     >
       {/* Región viva para lectores de pantalla */}
@@ -77,48 +79,49 @@ export const Header: React.FC = () => {
       {/* Enlace de salto al contenido principal (WCAG 2.4.1) */}
       <a
         href="#main-content"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-[#176B50] focus:text-white focus:px-4 focus:py-2.5 focus:rounded-lg focus:font-bold focus:shadow-md"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-[#1D3532] focus:text-white focus:px-4 focus:py-2.5 focus:rounded-lg focus:font-bold focus:shadow-md"
       >
         Saltar al contenido principal
       </a>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[68px] max-h-[72px] flex items-center justify-between gap-2">
-        {/* Izquierda: Logotipo limpio de una sola línea */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-[68px] py-2 flex items-center justify-between gap-3">
+        {/* Izquierda: Logotipo Oficial Horizontal ND + Subtítulo oficial */}
         <a
           href="/"
           onClick={(e) => handleLinkClick(e, '/')}
-          className="inline-flex items-center gap-2.5 min-h-[44px] py-1 focus:outline-none rounded-lg group shrink-0"
-          aria-label="NutriDiversa - Ir a la página de inicio"
+          className="inline-flex flex-col justify-center min-h-[44px] py-1 focus:outline-none rounded-lg shrink-0"
+          aria-label="Logotipo de la Asociación NutriDiversa - Ir a Inicio"
         >
-          <span
-            className="w-9 h-9 rounded-full bg-[#EAF5EF] border border-[#176B50]/20 flex items-center justify-center text-[#176B50] group-hover:bg-[#176B50] group-hover:text-white transition-colors"
-            aria-hidden="true"
-          >
-            <Sprout className="w-5 h-5" />
-          </span>
-          <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight leading-none">
-            <span className="text-[#1D3532]">Nutri</span>
-            <span className="text-[#D96820]">Diversa</span>
+          <img
+            src={INSTITUTIONAL_DATA.logoUrl}
+            alt="Logotipo de la Asociación NutriDiversa"
+            className="h-9 sm:h-11 w-auto object-contain select-none"
+          />
+          <span className="hidden lg:block text-[11px] font-bold tracking-wide text-[#1D3532] leading-tight mt-0.5 pl-1">
+            — Asociación de Nutrición en la Discapacidad —
           </span>
         </a>
 
-        {/* Centro: Enlaces de navegación semánticos <a href="..."> */}
+        {/* Centro: Menú de navegación con enlaces reales */}
         <nav
           aria-label="Navegación principal"
-          className="hidden md:flex items-center gap-1 lg:gap-2"
+          className="hidden xl:flex items-center gap-1"
         >
           {navItems.map((item) => {
-            const isActive = activeRoute === item.path;
+            const isActive =
+              activeRoute === item.path ||
+              (item.path === '/recursos' && activeRoute === '/guias') ||
+              (item.path === '/conocenos' && activeRoute === '/asociacion');
             return (
               <a
                 key={item.path}
                 href={item.path}
                 onClick={(e) => handleLinkClick(e, item.path)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`inline-flex items-center justify-center min-h-[44px] px-4 py-2 rounded-lg text-[1rem] font-medium transition-colors ${
+                className={`inline-flex items-center justify-center min-h-[44px] px-3.5 py-2 rounded-lg text-[0.98rem] font-medium transition-colors ${
                   isActive
-                    ? 'bg-[#EAF5EF] text-[#176B50] font-bold'
-                    : 'text-[#20282E] hover:bg-[#F7F3EB] hover:text-[#1D3532]'
+                    ? 'bg-[#EAF5EF] text-[#1D3532] font-bold'
+                    : 'text-[#1D3532] hover:bg-[#F7F3EB]'
                 }`}
               >
                 {item.label}
@@ -127,8 +130,16 @@ export const Header: React.FC = () => {
           })}
         </nav>
 
-        {/* Derecha: Botón desplegable Opciones de lectura + Menú móvil */}
-        <div className="flex items-center gap-2" ref={dropdownRef}>
+        {/* Derecha: Botón destacado Colaborar + Opciones de lectura + Menú móvil */}
+        <div className="flex items-center gap-2 shrink-0" ref={dropdownRef}>
+          <a
+            href="/conocenos#colaborar"
+            onClick={(e) => handleLinkClick(e, '/conocenos#colaborar')}
+            className="hidden sm:inline-flex items-center justify-center min-h-[44px] px-4 py-2 rounded-xl bg-[#A94F1D] hover:bg-[#1D3532] text-white font-bold text-sm sm:text-[0.95rem] transition-colors shadow-2xs"
+          >
+            Colaborar
+          </a>
+
           <div className="relative">
             <button
               type="button"
@@ -136,14 +147,15 @@ export const Header: React.FC = () => {
               aria-expanded={readingMenuOpen}
               aria-haspopup="dialog"
               aria-controls="reading-options-panel"
-              className={`inline-flex items-center gap-2 min-h-[44px] px-3.5 py-2 rounded-full border text-sm sm:text-[0.95rem] font-medium transition-colors ${
+              className={`inline-flex items-center gap-2 min-h-[44px] px-3 py-2 rounded-xl border text-sm font-medium transition-colors ${
                 readingMenuOpen || easyReading || highContrast || fontScale !== '100' || isSpeaking
-                  ? 'bg-[#EAF5EF] border-[#176B50] text-[#176B50] font-bold'
+                  ? 'bg-[#EAF5EF] border-[#1D3532] text-[#1D3532] font-bold'
                   : 'bg-white border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
               }`}
             >
-              <SlidersHorizontal className="w-4 h-4 text-[#176B50] shrink-0" aria-hidden="true" />
-              <span>Opciones de lectura</span>
+              <SlidersHorizontal className="w-4 h-4 text-[#1D3532] shrink-0" aria-hidden="true" />
+              <span className="hidden md:inline">Opciones de lectura</span>
+              <span className="md:hidden">Lectura</span>
             </button>
 
             {/* Panel flotante limpio de Opciones de lectura */}
@@ -152,7 +164,7 @@ export const Header: React.FC = () => {
                 id="reading-options-panel"
                 role="dialog"
                 aria-label="Opciones de lectura y accesibilidad"
-                className="absolute right-0 mt-2 w-[310px] sm:w-[350px] max-w-[calc(100vw-1.5rem)] bg-white border border-[#E6E2D8] rounded-2xl shadow-xl p-5 z-50 space-y-5"
+                className="absolute right-0 mt-2 w-[300px] sm:w-[350px] max-w-[calc(100vw-1.5rem)] bg-white border border-[#E6E2D8] rounded-2xl shadow-xl p-5 z-50 space-y-5"
               >
                 <div className="flex items-center justify-between border-b border-[#E6E2D8] pb-3">
                   <h2 className="font-serif text-lg font-bold text-[#1D3532]">
@@ -173,7 +185,11 @@ export const Header: React.FC = () => {
                   <span className="block text-sm font-bold text-[#20282E] mb-2">
                     1. Tamaño de texto
                   </span>
-                  <div className="grid grid-cols-3 gap-2" role="group" aria-label="Seleccionar tamaño de texto">
+                  <div
+                    className="grid grid-cols-3 gap-2"
+                    role="group"
+                    aria-label="Seleccionar tamaño de texto"
+                  >
                     {(
                       [
                         { scale: '100', label: 'Normal', pct: '100%' },
@@ -190,8 +206,8 @@ export const Header: React.FC = () => {
                           aria-pressed={selected}
                           className={`min-h-[44px] px-2 py-2 rounded-lg border text-xs sm:text-sm font-medium flex flex-col items-center justify-center transition-colors ${
                             selected
-                              ? 'bg-[#176B50] text-white border-[#176B50] font-bold'
-                              : 'bg-[#FFFDF8] text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
+                              ? 'bg-[#1D3532] text-white border-[#1D3532] font-bold'
+                              : 'bg-white text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
                           }`}
                         >
                           <span>{opt.label}</span>
@@ -207,15 +223,19 @@ export const Header: React.FC = () => {
                   <span className="block text-sm font-bold text-[#20282E] mb-2">
                     2. Contraste visual
                   </span>
-                  <div className="grid grid-cols-1 gap-2" role="group" aria-label="Seleccionar modo de contraste">
+                  <div
+                    className="grid grid-cols-1 gap-2"
+                    role="group"
+                    aria-label="Seleccionar modo de contraste"
+                  >
                     <button
                       type="button"
                       onClick={() => setHighContrast(false)}
                       aria-pressed={!highContrast}
                       className={`min-h-[44px] px-3 py-2 rounded-lg border text-sm text-left flex items-center justify-between transition-colors ${
                         !highContrast
-                          ? 'bg-[#EAF5EF] border-[#176B50] text-[#176B50] font-bold'
-                          : 'bg-[#FFFDF8] border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
+                          ? 'bg-[#EAF5EF] border-[#1D3532] text-[#1D3532] font-bold'
+                          : 'bg-white border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
                       }`}
                     >
                       <span>Diseño cálido predeterminado</span>
@@ -228,7 +248,7 @@ export const Header: React.FC = () => {
                       className={`min-h-[44px] px-3 py-2 rounded-lg border text-sm text-left flex items-center justify-between transition-colors ${
                         highContrast
                           ? 'bg-black border-[#FFD700] text-[#FFD700] font-bold'
-                          : 'bg-[#FFFDF8] border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
+                          : 'bg-white border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
                       }`}
                     >
                       <span>Modo alto contraste</span>
@@ -255,7 +275,7 @@ export const Header: React.FC = () => {
                       onClick={toggleEasyReading}
                       className={`min-w-[64px] min-h-[44px] px-3 rounded-lg border text-sm font-bold transition-colors shrink-0 ${
                         easyReading
-                          ? 'bg-[#176B50] text-white border-[#176B50]'
+                          ? 'bg-[#1D3532] text-white border-[#1D3532]'
                           : 'bg-[#F7F3EB] text-[#20282E] border-[#E6E2D8]'
                       }`}
                     >
@@ -274,7 +294,7 @@ export const Header: React.FC = () => {
                     onClick={isSpeaking ? stopSpeech : speakCurrentPage}
                     className={`w-full min-h-[44px] px-4 py-2.5 rounded-lg border text-sm font-bold flex items-center justify-center gap-2 transition-colors ${
                       isSpeaking
-                        ? 'bg-[#D96820] text-white border-[#D96820]'
+                        ? 'bg-[#A94F1D] text-white border-[#A94F1D]'
                         : 'bg-[#1D3532] text-white border-[#1D3532] hover:bg-[#176B50]'
                     }`}
                   >
@@ -295,14 +315,14 @@ export const Header: React.FC = () => {
             )}
           </div>
 
-          {/* Botón de menú móvil (44x44px mínimo garantizado) */}
+          {/* Botón de menú móvil / tablet (44x44px mínimo garantizado) */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-menu"
             aria-label={mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
-            className="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-lg border border-[#E6E2D8] bg-white text-[#20282E] hover:bg-[#F7F3EB]"
+            className="xl:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-xl border border-[#E6E2D8] bg-white text-[#1D3532] hover:bg-[#F7F3EB]"
           >
             {mobileMenuOpen ? (
               <X className="w-5 h-5" aria-hidden="true" />
@@ -313,43 +333,43 @@ export const Header: React.FC = () => {
         </div>
       </div>
 
-      {/* Menú desplegable móvil */}
+      {/* Menú desplegable móvil / tablet */}
       {mobileMenuOpen && (
         <nav
           id="mobile-nav-menu"
           aria-label="Navegación móvil"
-          className="md:hidden bg-[#FFFDF8] border-b border-[#E6E2D8] px-4 py-3 space-y-1 shadow-lg"
+          className="xl:hidden bg-white border-b border-[#E6E2D8] px-4 py-4 space-y-1.5 shadow-lg"
         >
-          <a
-            href="/"
-            onClick={(e) => handleLinkClick(e, '/')}
-            aria-current={activeRoute === '/' ? 'page' : undefined}
-            className={`flex items-center min-h-[44px] px-4 py-2 rounded-lg text-base font-medium ${
-              activeRoute === '/'
-                ? 'bg-[#EAF5EF] text-[#176B50] font-bold'
-                : 'text-[#20282E] hover:bg-[#F7F3EB]'
-            }`}
-          >
-            Inicio
-          </a>
           {navItems.map((item) => {
-            const isActive = activeRoute === item.path;
+            const isActive =
+              activeRoute === item.path ||
+              (item.path === '/recursos' && activeRoute === '/guias') ||
+              (item.path === '/conocenos' && activeRoute === '/asociacion');
             return (
               <a
                 key={item.path}
                 href={item.path}
                 onClick={(e) => handleLinkClick(e, item.path)}
                 aria-current={isActive ? 'page' : undefined}
-                className={`flex items-center min-h-[44px] px-4 py-2 rounded-lg text-base font-medium ${
+                className={`flex items-center min-h-[44px] px-4 py-2.5 rounded-xl text-base font-medium ${
                   isActive
-                    ? 'bg-[#EAF5EF] text-[#176B50] font-bold'
-                    : 'text-[#20282E] hover:bg-[#F7F3EB]'
+                    ? 'bg-[#EAF5EF] text-[#1D3532] font-bold'
+                    : 'text-[#1D3532] hover:bg-[#F7F3EB]'
                 }`}
               >
                 {item.label}
               </a>
             );
           })}
+          <div className="pt-2">
+            <a
+              href="/conocenos#colaborar"
+              onClick={(e) => handleLinkClick(e, '/conocenos#colaborar')}
+              className="flex items-center justify-center w-full min-h-[48px] px-4 py-3 rounded-xl bg-[#A94F1D] text-white font-bold text-base"
+            >
+              Colaborar
+            </a>
+          </div>
         </nav>
       )}
     </header>

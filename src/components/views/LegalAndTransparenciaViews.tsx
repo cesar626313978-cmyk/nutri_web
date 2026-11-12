@@ -6,31 +6,36 @@ import {
   ChevronDown,
   ChevronUp,
   Mail,
+  CheckCircle2,
 } from 'lucide-react';
 import { useAccessibility } from '../../context/AccessibilityContext';
-import { OFFICIAL_DOCUMENTS, INSTITUTIONAL_DATA } from '../../data/associationData';
+import {
+  OFFICIAL_DOCUMENTS,
+  INSTITUTIONAL_DATA,
+  BOARD_MEMBERS,
+} from '../../data/associationData';
 
 export const TransparenciaView: React.FC = () => {
   const { easyReading } = useAccessibility();
   const [expandedDoc, setExpandedDoc] = useState<string | null>(null);
 
   return (
-    <div className="w-full bg-[#FFFDF8]">
+    <div className="w-full bg-white">
       {easyReading && (
         <section
           aria-label="Resumen sencillo de transparencia"
-          className="bg-[#EAF5EF] border-b border-[#176B50]/25 py-5 px-4 sm:px-6 lg:px-8"
+          className="bg-[#EAF5EF] border-b border-[#1D3532]/20 py-5 px-4 sm:px-6 lg:px-8"
         >
           <div className="max-w-5xl mx-auto flex items-start gap-3">
-            <Info className="w-6 h-6 text-[#176B50] shrink-0 mt-0.5" aria-hidden="true" />
+            <Info className="w-6 h-6 text-[#1D3532] shrink-0 mt-0.5" aria-hidden="true" />
             <div className="space-y-1 text-[#20282E]">
               <p className="font-bold text-base text-[#1D3532]">
                 Resumen sencillo de esta página:
               </p>
               <p className="text-base leading-relaxed max-w-[65ch]">
                 Aquí mostramos todos los datos legales oficiales de NutriDiversa (NIF G22670707 y
-                número nacional 632919), nuestros documentos institucionales y cómo gestionamos el
-                dinero con total transparencia.
+                número nacional 632919), los 5 miembros de su Junta Directiva y nuestros documentos
+                institucionales oficiales.
               </p>
             </div>
           </div>
@@ -40,15 +45,15 @@ export const TransparenciaView: React.FC = () => {
       {/* Cabecera */}
       <section className="bg-[#F7F3EB] border-b border-[#E6E2D8] py-12 sm:py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <p className="uppercase tracking-[0.12em] text-[0.85rem] font-bold text-[#D96820]">
+          <p className="uppercase tracking-[0.1em] text-xs sm:text-[0.85rem] font-bold text-[#A94F1D]">
             PORTAL DE TRANSPARENCIA · ÚLTIMA ACTUALIZACIÓN: NOVIEMBRE DE 2026
           </p>
           <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-[#1D3532] leading-[1.15]">
-            Transparencia, Estatutos y datos registrales
+            Transparencia, Junta Directiva, Estatutos y datos registrales
           </h1>
-          <p className="text-base sm:text-[1.1rem] text-[#5A6670] max-w-[65ch]">
-            Información institucional, registral, documental y económica de la Asociación de
-            Nutrición en la Discapacidad (NutriDiversa).
+          <p className="text-base sm:text-[1.1rem] text-[#20282E] max-w-[65ch]">
+            Información institucional, registral, órgano de gobierno, documental y económica de la
+            Asociación de Nutrición en la Discapacidad (NutriDiversa).
           </p>
         </div>
       </section>
@@ -63,7 +68,7 @@ export const TransparenciaView: React.FC = () => {
 
             <dl className="grid grid-cols-1 md:grid-cols-2 gap-6 text-base">
               <div className="bg-[#FFFDF8] rounded-xl border border-[#E6E2D8] p-4 space-y-1">
-                <dt className="text-xs font-bold uppercase tracking-wider text-[#5A6670]">
+                <dt className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
                   Denominación oficial
                 </dt>
                 <dd className="font-bold text-[#1D3532]">
@@ -72,15 +77,15 @@ export const TransparenciaView: React.FC = () => {
               </div>
 
               <div className="bg-[#FFFDF8] rounded-xl border border-[#E6E2D8] p-4 space-y-1">
-                <dt className="text-xs font-bold uppercase tracking-wider text-[#5A6670]">
+                <dt className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
                   NIF
                 </dt>
                 <dd className="font-bold text-[#1D3532]">G22670707.</dd>
               </div>
 
               <div className="bg-[#FFFDF8] rounded-xl border border-[#E6E2D8] p-4 space-y-1 md:col-span-2">
-                <dt className="text-xs font-bold uppercase tracking-wider text-[#5A6670]">
-                  Naturaleza
+                <dt className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
+                  Naturaleza y Ámbito
                 </dt>
                 <dd className="text-[#20282E]">
                   Asociación sin ánimo de lucro de ámbito estatal, acogida a la Ley Orgánica 1/2002,
@@ -89,7 +94,7 @@ export const TransparenciaView: React.FC = () => {
               </div>
 
               <div className="bg-[#FFFDF8] rounded-xl border border-[#E6E2D8] p-4 space-y-1">
-                <dt className="text-xs font-bold uppercase tracking-wider text-[#5A6670]">
+                <dt className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
                   Inscripción Registral
                 </dt>
                 <dd className="text-[#20282E]">
@@ -102,23 +107,67 @@ export const TransparenciaView: React.FC = () => {
               </div>
 
               <div className="bg-[#FFFDF8] rounded-xl border border-[#E6E2D8] p-4 space-y-1">
-                <dt className="text-xs font-bold uppercase tracking-wider text-[#5A6670]">
-                  Domicilio Social
+                <dt className="text-xs font-bold uppercase tracking-wider text-[#A94F1D]">
+                  Domicilio Social y Contacto
                 </dt>
                 <dd className="text-[#20282E]">
-                  C/ Polop, 30, Esc. 1, 4º O, 03015 Alicante (España).
+                  C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante (España) ·{' '}
+                  <a
+                    href="mailto:info@nutridiversa.org"
+                    className="underline font-bold text-[#1D3532]"
+                  >
+                    info@nutridiversa.org
+                  </a>
                 </dd>
               </div>
             </dl>
           </div>
 
-          {/* 2. Documentación Institucional Separada y con Control de Versiones */}
+          {/* 2. Órgano de Gobierno (Junta Directiva — Transcripción Literal Obligatoria de los 5 cargos) */}
+          <div className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-8 space-y-6 shadow-2xs">
+            <div className="space-y-2">
+              <h2 className="font-serif text-2xl font-bold text-[#1D3532]">
+                2. Órgano de Gobierno (Junta Directiva)
+              </h2>
+              <p className="text-base text-[#20282E]">
+                Composición vigente de la Junta Directiva de NutriDiversa. Todos los miembros
+                desempeñan sus cargos de forma gratuita y sin remuneración:
+              </p>
+            </div>
+
+            <div className="border border-[#E6E2D8] rounded-xl overflow-hidden">
+              <table className="w-full text-left border-collapse text-base">
+                <thead className="bg-[#F7F3EB] text-[#1D3532] border-b border-[#E6E2D8]">
+                  <tr>
+                    <th scope="col" className="py-3.5 px-5 font-serif font-bold w-1/3">
+                      Cargo
+                    </th>
+                    <th scope="col" className="py-3.5 px-5 font-serif font-bold">
+                      Nombre y Apellidos
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-[#E6E2D8]">
+                  {BOARD_MEMBERS.map((member) => (
+                    <tr key={member.role} className="hover:bg-[#FFFDF8]">
+                      <th scope="row" className="py-3.5 px-5 font-bold text-[#1D3532]">
+                        {member.role}
+                      </th>
+                      <td className="py-3.5 px-5 font-bold text-[#20282E]">{member.name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* 3. Documentación Institucional Separada y con Control de Versiones */}
           <div className="space-y-6">
             <div className="space-y-2">
               <h2 className="font-serif text-2xl font-bold text-[#1D3532]">
-                2. Documentación Institucional Separada y con Control de Versiones
+                3. Documentación Institucional Separada y con Control de Versiones
               </h2>
-              <p className="text-base text-[#5A6670]">
+              <p className="text-base text-[#20282E]">
                 Cada documento identifica su versión, fecha y extensión.
               </p>
             </div>
@@ -133,7 +182,7 @@ export const TransparenciaView: React.FC = () => {
                     className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-7 space-y-4 shadow-2xs"
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm">
-                      <span className="inline-flex items-center px-3 py-1 rounded-full font-bold bg-[#EAF5EF] text-[#176B50]">
+                      <span className="inline-flex items-center px-3 py-1 rounded-full font-bold bg-[#EAF5EF] text-[#1D3532]">
                         Documento {idx + 1} · {doc.version}
                       </span>
                       <span className="font-medium text-[#5A6670]">
@@ -156,7 +205,7 @@ export const TransparenciaView: React.FC = () => {
                           download={doc.fileName}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl bg-[#176B50] hover:bg-[#1D3532] text-white font-bold text-sm sm:text-base transition-colors"
+                          className="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 rounded-xl bg-[#A94F1D] hover:bg-[#1D3532] text-white font-bold text-sm sm:text-base transition-colors"
                         >
                           <FileText className="w-4 h-4" aria-hidden="true" />
                           <span>Abrir / Descargar {doc.fileName} (16 páginas)</span>
@@ -190,7 +239,7 @@ export const TransparenciaView: React.FC = () => {
                             )}`}
                             className="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl border border-[#E6E2D8] bg-[#FFFDF8] hover:bg-[#F7F3EB] text-[#20282E] font-medium text-sm transition-colors"
                           >
-                            <Mail className="w-4 h-4 text-[#176B50]" aria-hidden="true" />
+                            <Mail className="w-4 h-4 text-[#1D3532]" aria-hidden="true" />
                             <span>Solicitar copia en PDF por correo</span>
                           </a>
                         </>
@@ -239,7 +288,7 @@ export const TransparenciaView: React.FC = () => {
                             Registro Nacional de Asociaciones del Ministerio del Interior, Grupo 1,
                             Sección 1, Número Nacional 632919
                           </strong>
-                          , con domicilio social en C/ Polop, 30, Esc. 1, 4º O, 03015 Alicante. En
+                          , con domicilio social en C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante. En
                           cumplimiento del principio de minimización de datos del RGPD, la copia
                           informativa disocia los datos personales sensibles de las personas físicas
                           comparecientes.
@@ -252,10 +301,10 @@ export const TransparenciaView: React.FC = () => {
             </div>
           </div>
 
-          {/* 3. Información Económica, Subvenciones y Gobernanza */}
+          {/* 4. Información Económica, Subvenciones y Gobernanza */}
           <div className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-8 space-y-5 shadow-2xs">
             <h2 className="font-serif text-2xl font-bold text-[#1D3532]">
-              3. Información Económica, Subvenciones y Gobernanza
+              4. Información Económica, Subvenciones y Gobernanza
             </h2>
 
             <div className="space-y-4 text-base text-[#20282E] leading-relaxed">
@@ -295,7 +344,7 @@ export const AvisoLegalView: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <article className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-10 space-y-8 shadow-2xs">
           <header className="border-b border-[#E6E2D8] pb-6 space-y-2">
-            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#D96820]">
+            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#A94F1D]">
               INFORMACIÓN LEGAL · LSSI-CE
             </p>
             <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D3532]">
@@ -316,34 +365,41 @@ export const AvisoLegalView: React.FC = () => {
             </p>
             <ul className="list-disc list-inside space-y-1.5 pl-2">
               <li>
-                <strong>Denominación social:</strong> Asociación de Nutrición en la Discapacidad
+                <strong>Denominación:</strong> Asociación de Nutrición en la Discapacidad
                 (NutriDiversa)
               </li>
               <li>
                 <strong>NIF:</strong> G22670707
               </li>
               <li>
-                <strong>Domicilio social:</strong> Calle Polop, número 30, Escalera 1, 4º O, Código
-                Postal 03015, Alicante (España)
+                <strong>Domicilio social:</strong> C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante
+                (España)
               </li>
               <li>
-                <strong>Datos registrales:</strong> Inscrita en el Registro Nacional de Asociaciones
-                del Ministerio del Interior, Grupo 1, Sección 1, con el Número Nacional 632919.
+                <strong>Registro Nacional de Asociaciones:</strong> Grupo 1, Sección 1, Número
+                Nacional 632919.
               </li>
               <li>
-                <strong>Ámbito territorial de actuación:</strong> Estatal.
+                <strong>Ámbito:</strong> Estatal.
               </li>
               <li>
-                <strong>Correo electrónico de contacto directo:</strong>{' '}
+                <strong>Correo electrónico de contacto:</strong>{' '}
                 <a
                   href="mailto:info@nutridiversa.org"
-                  className="underline font-bold text-[#176B50]"
+                  className="underline font-bold text-[#1D3532]"
                 >
                   info@nutridiversa.org
                 </a>
               </li>
               <li>
-                <strong>Dominio web oficial:</strong> https://www.nutridiversa.org
+                <strong>Órgano de Gobierno (Junta Directiva):</strong>
+                <ul className="list-disc list-inside pl-6 mt-1 space-y-1">
+                  <li>Presidencia: Inmaculada Checa Lorente</li>
+                  <li>Secretaría: Silvia Andrea Costa Méndez</li>
+                  <li>Tesorería: César Hernández Moreno</li>
+                  <li>Vocalía 1: Almudena Gómez de Cadiñanos Sastre</li>
+                  <li>Vocalía 2: Victoria Muñoz Bañón</li>
+                </ul>
               </li>
             </ul>
           </section>
@@ -369,7 +425,7 @@ export const AvisoLegalView: React.FC = () => {
 
           <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
             <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              3. PROPIETA INTELECTUAL E INDUSTRIAL
+              3. PROPIEDAD INTELECTUAL E INDUSTRIAL
             </h2>
             <p>
               Los textos, diseños, logotipos, estructura y materiales propios de este sitio web son
@@ -406,7 +462,7 @@ export const PrivacidadView: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <article className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-10 space-y-8 shadow-2xs">
           <header className="border-b border-[#E6E2D8] pb-6 space-y-3">
-            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#D96820]">
+            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#A94F1D]">
               RGPD (ARTS. 6, 9 Y 13) Y LOPDGDD
             </p>
             <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D3532]">
@@ -427,7 +483,8 @@ export const PrivacidadView: React.FC = () => {
             </h2>
             <ul className="list-disc list-inside space-y-1.5 pl-2">
               <li>
-                <strong>Entidad:</strong> Asociación de Nutrición en la Discapacidad (NutriDiversa)
+                <strong>Denominación:</strong> Asociación de Nutrición en la Discapacidad
+                (NutriDiversa)
               </li>
               <li>
                 <strong>NIF:</strong> G22670707
@@ -437,14 +494,17 @@ export const PrivacidadView: React.FC = () => {
                 Nacional 632919
               </li>
               <li>
-                <strong>Domicilio social:</strong> Calle Polop, 30, Esc. 1, 4º O, 03015 Alicante
+                <strong>Ámbito:</strong> Estatal
+              </li>
+              <li>
+                <strong>Domicilio social:</strong> C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante
                 (España)
               </li>
               <li>
-                <strong>Correo electrónico de contacto para privacidad:</strong>{' '}
+                <strong>Correo electrónico de contacto:</strong>{' '}
                 <a
                   href="mailto:info@nutridiversa.org"
-                  className="underline font-bold text-[#176B50]"
+                  className="underline font-bold text-[#1D3532]"
                 >
                   info@nutridiversa.org
                 </a>
@@ -542,117 +602,45 @@ export const PrivacidadView: React.FC = () => {
 
           <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
             <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              4. CARÁCTER OBLIGATORIO O FACULTATIVO DE LOS DATOS
+              4. PLAZOS DE CONSERVACIÓN Y DESTINATARIOS
             </h2>
             <p>
-              Los campos marcados como obligatorios en cada formulario son imprescindibles para
-              atender la solicitud correspondiente. La negativa a suministrarlos o a marcar la
-              casilla de aceptación impedirá tramitar la consulta, colaboración o inscripción
-              solicitada.
+              Los datos se conservarán mientras se mantenga la relación informativa o asociativa y
+              hasta que la persona interesada solicite su supresión o retire su consentimiento, más
+              los plazos legales de prescripción aplicables.
+            </p>
+            <p>
+              NutriDiversa no vende ni cede datos personales a terceros salvo obligación legal. Para
+              el funcionamiento técnico de la web y del correo electrónico se emplean encargados de
+              tratamiento conforme al artículo 28 del RGPD.
             </p>
           </section>
 
           <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
             <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              5. PLAZOS Y CRITERIOS DE CONSERVACIÓN
-            </h2>
-            <ul className="list-disc list-inside space-y-2 pl-2">
-              <li>
-                <strong>Datos de consultas e interés en el proyecto piloto:</strong> Se conservarán
-                mientras el proyecto se encuentre en preparación y ejecución o hasta que la persona
-                interesada retire su consentimiento o solicite su supresión.
-              </li>
-              <li>
-                <strong>Datos de personas asociadas, donantes y voluntariado:</strong> Se
-                conservarán mientras se mantenga vigente su condición en la asociación y, tras
-                causar baja, permanecerán debidamente bloqueados durante los plazos legales de
-                prescripción de responsabilidades jurídicas, contables o fiscales (generalmente
-                entre 4 y 5 años).
-              </li>
-            </ul>
-          </section>
-
-          <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
-            <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              6. DESTINATARIOS, ENCARGADOS DEL TRATAMIENTO Y TRANSFERENCIAS INTERNACIONALES
+              5. DERECHOS DE LAS PERSONAS INTERESADAS Y RECLAMACIÓN ANTE LA AEPD
             </h2>
             <p>
-              NutriDiversa no vende ni cede datos personales a terceros, salvo en los casos en que
-              exista una obligación legal (Administraciones Públicas competentes, Registro Nacional
-              de Asociaciones o entidades bancarias para la gestión de cuotas).
-            </p>
-            <p>
-              Para el funcionamiento técnico de la web y del correo electrónico, NutriDiversa cuenta
-              con proveedores de servicios tecnológicos (alojamiento web e infraestructura de
-              correo) que actúan en calidad de Encargados del Tratamiento conforme al artículo 28
-              del RGPD. No se realizan transferencias internacionales de datos fuera del Espacio
-              Económico Europeo salvo a proveedores que ofrezcan garantías adecuadas reconocidas por
-              la Comisión Europea (como el Marco de Privacidad de Datos UE-EE. UU. o Cláusulas
-              Contractuales Tipo).
-            </p>
-          </section>
-
-          <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
-            <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              7. INEXISTENCIA DE DECISIONES AUTOMATIZADAS
-            </h2>
-            <p>
-              NutriDiversa no elabora perfiles comerciales ni adopta decisiones automatizadas sobre
-              las personas usuarias.
-            </p>
-          </section>
-
-          <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
-            <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              8. DERECHOS DE LAS PERSONAS INTERESADAS Y RECLAMACIÓN ANTE LA AEPD
-            </h2>
-            <p>
-              Cualquier persona tiene derecho a obtener confirmación sobre si en NutriDiversa
-              estamos tratando datos personales que le conciernan y a ejercer en cualquier momento y
-              de forma gratuita los siguientes derechos:
-            </p>
-            <ul className="list-disc list-inside space-y-1 pl-2">
-              <li>Derecho de acceso a sus datos personales.</li>
-              <li>Derecho de rectificación de los datos inexactos o incompletos.</li>
-              <li>
-                Derecho de supresión («derecho al olvido») cuando los datos ya no sean necesarios.
-              </li>
-              <li>
-                Derecho a la limitación del tratamiento en los supuestos previstos en el RGPD.
-              </li>
-              <li>Derecho de oposición al tratamiento y derecho a la portabilidad de sus datos.</li>
-              <li>
-                Derecho a retirar el consentimiento prestado en cualquier momento, sin que ello
-                afecte a la licitud del tratamiento basado en el consentimiento previo a su
-                retirada.
-              </li>
-            </ul>
-            <p>
-              Para ejercer estos derechos, basta con enviar una comunicación escrita a{' '}
+              Puedes ejercer en cualquier momento y de forma gratuita tus derechos de acceso,
+              rectificación, supresión, oposición, limitación, portabilidad y retirada del
+              consentimiento escribiendo a{' '}
               <a
                 href="mailto:info@nutridiversa.org"
-                className="underline font-bold text-[#176B50]"
+                className="underline font-bold text-[#1D3532]"
               >
                 info@nutridiversa.org
               </a>{' '}
-              o al domicilio social en Calle Polop, 30, Esc. 1, 4º O, 03015 Alicante, indicando el
-              derecho que desea ejercer. Únicamente se solicitará información adicional para
-              acreditar la identidad cuando existan dudas razonables sobre la identidad de la
-              persona solicitante.
-            </p>
-            <p>
-              Asimismo, le informamos de su derecho a presentar una reclamación ante la autoridad de
-              control competente, la Agencia Española de Protección de Datos (AEPD), a través de su
-              sede electrónica en{' '}
+              o al domicilio social en C/ Polop, 30, Esc. 1, 4.º O, 03015 Alicante, así como
+              presentar una reclamación ante la Agencia Española de Protección de Datos (
               <a
                 href="https://www.aepd.es"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="underline font-bold text-[#176B50]"
+                className="underline font-bold text-[#1D3532]"
               >
                 www.aepd.es
               </a>
-              .
+              ).
             </p>
           </section>
 
@@ -666,13 +654,17 @@ export const PrivacidadView: React.FC = () => {
 };
 
 export const CookiesView: React.FC = () => {
+  const [showCustomPanel, setShowCustomPanel] = useState(false);
+  const [optionalAnalytics, setOptionalAnalytics] = useState(false); // SIEMPRE DESMARCADA POR DEFECTO
+  const [savedNotice, setSavedNotice] = useState<string | null>(null);
+
   return (
     <div className="w-full bg-[#FFFDF8] py-12 sm:py-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <article className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-10 space-y-8 shadow-2xs">
           <header className="border-b border-[#E6E2D8] pb-6 space-y-2">
-            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#D96820]">
-              LSSI-CE ART. 22.2 · EXENCIÓN TÉCNICA
+            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#A94F1D]">
+              LSSI-CE ART. 22.2 · GUÍA AEPD
             </p>
             <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D3532]">
               POLÍTICA DE COOKIES Y ALMACENAMIENTO LOCAL
@@ -692,18 +684,13 @@ export const CookiesView: React.FC = () => {
 
           <section className="space-y-4 text-base text-[#20282E] leading-relaxed">
             <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              2. USO EXCLUSIVO DE PREFERENCIAS TÉCNICAS EXENTAS EN NUTRIDIVERSA
+              2. USO EXCLUSIVO DE PREFERENCIAS TÉCNICAS EN NUTRIDIVERSA
             </h2>
             <p>
-              Actualmente, el sitio web www.nutridiversa.org NO utiliza cookies publicitarias, de
-              seguimiento comercial ni cookies analíticas de terceros que requieran banner de
-              consentimiento conforme a la Guía sobre el uso de las cookies de la AEPD y el artículo
-              22.2 de la LSSI-CE.
-            </p>
-            <p>
-              Únicamente empleamos almacenamiento local técnico estrictamente necesario para
-              recordar, a petición de la propia persona usuaria, sus preferencias en la herramienta
-              «Opciones de lectura»:
+              Actualmente, el sitio web www.nutridiversa.org NO instala scripts publicitarios ni
+              analíticos de terceros no declarados. Únicamente empleamos almacenamiento local
+              técnico estrictamente necesario para recordar, a petición de la propia persona
+              usuaria, sus preferencias en la herramienta «Opciones de lectura»:
             </p>
 
             <div className="overflow-x-auto border border-[#E6E2D8] rounded-xl">
@@ -718,7 +705,7 @@ export const CookiesView: React.FC = () => {
                 </thead>
                 <tbody className="divide-y divide-[#E6E2D8]">
                   <tr>
-                    <td className="p-3.5 font-mono font-bold text-[#176B50]">
+                    <td className="p-3.5 font-mono font-bold text-[#1D3532]">
                       nutridiversa_font_size
                     </td>
                     <td className="p-3.5">NutriDiversa (Propia)</td>
@@ -726,7 +713,7 @@ export const CookiesView: React.FC = () => {
                     <td className="p-3.5">Persistente en sesión local hasta su borrado manual</td>
                   </tr>
                   <tr>
-                    <td className="p-3.5 font-mono font-bold text-[#176B50]">
+                    <td className="p-3.5 font-mono font-bold text-[#1D3532]">
                       nutridiversa_contrast
                     </td>
                     <td className="p-3.5">NutriDiversa (Propia)</td>
@@ -734,7 +721,7 @@ export const CookiesView: React.FC = () => {
                     <td className="p-3.5">Persistente en sesión local</td>
                   </tr>
                   <tr>
-                    <td className="p-3.5 font-mono font-bold text-[#176B50]">
+                    <td className="p-3.5 font-mono font-bold text-[#1D3532]">
                       nutridiversa_simple_summary
                     </td>
                     <td className="p-3.5">NutriDiversa (Propia)</td>
@@ -744,12 +731,85 @@ export const CookiesView: React.FC = () => {
                 </tbody>
               </table>
             </div>
+          </section>
 
-            <p>
-              En caso de que en el futuro se incorporen herramientas de medición estadística no
-              exentas, se actualizará previamente esta política y se habilitará el correspondiente
-              panel configurador de consentimiento.
+          {/* 3. Panel de Configuración de Cookies conforme a la Guía de la AEPD (Sección 6.2) */}
+          <section className="bg-[#F7F3EB] rounded-2xl border border-[#E6E2D8] p-6 space-y-5">
+            <h2 className="font-serif text-xl font-bold text-[#1D3532]">
+              3. PANEL DE CONFIGURACIÓN DE COOKIES (GUÍA AEPD)
+            </h2>
+            <p className="text-sm sm:text-base text-[#20282E]">
+              Conforme a la Guía de la AEPD, los botones <strong>Aceptar</strong>,{' '}
+              <strong>Rechazar</strong> y <strong>Configurar</strong> se muestran al mismo nivel
+              visual y tamaño, sin casillas premarcadas:
             </p>
+
+            {showCustomPanel && (
+              <div className="bg-white rounded-xl border border-[#E6E2D8] p-4 space-y-3">
+                <div className="flex items-start justify-between gap-4">
+                  <label
+                    htmlFor="page_cookie_analytics"
+                    className="text-sm font-bold text-[#1D3532] cursor-pointer"
+                  >
+                    Permitir cookies analíticas o estadísticas futuras (desmarcada por defecto)
+                  </label>
+                  <input
+                    id="page_cookie_analytics"
+                    name="page_cookie_analytics"
+                    type="checkbox"
+                    checked={optionalAnalytics}
+                    onChange={(e) => setOptionalAnalytics(e.target.checked)}
+                    className="w-5 h-5 rounded border-[#E6E2D8] text-[#1D3532] shrink-0"
+                  />
+                </div>
+              </div>
+            )}
+
+            {savedNotice && (
+              <div
+                role="status"
+                aria-live="polite"
+                className="bg-[#EAF5EF] border border-[#1D3532]/30 rounded-xl p-4 text-sm font-bold text-[#1D3532] flex items-center gap-2"
+              >
+                <CheckCircle2 className="w-5 h-5 shrink-0" aria-hidden="true" />
+                <span>{savedNotice}</span>
+              </div>
+            )}
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <button
+                type="button"
+                onClick={() => {
+                  setOptionalAnalytics(true);
+                  setSavedNotice('Has aceptado las preferencias de cookies.');
+                }}
+                className="w-full min-h-[48px] px-4 py-3 rounded-xl border-2 border-[#1D3532] bg-[#1D3532] text-white font-bold text-base hover:bg-[#176B50] transition-colors"
+              >
+                Aceptar
+              </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setOptionalAnalytics(false);
+                  setSavedNotice(
+                    'Has rechazado todas las cookies no necesarias. Solo se mantiene el almacenamiento técnico esencial.'
+                  );
+                }}
+                className="w-full min-h-[48px] px-4 py-3 rounded-xl border-2 border-[#1D3532] bg-[#1D3532] text-white font-bold text-base hover:bg-[#176B50] transition-colors"
+              >
+                Rechazar
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setShowCustomPanel((prev) => !prev)}
+                aria-expanded={showCustomPanel}
+                className="w-full min-h-[48px] px-4 py-3 rounded-xl border-2 border-[#1D3532] bg-[#1D3532] text-white font-bold text-base hover:bg-[#176B50] transition-colors"
+              >
+                Configurar
+              </button>
+            </div>
           </section>
 
           <footer className="pt-4 border-t border-[#E6E2D8] text-sm font-medium text-[#5A6670]">
@@ -767,8 +827,8 @@ export const AccesibilidadView: React.FC = () => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <article className="bg-white rounded-2xl border border-[#E6E2D8] p-6 sm:p-10 space-y-8 shadow-2xs">
           <header className="border-b border-[#E6E2D8] pb-6 space-y-2">
-            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#D96820]">
-              REFERENCIA TÉCNICA WCAG 2.2 NIVEL AA
+            <p className="uppercase tracking-[0.12em] text-xs font-bold text-[#A94F1D]">
+              COMPROMISO VOLUNTARIO CON LAS PAUTAS WCAG
             </p>
             <h1 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1D3532]">
               DECLARACIÓN Y COMPROMISO DE ACCESIBILIDAD
@@ -783,14 +843,13 @@ export const AccesibilidadView: React.FC = () => {
               La Asociación de Nutrición en la Discapacidad (NutriDiversa) mantiene un firme
               compromiso voluntario para que su sitio web www.nutridiversa.org sea comprensible,
               navegable y utilizable por el mayor número posible de personas, con especial atención
-              a las familias, personas con discapacidad y personas con dificultades de comprensión
+              a las personas con discapacidad, familias y personas con dificultades de comprensión
               lectora.
             </p>
             <p>
-              Aunque NutriDiversa es una asociación privada sin ánimo de lucro y no se encuentra
-              sujeta de forma imperativa al ámbito subjetivo del Real Decreto 1112/2018 (aplicable
-              al sector público), hemos diseñado esta nueva versión tomando como referencia técnica
-              las Pautas de Accesibilidad para el Contenido Web (WCAG 2.2) del W3C en su nivel AA.
+              Como entidad asociativa privada sin ánimo de lucro, hemos diseñado esta aplicación web
+              aplicando de forma voluntaria las Pautas de Accesibilidad para el Contenido Web (WCAG
+              2.2 nivel AA) del W3C.
             </p>
           </section>
 
@@ -800,53 +859,38 @@ export const AccesibilidadView: React.FC = () => {
             </h2>
             <ul className="list-disc list-inside space-y-2 pl-2">
               <li>
-                Tipografía de alta legibilidad (Atkinson Hyperlegible) en cuerpos de texto,
-                controles y formularios.
+                Tipografía de alta legibilidad (Atkinson Hyperlegible) en toda la web, párrafos
+                cortos e interlineado amplio sin bloquear el zoom del navegador.
               </li>
               <li>
-                Paleta de colores con contraste verificado y modo específico de Alto Contraste
-                seleccionable desde el botón «Opciones de lectura».
+                Paleta de colores con contraste verificado (incluyendo naranja de acción{' '}
+                <code>#A94F1D</code> y verde institucional <code>#1D3532</code>) y modo específico
+                de Alto Contraste seleccionable desde el botón «Opciones de lectura».
               </li>
               <li>
-                Diseño adaptable con reflujo completo (WCAG 1.4.10) que permite ampliar el zoom
-                hasta el 200 % y navegar en pantallas móviles de 320 píxeles sin desplazamiento
-                horizontal.
+                Diseño adaptable sin desplazamiento lateral en pantallas móviles y botones amplios
+                fáciles de pulsar (mínimo 44px × 44px).
               </li>
               <li>
-                Etiquetado programático visible (<code>&lt;label&gt;</code>) en todos los controles
-                de formulario y áreas táctiles amplias.
+                Etiquetado visible (<code>&lt;label&gt;</code>) en todos los controles de formulario
+                y ausencia de texto importante superpuesto sobre fotografías.
               </li>
               <li>Opción de «Resumen sencillo» y lectura en voz alta integrada en la cabecera.</li>
-              <li>
-                Redacción con frases claras, estructura predecible y explicación de los términos
-                técnicos.
-              </li>
             </ul>
           </section>
 
           <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
             <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              3. ESTADO DE EVALUACIÓN Y MEJORA CONTINUA
-            </h2>
-            <p>
-              Este sitio web ha sido objeto de una revisión interna de usabilidad y accesibilidad en
-              noviembre de 2026. Actualmente nos encontramos trabajando con entidades especializadas
-              para validar en el futuro versiones en metodología oficial de Lectura Fácil.
-            </p>
-          </section>
-
-          <section className="space-y-3 text-base text-[#20282E] leading-relaxed">
-            <h2 className="font-serif text-xl font-bold text-[#1D3532]">
-              4. CANAL DE COMUNICACIÓN DE BARRERAS DE ACCESIBILIDAD
+              3. CANAL DE COMUNICACIÓN DE BARRERAS DE ACCESIBILIDAD
             </h2>
             <p>
               Si encuentras cualquier barrera de acceso, algún elemento que no funcione
               correctamente con tu lector de pantalla o teclado, o necesitas recibir la información
-              de nuestro proyecto piloto o documentos institucionales en un formato alternativo
-              adaptado, escríbenos a{' '}
+              de nuestros proyectos o documentos institucionales en un formato alternativo adaptado,
+              escríbenos a{' '}
               <a
                 href="mailto:info@nutridiversa.org"
-                className="underline font-bold text-[#176B50]"
+                className="underline font-bold text-[#1D3532]"
               >
                 info@nutridiversa.org
               </a>{' '}
