@@ -1,4 +1,16 @@
-export type RoutePath = '/' | '/conocenos' | '/servicios' | '/colabora' | '/actualidad' | '/contacto' | '/socios' | '/admin';
+export type RoutePath =
+  | '/'
+  | '/proyecto'
+  | '/guias'
+  | '/asociacion'
+  | '/contacto'
+  | '/transparencia'
+  | '/privacidad'
+  | '/aviso-legal'
+  | '/cookies'
+  | '/accesibilidad';
+
+export type ContactProfileTab = 'familia' | 'entidad' | 'socio';
 
 export type TextScale = '100' | '115' | '130';
 
@@ -13,13 +25,38 @@ export interface BoardMember {
 export interface OfficialDocument {
   id: string;
   title: string;
-  category: 'Estatutos' | 'Registro' | 'Cuentas' | 'Memorias' | 'Certificados';
+  version: string;
   date: string;
-  csvCode?: string;
-  fileSize: string;
+  pages: string;
+  fileName: string;
+  downloadUrl: string;
   summary: string;
-  easyReadingSummary: string;
-  legalBasis: string;
+  simpleSummary: string;
+}
+
+export interface GuideArticle {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  date: string;
+  readTime: string;
+  author: string;
+  excerpt: string;
+  simpleSummary: string;
+  sections: {
+    heading: string;
+    paragraphs: string[];
+  }[];
+  sources: string[];
+  limitsNote: string;
+}
+
+export interface UpcomingGuide {
+  id: string;
+  title: string;
+  statusTag: string;
+  description: string;
 }
 
 export interface GuideResource {
@@ -52,24 +89,4 @@ export interface Article {
   standardContent: string[];
   easyReadingContent: string[];
   audioText: string;
-}
-
-export interface SIOConsultation {
-  beneficiary: string;
-  primaryNeed: string;
-  preferredChannel: 'whatsapp' | 'telefono' | 'email';
-  contact: string;
-  notes: string;
-  consentArt42: boolean;
-}
-
-export interface EthicsReport {
-  isAnonymous: boolean;
-  fullName: string;
-  email: string;
-  phone: string;
-  category: string;
-  description: string;
-  dateIncident: string;
-  acceptedPrivacy: boolean;
 }

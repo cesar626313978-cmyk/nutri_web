@@ -1,37 +1,40 @@
-import { BoardMember, OfficialDocument, GuideResource, Article } from '../types';
-
-export const DOSSIER_PDF_URL =
-  '/assets/aistudio/Dossier_NutriDiversa__borrador_final_actualizado_dfe3321f.pdf';
-
-export const DOSSIER_IMAGES = {
-  coverMeal: '/src/assets/images/dossier_mesa_inclusiva_1793908196707.jpg',
-  workshopFamilies: '/src/assets/images/dossier_taller_familias_1793908198282.jpg',
-  kitchenAutonomy: '/src/assets/images/dossier_cocina_autonomia_1793908198321.jpg',
-};
+import {
+  BoardMember,
+  OfficialDocument,
+  GuideArticle,
+  UpcomingGuide,
+  GuideResource,
+  Article,
+} from '../types';
 
 export const INSTITUTIONAL_DATA = {
-  name: 'Asociación NutriDiversa',
+  name: 'Asociación de Nutrición en la Discapacidad (NutriDiversa)',
+  shortName: 'NutriDiversa',
   abbreviation: 'NutriDiversa',
   acronym: 'ND',
-  motto: 'La salud también se construye desde la diversidad',
+  nif: 'G22670707',
+  motto: 'Una alimentación más comprensible y accesible para cada familia',
   subtitle: 'Promoción de la salud y nutrición inclusiva',
-  nature: 'Asociación sin ánimo de lucro de ámbito estatal',
-  year: '2026',
+  nature:
+    'Asociación sin ánimo de lucro de ámbito estatal, acogida a la Ley Orgánica 1/2002, de 22 de marzo, reguladora del Derecho de Asociación.',
+  year: 'Noviembre de 2026',
   nationalRegistry: {
     number: '632919',
-    section: 'Sección 1ª',
+    section: 'Sección 1',
     group: 'Grupo 1',
-    entity: 'Registro Nacional de Asociaciones (Ministerio del Interior)',
-    activityCode: '426 - Promoción de la Salud',
-    territorialScope: 'Estatal / Nacional (España)',
-    cifCode: 'G-10928374',
+    entity: 'Registro Nacional de Asociaciones del Ministerio del Interior',
+    activityCode: 'Promoción de la Salud y Nutrición Inclusiva',
+    territorialScope: 'Estatal',
+    cifCode: 'G22670707',
   },
   headquarters: {
-    address: 'Alicante',
+    address: 'C/ Polop, 30, Esc. 1, 4º O, 03015 Alicante (España)',
+    street: 'Calle Polop, número 30, Escalera 1, 4º O',
+    postalCode: '03015',
     city: 'Alicante',
     province: 'Alicante',
     country: 'España',
-    display: 'Alicante · Ámbito estatal',
+    display: 'C/ Polop, 30, Esc. 1, 4º O, 03015 Alicante (España)',
   },
   contact: {
     email: 'info@nutridiversa.org',
@@ -47,580 +50,349 @@ export const INSTITUTIONAL_DATA = {
     bizumOngCode: '',
   },
   mission:
-    'La misión de NutriDiversa es contribuir a mejorar la alimentación, la nutrición y la salud de las personas con discapacidad, las personas autistas, las afectadas por enfermedades raras y las que se encuentran en situación de dependencia, mediante iniciativas basadas en la evidencia científica y orientadas por un enfoque de nutrición inclusiva, teniendo en cuenta también el bienestar de sus familias y personas cuidadoras.',
+    'Contribuir a mejorar la alimentación, la nutrición y la salud de las personas con discapacidad, las personas autistas, las afectadas por enfermedades raras y las que se encuentran en situación de dependencia, mediante iniciativas basadas en la evidencia científica y orientadas por un enfoque de nutrición inclusiva, teniendo en cuenta también el bienestar de sus familias y personas cuidadoras.',
   vision:
-    'Conseguir que la alimentación y la nutrición inclusivas formen parte habitual de la promoción de la salud en el ámbito de la discapacidad, el autismo, las enfermedades raras y las situaciones de dependencia. Aspiramos a que las personas a las que se dirige NutriDiversa puedan acceder a una alimentación adecuada en condiciones de igualdad, con los apoyos necesarios para participar en las decisiones relacionadas con ella, y a que sus necesidades alimentarias y nutricionales sean tenidas en cuenta en los ámbitos social, educativo y sanitario.',
-  inclusiveNutritionDefinition:
-    'En NutriDiversa entendemos la nutrición inclusiva como un enfoque de promoción de la salud que busca reducir las barreras que dificultan una alimentación adecuada y el acceso a información, recursos y actividades de educación alimentaria y nutricional. Este enfoque promueve contenidos comprensibles, materiales y actividades accesibles y la participación de las personas en las decisiones relacionadas con su alimentación. Respeta sus gustos, preferencias y capacidades y tiene en cuenta sus necesidades de apoyo, desde la igualdad de oportunidades y el respeto a su dignidad.',
-  targetAudience:
-    'NutriDiversa se dirige a personas con discapacidad en todas sus tipologías —física, sensorial, intelectual, cognitiva, psicosocial o múltiple—, personas autistas, personas afectadas por enfermedades raras y personas en situación de dependencia, así como a sus familias y personas cuidadoras.',
+    'Conseguir que la alimentación y la nutrición inclusivas formen parte habitual de la promoción de la salud en el ámbito de la discapacidad, el autismo, las enfermedades raras y las situaciones de dependencia, facilitando el acceso a una alimentación adecuada en condiciones de igualdad y con los apoyos necesarios.',
   natureAndLimits:
-    'En esta fase inicial, NutriDiversa plantea desarrollar iniciativas de carácter educativo, informativo, divulgativo y comunitario, centradas en la alimentación y la nutrición inclusivas. Estas iniciativas no sustituyen la valoración, el diagnóstico, el tratamiento ni el seguimiento sanitario que pueda necesitar una persona. Cuando las necesidades planteadas excedan su alcance, se orientará hacia los servicios o profesionales correspondientes.',
+    'Actividad de educación alimentaria. No realiza diagnósticos, dietas personalizadas ni tratamientos clínicos, y no sustituye la atención sanitaria.',
+  fiscalNote:
+    'Información fiscal transparente: NutriDiversa es una asociación sin ánimo de lucro inscrita en el Registro Nacional de Asociaciones. Actualmente se encuentra en su fase inicial de actividad y no cuenta todavía con la declaración de utilidad pública prevista en la Ley 49/2002, por lo que las cuotas y aportaciones no generan derecho a deducción fiscal en el IRPF o Impuesto de Sociedades. Emitimos el correspondiente justificante oficial de pago o aportación.',
   statutes: {
     art5_6:
-      'Promoción de la salud desde un enfoque de nutrición inclusiva para personas con discapacidad (física, sensorial, intelectual, cognitiva, psicosocial o múltiple), personas autistas, afectadas por enfermedades raras y en situación de dependencia, así como sus familias y personas cuidadoras.',
+      'Educación alimentaria accesible e iniciativas comunitarias para personas con discapacidad, autismo, enfermedades raras y situaciones de dependencia.',
     art8:
-      'Iniciativas de carácter educativo, preventivo, informativo, divulgativo y comunitario basadas en la evidencia científica. No sustituyen la valoración, el diagnóstico, el tratamiento ni el seguimiento sanitario individualizado.',
+      'Carácter exclusivamente educativo, informativo y divulgativo. Exclusión expresa de diagnóstico médico, consejo facultativo o tratamiento clínico.',
     art40:
-      'Transparencia activa: comunicar con claridad los objetivos, las actividades, las colaboraciones, la financiación y los límites de actuación de la asociación, sin generar expectativas que no podamos cumplir.',
+      'Transparencia institucional, gratuidad de los cargos de la Junta Directiva y rendición anual de cuentas ante la Asamblea General.',
     art41:
-      'Participación abierta de personas voluntarias, profesionales, entidades sociales, universidades, centros de investigación e instituciones sanitarias.',
+      'Participación de voluntariado conforme a la Ley 45/2015 de Voluntariado.',
     art42:
-      'Protección reforzada de datos personales y revisión de la accesibilidad en todas las herramientas de participación conforme al RGPD y LOPDGDD.',
+      'Cumplimiento de los artículos 6, 9 y 13 del RGPD y de la Ley Orgánica 3/2018 (LOPDGDD), aplicando el principio de minimización y no recogida de datos de salud en formularios públicos.',
   },
 };
-
-export interface DossierValue {
-  id: string;
-  title: string;
-  description: string;
-  easyReading: string;
-}
-
-export const DOSSIER_VALUES: DossierValue[] = [
-  {
-    id: 'inclusion',
-    title: 'Inclusión',
-    description:
-      'Promover la igualdad de oportunidades y la participación, procurando que las necesidades de apoyo no sean motivo de exclusión de las iniciativas de la asociación.',
-    easyReading:
-      'Todas las personas pueden participar. Nadie se queda fuera por necesitar más apoyo.',
-  },
-  {
-    id: 'respeto-dignidad',
-    title: 'Respeto y dignidad',
-    description:
-      'Respetar los gustos, las preferencias, las decisiones y los ritmos de las personas, teniendo en cuenta sus capacidades, circunstancias y necesidades de apoyo.',
-    easyReading:
-      'Respetamos lo que te gusta comer, tus decisiones y tu propio ritmo.',
-  },
-  {
-    id: 'accesibilidad',
-    title: 'Accesibilidad',
-    description:
-      'Procurar que la información, los recursos y las actividades sean comprensibles y puedan adaptarse a distintas necesidades físicas, sensoriales, cognitivas y comunicativas.',
-    easyReading:
-      'Hacemos guías y actividades fáciles de entender y adaptadas a cada persona.',
-  },
-  {
-    id: 'rigor-responsabilidad',
-    title: 'Rigor y responsabilidad',
-    description:
-      'Ofrecer información basada en la evidencia científica, diferenciando con claridad entre lo que está respaldado, lo que es incierto y lo que requiere valoración profesional especializada.',
-    easyReading:
-      'Solo damos consejos comprobados por la ciencia y avisamos cuando hace falta ir al médico.',
-  },
-  {
-    id: 'escucha-participacion',
-    title: 'Escucha y participación',
-    description:
-      'Escuchar a las personas con discapacidad, a sus familias y a quienes las cuidan, y tener en cuenta sus necesidades y propuestas al preparar las actividades de la asociación.',
-    easyReading:
-      'Escuchamos a las personas con discapacidad y a sus familias antes de preparar nuestras actividades.',
-  },
-  {
-    id: 'colaboracion',
-    title: 'Colaboración',
-    description:
-      'Buscar la colaboración con entidades, profesionales e instituciones, respetando sus competencias y teniendo en cuenta los conocimientos y recursos existentes.',
-    easyReading:
-      'Trabajamos en equipo con otras asociaciones, colegios, universidades y profesionales.',
-  },
-  {
-    id: 'transparencia',
-    title: 'Transparencia',
-    description:
-      'Comunicar con claridad los objetivos, las actividades, las colaboraciones, la financiación y los límites de actuación de la asociación, sin generar expectativas que no podamos cumplir.',
-    easyReading:
-      'Explicamos con claridad qué hacemos, con quién colaboramos y hasta dónde llega nuestra ayuda.',
-  },
-];
-
-export const DOSSIER_OBJECTIVES: string[] = [
-  'Facilitar el acceso a información y educación alimentaria y nutricional comprensibles y adaptadas, contribuyendo a reducir las barreras que dificultan su utilización.',
-  'Promover hábitos de alimentación y estilos de vida saludables que contribuyan a la salud, el bienestar y la calidad de vida.',
-  'Favorecer la autonomía y la participación en las decisiones relacionadas con la alimentación, con los apoyos necesarios.',
-  'Apoyar a las familias y personas cuidadoras mediante información, orientación y recursos prácticos relacionados con la alimentación y la nutrición.',
-  'Sensibilizar sobre las necesidades alimentarias y nutricionales de los colectivos a los que se dirige NutriDiversa y sobre las barreras que pueden encontrar.',
-  'Impulsar la colaboración con entidades, profesionales e instituciones para compartir conocimientos y recursos y desarrollar actuaciones conjuntas.',
-  'Fomentar la generación y difusión de conocimiento, la investigación y la innovación en nutrición adaptada, así como la participación en proyectos piloto.',
-  'Promover los derechos y la igualdad de oportunidades en relación con la alimentación y el acceso a información, educación y recursos adaptados.',
-];
-
-export interface ActionLineItem {
-  number: string;
-  id: string;
-  title: string;
-  description: string;
-  extraDetail?: string;
-  easyReading: string;
-}
-
-export const ACTION_LINES: ActionLineItem[] = [
-  {
-    number: '4.1',
-    id: 'educacion-alimentaria',
-    title: 'Educación alimentaria y nutricional inclusiva',
-    description:
-      'Desarrollo de talleres, charlas y actividades educativas adaptadas a las necesidades de los distintos colectivos, con un enfoque práctico, accesible y aplicable a la vida cotidiana.',
-    easyReading:
-      'Talleres y charlas prácticas para aprender a comer mejor en el día a día.',
-  },
-  {
-    number: '4.2',
-    id: 'escucha-activa',
-    title: 'Escucha activa y detección de necesidades',
-    description:
-      'Recogida de experiencias, necesidades y propuestas mediante encuestas, espacios de participación y otras herramientas, contando con las personas a las que se dirige la asociación, sus familias y quienes las cuidan. Sus aportaciones servirán para orientar el diseño y la revisión de las actuaciones.',
-    easyReading:
-      'Preguntamos a las personas y a sus familias qué necesitan mediante encuestas y reuniones.',
-  },
-  {
-    number: '4.3',
-    id: 'informacion-recursos',
-    title: 'Información y recursos accesibles',
-    description:
-      'Elaboración progresiva de materiales sobre alimentación y nutrición, como guías breves, fichas informativas y explicaciones con apoyos visuales, a partir de las necesidades identificadas. Se utilizará lenguaje claro y se revisará su comprensión y utilidad con personas de los colectivos a los que se dirijan.',
-    extraDetail:
-      'Cuando se necesiten materiales en lectura fácil, se buscará colaboración especializada para su elaboración y validación con personas con dificultades de comprensión lectora.',
-    easyReading:
-      'Creamos guías cortas, fichas con dibujos y materiales en lenguaje claro y lectura fácil.',
-  },
-  {
-    number: '4.4',
-    id: 'sensibilizacion-divulgacion',
-    title: 'Sensibilización y divulgación',
-    description:
-      'Desarrollo de acciones destinadas a dar visibilidad a la relación entre alimentación, nutrición, salud y discapacidad, promoviendo una mayor conciencia social sobre estas necesidades.',
-    easyReading:
-      'Damos a conocer a toda la sociedad la importancia de la alimentación en la discapacidad.',
-  },
-  {
-    number: '4.5',
-    id: 'proyectos-piloto',
-    title: 'Proyectos piloto y evaluación',
-    description:
-      'Puesta en marcha de iniciativas dirigidas inicialmente a colectivos concretos, para valorar su utilidad, accesibilidad y viabilidad antes de plantear su continuidad o ampliación. Los resultados servirán para identificar mejoras y orientar futuras actuaciones.',
-    extraDetail:
-      'Se buscará también colaborar en proyectos de investigación y evaluación relacionados con la alimentación y la nutrición adaptada, de acuerdo con los recursos y apoyos disponibles.',
-    easyReading:
-      'Empezamos con proyectos concretos para comprobar que funcionan bien y mejorarlos paso a paso.',
-  },
-  {
-    number: '4.6',
-    id: 'trabajo-en-red',
-    title: 'Trabajo en red',
-    description:
-      'Búsqueda de colaboración con asociaciones, profesionales, instituciones y otros agentes sociales para compartir conocimientos y recursos, así como desarrollar iniciativas conjuntas.',
-    easyReading:
-      'Colaboramos con asociaciones, universidades, centros sanitarios y profesionales.',
-  },
-];
-
-export const AUTISM_PILOT_PROJECT = {
-  title: 'Proyecto piloto inicial: alimentación y autismo',
-  subtitle:
-    'Identificación participativa de necesidades y desarrollo de una primera actividad educativa en la provincia de Alicante.',
-  territory: 'Provincia de Alicante',
-  targetGroup:
-    'Madres, padres, tutores y personas cuidadoras de menores de entre 6 y 12 años, ambos incluidos, con autismo o en proceso de valoración por posible autismo.',
-  contextParagraphs: [
-    'NutriDiversa quiere iniciar su actividad con un proyecto piloto sobre alimentación y autismo, previsto inicialmente en la provincia de Alicante. Se dirige a madres, padres, tutores y personas cuidadoras de menores de entre 6 y 12 años, ambos incluidos, con autismo o en proceso de valoración por posible autismo.',
-    'Las dificultades alimentarias en el autismo pueden estar relacionadas con factores sensoriales, dificultades ante los cambios, ansiedad, comunicación, aprendizaje, habilidades orales, experiencias previas o problemas de salud. No todas las personas autistas presentan las mismas dificultades ni estas responden siempre a las mismas causas.',
-    'El proyecto partirá de la recogida de experiencias y prioridades de las familias para orientar la elaboración de materiales y una primera actividad de educación alimentaria y nutricional. En esta fase, la participación se centrará en las personas adultas que acompañan o cuidan a los menores.',
-  ],
-  generalObjective:
-    'Identificar las necesidades y prioridades expresadas por las familias participantes en relación con la alimentación de menores de entre 6 y 12 años con autismo o en proceso de valoración por posible autismo, para orientar la elaboración de recursos y una primera actividad de educación alimentaria y nutricional.',
-  familyConcerns: [
-    'La selectividad y la variedad alimentaria.',
-    'La sensibilidad a texturas, olores, sabores o presentaciones.',
-    'Las rutinas y el momento de las comidas.',
-    'La suficiencia nutricional de la alimentación.',
-    'Los síntomas digestivos y las dudas sobre cuándo consultar a profesionales sanitarios.',
-  ],
-  specificObjectives: [
-    'Conocer las experiencias, dificultades y preocupaciones de las familias en relación con la selectividad alimentaria, la sensibilidad sensorial, las rutinas, la suficiencia nutricional y los síntomas digestivos.',
-    'Identificar las barreras para acceder a información, recursos o apoyo adecuado.',
-    'Recoger las necesidades y propuestas de las propias familias y personas cuidadoras.',
-    'Elaborar materiales y desarrollar una primera actividad educativa a partir de las prioridades identificadas y de la evidencia científica.',
-    'Valorar la comprensión, la accesibilidad y la utilidad percibida de los materiales y de la actividad educativa.',
-  ],
-  phases: [
-    {
-      step: 1,
-      title: 'Preparación',
-      shortDesc:
-        'Definir la participación, preparar las herramientas y revisar la accesibilidad y la protección de datos.',
-      fullDesc:
-        'Definición de la participación y de las herramientas de recogida de información, revisión de su accesibilidad y de la protección de los datos, y búsqueda de posibles colaboraciones.',
-    },
-    {
-      step: 2,
-      title: 'Identificación de necesidades',
-      shortDesc:
-        'Recoger y analizar las experiencias, necesidades y propuestas de las familias participantes.',
-      fullDesc:
-        'Recogida y análisis de las experiencias, preocupaciones y propuestas de las familias participantes para establecer las prioridades educativas del piloto.',
-    },
-    {
-      step: 3,
-      title: 'Elaboración y revisión de materiales',
-      shortDesc:
-        'Preparar contenidos basados en la evidencia científica y revisar su claridad y accesibilidad.',
-      fullDesc:
-        'Preparación de contenidos basados en la evidencia científica y en guías oficiales, atendiendo a las prioridades identificadas y revisando su claridad y accesibilidad.',
-    },
-    {
-      step: 4,
-      title: 'Desarrollo de la actividad educativa',
-      shortDesc:
-        'Realizar una primera actividad con contenidos generales y aplicables a la vida cotidiana.',
-      fullDesc:
-        'Realización de una primera actividad con contenidos generales, comprensibles y aplicables a la vida cotidiana.',
-    },
-    {
-      step: 5,
-      title: 'Evaluación y revisión',
-      shortDesc:
-        'Valorar la comprensión, accesibilidad y utilidad percibida, e identificar mejoras y recursos necesarios para su continuidad.',
-      fullDesc:
-        'Recogida de las valoraciones de las personas participantes e identificación de los ajustes necesarios antes de plantear la continuidad o ampliación del proyecto.',
-    },
-  ],
-  evaluation:
-    'La evaluación se centrará en la comprensión de los contenidos, la accesibilidad de los materiales y de la actividad, su utilidad percibida y su correspondencia con las prioridades expresadas por las familias. Se recogerán esas valoraciones mediante un breve cuestionario al finalizar la actividad y un espacio para comentarios y propuestas de mejora. También se revisarán las dificultades de organización y los recursos necesarios para valorar la viabilidad de futuras actuaciones. Esta primera evaluación no permitirá atribuir al proyecto mejoras en el estado nutricional o en la salud de los menores.',
-  expectedResults:
-    'Se espera obtener una identificación inicial de las prioridades de las familias participantes, materiales educativos ajustados a las necesidades detectadas y una primera valoración de la actividad desarrollada. Los resultados podrán orientar futuros proyectos y el desarrollo de recursos adaptados relacionados con alimentación, accesibilidad e inclusión.',
-  natureAndLimits:
-    'El proyecto tendrá carácter educativo, preventivo e informativo. No realizará diagnósticos, tratamientos ni prescripción de dietas, suplementos o pruebas, y no sustituirá la atención individualizada de los profesionales sanitarios. Cuando una situación requiera valoración clínica, se orientará hacia los servicios y profesionales correspondientes.',
-};
-
-export interface MembershipCategoryItem {
-  id: string;
-  title: string;
-  description: string;
-  votingRights: string;
-}
-
-export const MEMBERSHIP_CATEGORIES: MembershipCategoryItem[] = [
-  {
-    id: 'promotores',
-    title: 'Socios/as promotores/as o fundadores/as',
-    description:
-      'Personas que participaron en el acto de constitución de la asociación.',
-    votingRights: 'Plena participación en la Asamblea General y órganos de gobierno.',
-  },
-  {
-    id: 'numero',
-    title: 'Socios/as de número u ordinarios/as',
-    description:
-      'Personas que ingresan después de la constitución y participan plenamente en la vida asociativa, con voz y voto en la Asamblea General y posibilidad de ser elegidas para los órganos de gobierno y representación, conforme a los requisitos estatutarios.',
-    votingRights: 'Con voz y voto en la Asamblea General y elegibles para la Junta Directiva.',
-  },
-  {
-    id: 'colaboradores',
-    title: 'Socios/as colaboradores/as o adheridos/as',
-    description:
-      'Personas que contribuyen mediante apoyos económicos, profesionales o voluntarios. Tienen voz, pero no voto en la Asamblea General y no pueden formar parte de la Junta Directiva, conforme a los estatutos.',
-    votingRights: 'Con voz en la Asamblea General (sin voto ni pertenencia a Junta Directiva).',
-  },
-  {
-    id: 'honor',
-    title: 'Socios/as de honor',
-    description:
-      'Personas que reciben esta distinción por su prestigio o por haber contribuido de modo relevante a la dignificación y desarrollo de la asociación. Su nombramiento corresponde a la Junta Directiva y debe ser ratificado por la primera Asamblea General que se celebre.',
-    votingRights: 'Distinción honorífica otorgada por la Junta Directiva y ratificada en Asamblea.',
-  },
-];
-
-export const COLLABORATION_WAYS = [
-  {
-    number: '6.2',
-    id: 'voluntariado',
-    title: 'Voluntariado',
-    description:
-      'NutriDiversa podrá contar con personas voluntarias que quieran colaborar en actividades, proyectos, sensibilización, organización o apoyo a la entidad, de acuerdo con las necesidades de cada iniciativa y la normativa aplicable.',
-  },
-  {
-    number: '6.3',
-    id: 'colaboracion-profesional',
-    title: 'Colaboración profesional',
-    description:
-      'Queremos establecer colaboraciones con profesionales de los ámbitos de la nutrición, la salud, la educación, la discapacidad y el ámbito social que puedan aportar conocimiento y experiencia a los proyectos de la asociación.',
-  },
-  {
-    number: '6.4',
-    id: 'entidades-instituciones',
-    title: 'Entidades e instituciones',
-    description:
-      'Buscamos establecer colaboraciones con asociaciones y otras entidades sociales, universidades, centros de investigación, instituciones sanitarias, administraciones públicas y otras organizaciones para compartir conocimientos y recursos, así como desarrollar iniciativas conjuntas. Para preparar el primer proyecto piloto, buscamos colaboración para contactar con familias interesadas, revisar los contenidos y su accesibilidad y facilitar espacios para la actividad educativa.',
-  },
-  {
-    number: '6.5',
-    id: 'empresas-apoyo',
-    title: 'Empresas y otras formas de apoyo',
-    description:
-      'Las empresas y otras organizaciones podrán colaborar mediante apoyo económico, material, técnico, cesión de espacios u otras fórmulas compatibles con los fines, la independencia y los valores de NutriDiversa.',
-  },
-];
 
 export const BOARD_MEMBERS: BoardMember[] = [
   {
-    name: 'Inmaculada Checa Lorente',
+    name: 'Inmaculada Concepción Sánchez-Cañete',
     role: 'Presidencia',
-    duty: 'Representación legal e institucional de la asociación, dirección de la Junta Directiva y coordinación general.',
-    bio: 'Impulsora de NutriDiversa comprometida con los derechos de las personas con discapacidad, la escucha a las familias y la promoción de la salud desde un enfoque de nutrición inclusiva.',
+    duty: 'Representación institucional de la asociación, impulso estratégico de la misión estatal y coordinación general de las líneas de actuación.',
+    bio: 'Impulsora de NutriDiversa comprometida con la promoción de la salud, la nutrición inclusiva y el apoyo educativo a las personas con discapacidad y a sus familias.',
     easyReadingBio:
-      'Inmaculada ocupa la Presidencia de la Junta Directiva y representa a la asociación.',
+      'Ocupa la Presidencia de la Junta Directiva y representa a la asociación.',
   },
   {
-    name: 'Silvia Andrea Costa Méndez',
+    name: 'Iván Carabaño',
     role: 'Secretaría',
-    duty: 'Custodia documental, actas de la Asamblea General y de la Junta Directiva, registro de personas asociadas y gobernanza.',
-    bio: 'Encargada de la gestión documental y estatutaria de la entidad, velando por la transparencia, la participación asociativa y la protección de datos.',
+    duty: 'Coordinación administrativa, custodia de actas y registro de personas asociadas, y atención directa a las solicitudes recibidas.',
+    bio: 'Responsable de la gestión documental y estatutaria de la entidad, así como de la tramitación de solicitudes de información, colaboración e inscripción.',
     easyReadingBio:
-      'Silvia ocupa la Secretaría. Se encarga de las actas, las solicitudes de socios y los documentos oficiales.',
+      'Ocupa la Secretaría. Coordina la administración y responde a las solicitudes de las familias y personas asociadas.',
   },
   {
-    name: 'César Hernández Moreno',
+    name: 'César',
     role: 'Tesorería',
-    duty: 'Gestión económica, control de recursos disponibles, transparencia en la financiación y cumplimiento contable.',
-    bio: 'Responsable de la sostenibilidad y administración transparente de los recursos destinados a los proyectos educativos y comunitarios de la asociación.',
+    duty: 'Gestión económica, presupuestaria y documental, emisión de justificantes de cuotas y aportaciones, y preparación del balance anual.',
+    bio: 'Encargado de la administración transparente de los recursos económicos destinados a los materiales educativos y actividades de la asociación.',
     easyReadingBio:
-      'César ocupa la Tesorería. Cuida los recursos de la asociación con total transparencia.',
+      'Ocupa la Tesorería. Gestiona el presupuesto y los justificantes de las cuotas y aportaciones.',
+  },
+];
+
+export const NATIONAL_ACTION_SCOPES = [
+  {
+    id: 'tea',
+    title: 'Trastorno del Espectro del Autismo (TEA)',
+    description:
+      'Apoyo ante la hiper o hiporreactividad sensorial, selectividad alimentaria y estructuración de rutinas en la mesa.',
   },
   {
-    name: 'Almudena Gómez de Cadiñanos Sastre',
-    role: 'Vocalía 1',
-    duty: 'Impulso de líneas de actuación, escucha activa a familias y trabajo en red con entidades y colectivos.',
-    bio: 'Colabora en la detección de necesidades de los colectivos, el contacto con familias y asociaciones y el diseño participativo de iniciativas.',
-    easyReadingBio:
-      'Almudena es la Vocalía 1 y colabora en el contacto con familias, asociaciones y proyectos.',
+    id: 'discapacidad-general',
+    title: 'Discapacidad intelectual, física y sensorial',
+    description:
+      'Adaptación de guías nutricionales y entornos de comida para fomentar la autonomía y prevenir problemas asociados.',
   },
   {
-    name: 'Victoria Muñoz Bañón',
-    role: 'Vocalía 2',
-    duty: 'Desarrollo de contenidos de educación alimentaria y nutricional inclusiva, revisión de claridad y accesibilidad.',
-    bio: 'Participa en la preparación de materiales informativos y recursos prácticos basados en la evidencia científica, comprensibles y aplicables a la vida cotidiana.',
-    easyReadingBio:
-      'Victoria es la Vocalía 2 y ayuda a preparar materiales claros y actividades educativas.',
+    id: 'enfermedades-raras-dependencia',
+    title: 'Enfermedades raras y situaciones de dependencia',
+    description:
+      'Orientación educativa cotidiana para familias y personas cuidadoras que afrontan necesidades alimentarias específicas.',
+  },
+  {
+    id: 'apoyo-respiro-familias',
+    title: 'Apoyo y respiro informativo a familias',
+    description:
+      'Traducción de la evidencia científica a materiales comprensibles, prácticos y libres de tecnicismos.',
+  },
+];
+
+export const PILOT_STEPS_HOME = [
+  {
+    number: 1,
+    title: 'Escuchamos',
+    description:
+      'Recogemos experiencias, dificultades cotidianas y prioridades reales de las familias.',
+  },
+  {
+    number: 2,
+    title: 'Preparamos',
+    description:
+      'Creamos materiales claros, prácticos y accesibles ajustados a sus necesidades.',
+  },
+  {
+    number: 3,
+    title: 'Compartimos',
+    description:
+      'Realizamos una primera actividad educativa orientada a las personas cuidadoras.',
+  },
+  {
+    number: 4,
+    title: 'Mejoramos',
+    description:
+      'Evaluamos la utilidad, comprensión y accesibilidad de los recursos generados.',
+  },
+];
+
+export const PUBLISHED_GUIDES: GuideArticle[] = [
+  {
+    id: 'selectividad-alimentaria-autismo-cuando-consultar',
+    title: 'Qué es la selectividad alimentaria en el autismo y cuándo consultar a un profesional sanitario',
+    slug: 'selectividad-alimentaria-autismo-cuando-consultar',
+    category: 'Alimentación y Autismo',
+    date: 'Noviembre de 2026',
+    readTime: '5 min de lectura',
+    author: 'Equipo de NutriDiversa',
+    excerpt:
+      'Diferencia entre preferencia selectiva, hiperreactividad sensorial y señales de alerta médica o nutricional que requieren valoración sanitaria.',
+    simpleSummary:
+      'Muchas niñas y niños con autismo comen pocos alimentos distintos por cómo sienten las texturas o los olores. En esta guía explicamos qué podemos observar con calma en casa y en qué momentos es importante acudir al pediatra o al nutricionista clínico.',
+    sections: [
+      {
+        heading: '1. ¿Qué entendemos por selectividad alimentaria en el espectro autista?',
+        paragraphs: [
+          'En la infancia es frecuente atravesar etapas de rechazo a nuevos alimentos (neofobia alimentaria). Sin embargo, en menores en el espectro autista, la selectividad alimentaria suele ser más intensa y persistente, y a menudo está vinculada a la forma en que su sistema nervioso procesa los estímulos sensoriales, la necesidad de predictibilidad o las dificultades motoras orales.',
+          'Una preferencia selectiva habitual permite mantener un repertorio suficiente de alimentos dentro de los distintos grupos nutricionales, mientras que una restricción severa reduce drásticamente la variedad de alimentos aceptados por textura, marca, color, temperatura o forma de presentación.',
+        ],
+      },
+      {
+        heading: '2. Factores cotidianos que conviene distinguir',
+        paragraphs: [
+          'Antes de intervenir en la mesa, resulta útil observar si el rechazo responde a hipersensibilidad táctil u olfativa, a cansancio acumulado al final del día, a cambios imprevistos en la vajilla o el entorno, o bien a molestias físicas al masticar o tragar.',
+          'Comprender que la negativa a probar un alimento no es una conducta de oposición voluntaria, sino con frecuencia una respuesta de malestar sensorial o ansiedad ante la incertidumbre, ayuda a reducir la presión sobre el menor y sobre la propia familia.',
+        ],
+      },
+      {
+        heading: '3. Señales de alerta: ¿cuándo consultar a un profesional sanitario?',
+        paragraphs: [
+          'La educación alimentaria familiar nunca sustituye la valoración clínica. Se recomienda acudir a pediatría, gastroenterología o a un profesional de la nutrición clínica colegiado cuando se observe cualquiera de estas señales:',
+          '• Pérdida de peso, estancamiento en el crecimiento o cansancio inusual. • Exclusión completa de grupos enteros de alimentos (por ejemplo, ninguna fuente de proteínas o ninguna fruta/verdura en ninguna textura) durante periodos prolongados. • Tos frecuente, atragantamientos, arcadas intensas o dolor al tragar. • Estreñimiento crónico severo, diarrea persistente, dolor abdominal recurrente o vómitos.',
+        ],
+      },
+    ],
+    sources: [
+      'Guías de práctica clínica sobre trastornos del espectro autista en pediatría (Sistema Nacional de Salud).',
+      'Revisiones científicas sobre procesamiento sensorial y selectividad alimentaria en la infancia (Journal of Autism and Developmental Disorders).',
+    ],
+    limitsNote:
+      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye el diagnóstico ni la consulta con profesionales sanitarios.',
+  },
+  {
+    id: 'texturas-olores-presentacion-procesamiento-sensorial',
+    title: 'Texturas, olores y presentación de los alimentos: cómo influye el procesamiento sensorial en la mesa',
+    slug: 'texturas-olores-presentacion-procesamiento-sensorial',
+    category: 'Procesamiento Sensorial',
+    date: 'Noviembre de 2026',
+    readTime: '4 min de lectura',
+    author: 'Equipo de NutriDiversa',
+    excerpt:
+      'Pautas cotidianas para reducir la sobrecarga sensorial en el entorno de la comida y facilitar una relación más predecible con los alimentos.',
+    simpleSummary:
+      'Comer utiliza todos los sentidos a la vez: la vista, el olfato, el tacto en la boca y hasta el oído al masticar. Aquí compartimos ideas prácticas para que el comedor de casa sea un lugar más tranquilo y predecible.',
+    sections: [
+      {
+        heading: '1. Comer es una experiencia multisensorial compleja',
+        paragraphs: [
+          'Antes siquiera de llevarse un alimento a la boca, la persona recibe información visual (colores, brillo, mezcla de ingredientes en el plato) y olfativa (vapores de cocción, olores intensos de otros comensales). Al introducir el alimento en la boca intervienen el tacto intraoral, la temperatura, la consistencia y el sonido de la masticación.',
+          'Cuando existe hiperreactividad sensorial, estímulos que pasan desapercibidos para otras personas —como los grumos en un puré, la mezcla de salsa con arroz o el olor del pescado cocinado— pueden percibirse como abrumadores o desagradables.',
+        ],
+      },
+      {
+        heading: '2. Ajustes ambientales para reducir la sobrecarga sensorial',
+        paragraphs: [
+          '• Cuidar el ambiente del comedor: ventilar el espacio antes de sentarse a la mesa para atenuar olores intensos, evitar ruidos fuertes de televisión o electrodomésticos y procurar una iluminación suave.',
+          '• Cuidar la presentación visual: para muchas niñas y niños resulta más predecible servir los alimentos separados en el plato (o en platos con compartimentos) sin que se toquen entre sí ni lleven salsas añadidas por encima.',
+        ],
+      },
+      {
+        heading: '3. Respeto a las texturas preferidas como punto de partida',
+        paragraphs: [
+          'Identificar si la persona tolera mejor texturas crujientes y secas, o bien texturas homogéneas y suaves, permite ofrecer variaciones pequeñas y seguras sin forzar cambios bruscos que generen rechazo o aversión.',
+        ],
+      },
+    ],
+    sources: [
+      'Literatura científica sobre integración sensorial y alimentación en el desarrollo infantil.',
+      'Manuales de buenas prácticas en apoyo conductual positivo y accesibilidad cognitiva en el hogar.',
+    ],
+    limitsNote:
+      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye la valoración de terapia ocupacional, logopedia o nutrición clínica.',
+  },
+  {
+    id: 'como-observar-comida-en-casa-sin-estres',
+    title: 'Cómo observar una comida en casa sin convertirla en una situación de estrés',
+    slug: 'como-observar-comida-en-casa-sin-estres',
+    category: 'Rutinas y Bienestar Familiar',
+    date: 'Noviembre de 2026',
+    readTime: '4 min de lectura',
+    author: 'Equipo de NutriDiversa',
+    excerpt:
+      'Estrategias prácticas para rebajar la tensión familiar, anticipar rutinas predecibles y observar con calma qué ocurre durante las comidas.',
+    simpleSummary:
+      'Cuando hay dificultades para comer, toda la familia puede sentir mucha preocupación y cansancio. En esta ficha proponemos pautas sencillas para anticipar las comidas y reducir el estrés en la mesa.',
+    sections: [
+      {
+        heading: '1. El impacto emocional del momento de la comida en quienes cuidan',
+        paragraphs: [
+          'Las familias y personas cuidadoras afrontan a diario la preocupación de si su hijo, hija o familiar estará recibiendo una nutrición suficiente. Esa inquietud legítima puede hacer que el momento de sentarse a la mesa se viva con tensión anticipatoria.',
+          'Reducir la exigencia inmediata en cada toma y priorizar un clima tranquilo es el primer paso para que la mesa vuelva a ser un espacio seguro de convivencia.',
+        ],
+      },
+      {
+        heading: '2. Rutinas predecibles y anticipación visual',
+        paragraphs: [
+          '• Anticipar qué va a ocurrir: avisar unos minutos antes de pasar al comedor y mostrar de forma visual o con lenguaje claro qué alimentos habrá en la mesa ayuda a reducir la incertidumbre.',
+          '• Mantener horarios y tiempos razonables: procurar que la duración de la comida sea predecible (por ejemplo, entre 20 y 30 minutos), evitando prolongar la permanencia en la mesa cuando aparece fatiga o malestar.',
+        ],
+      },
+      {
+        heading: '3. Observar sin presionar',
+        paragraphs: [
+          'Anotar durante unos días en una libreta qué alimentos se aceptan con tranquilidad, en qué momento del día hay mejor disposición y qué factores del entorno facilitan la calma permite a la familia detectar patrones útiles sin necesidad de negociar o insistir en cada bocado.',
+        ],
+      },
+    ],
+    sources: [
+      'Guías de apoyo familiar y promoción del bienestar de personas cuidadoras en el ámbito de la discapacidad.',
+      'Evidencia sobre entorno familiar responsivo en educación alimentaria infantil.',
+    ],
+    limitsNote:
+      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta con profesionales sanitarios.',
+  },
+  {
+    id: 'diferencia-educacion-alimentaria-y-tratamiento-clinico',
+    title: 'Diferencia entre educación alimentaria comunitaria y tratamiento nutricional clínico',
+    slug: 'diferencia-educacion-alimentaria-y-tratamiento-clinico',
+    category: 'Transparencia y Rigor',
+    date: 'Noviembre de 2026',
+    readTime: '4 min de lectura',
+    author: 'Equipo de NutriDiversa',
+    excerpt:
+      'Guía clara sobre qué puede aportar una asociación sin ánimo de lucro como NutriDiversa y cuándo acudir a pediatría, gastroenterología o dietistas-nutricionistas clínicos.',
+    simpleSummary:
+      'Explicamos con total claridad qué hace NutriDiversa (educación alimentaria, talleres y guías comprensibles) y qué corresponde siempre a los médicos y profesionales sanitarios (diagnósticos, tratamientos y dietas personalizadas).',
+    sections: [
+      {
+        heading: '1. ¿Qué es la educación alimentaria comunitaria e inclusiva?',
+        paragraphs: [
+          'La educación alimentaria comunitaria tiene por finalidad facilitar información comprensible, recursos prácticos, talleres divulgativos y apoyos visuales para que las personas con discapacidad y sus familias comprendan mejor los hábitos saludables y reduzcan barreras cotidianas en su entorno.',
+          'Desde una asociación como NutriDiversa escuchamos las necesidades de los colectivos, traducimos el conocimiento científico a formatos claros y promovemos la participación y el apoyo mutuo entre familias y entidades.',
+        ],
+      },
+      {
+        heading: '2. ¿Qué es el tratamiento nutricional clínico e individualizado?',
+        paragraphs: [
+          'El abordaje clínico comprende la valoración antropométrica y bioquímica individual, el diagnóstico médico o nutricional de patologías o déficits, la prescripción de dietas terapéuticas personalizadas, la pauta de suplementos nutricionales y la rehabilitación clínica de la deglución (disfagia).',
+          'Estas actuaciones son competencia exclusiva de profesionales sanitarios titulados y colegiados (medicina, pediatría, enfermería, dietistas-nutricionistas clínicos, logopedas y terapeutas ocupacionales en centros sanitarios).',
+        ],
+      },
+      {
+        heading: '3. Dos ámbitos que se respetan y complementan',
+        paragraphs: [
+          'Tener claros estos límites protege a las familias frente a falsas promesas o intervenciones sin respaldo científico. NutriDiversa nunca realiza diagnósticos ni prescribe dietas o suplementos, y orienta siempre hacia los servicios sanitarios cuando una situación requiere valoración clínica individual.',
+        ],
+      },
+    ],
+    sources: [
+      'Marco normativo español de ordenación de las profesiones sanitarias y promoción de la salud comunitaria.',
+      'Estatutos Oficiales y Dossier Institucional de la Asociación NutriDiversa (RNA 632919).',
+    ],
+    limitsNote:
+      'Texto divulgativo elaborado por el equipo de NutriDiversa. Tiene carácter exclusivamente educativo e informativo y no sustituye la consulta con profesionales sanitarios.',
+  },
+];
+
+export const UPCOMING_GUIDES: UpcomingGuide[] = [
+  {
+    id: 'cambios-pequenos-progresivos-rutinas',
+    title: 'Cómo preparar cambios pequeños y progresivos en las rutinas alimentarias.',
+    statusTag: 'En preparación - Piloto 2026/2027',
+    description:
+      'Recurso práctico en elaboración a partir de las prioridades que se recojan junto a las familias participantes en el proyecto piloto de Alicante.',
+  },
+  {
+    id: 'senales-digestivas-frecuentes-consultar',
+    title: 'Señales digestivas frecuentes que conviene consultar con profesionales sanitarios.',
+    statusTag: 'En preparación - Piloto 2026/2027',
+    description:
+      'Ficha orientativa para ayudar a las familias a identificar molestias digestivas habituales y preparar la consulta con pediatría o digestivo.',
+  },
+  {
+    id: 'adaptar-comunicacion-apoyos-visuales',
+    title: 'Cómo adaptar la comunicación durante las comidas mediante apoyos visuales sencillos.',
+    statusTag: 'En preparación - Piloto 2026/2027',
+    description:
+      'Guía de uso de tableros de elección y expresión ("Me gusta", "No me gusta", "Necesito ayuda", "Necesito una pausa") revisada con familias.',
+  },
+  {
+    id: 'guia-asociaciones-organizar-taller',
+    title: 'Guía práctica para asociaciones que quieran organizar un taller de alimentación accesible.',
+    statusTag: 'En preparación - Piloto 2026/2027',
+    description:
+      'Lista de comprobación de accesibilidad espacial, sensorial y comunicativa para entidades del tercer sector y centros educativos.',
   },
 ];
 
 export const OFFICIAL_DOCUMENTS: OfficialDocument[] = [
   {
-    id: 'dossier-institucional-2026',
-    title: 'Dossier de Presentación Institucional de la Asociación NutriDiversa (Alicante, 2026)',
-    category: 'Certificados',
-    date: 'Alicante, 2026',
-    csvCode: 'Documento Oficial · 16 páginas (PDF)',
-    fileSize: 'PDF Oficial Descargable',
-    summary:
-      'Dossier institucional completo: Quiénes somos, Misión, visión y valores, Objetivos, Líneas de actuación, Proyecto piloto inicial (alimentación y autismo en Alicante), Cómo participar o colaborar, Organización y Naturaleza de las actividades.',
-    easyReadingSummary:
-      'El documento de presentación de NutriDiversa que explica quiénes somos, nuestros valores y el proyecto piloto sobre alimentación y autismo en Alicante.',
-    legalBasis: 'Aprobado por la Junta Directiva de la Asociación NutriDiversa.',
-  },
-  {
-    id: 'cert-interior-632919',
-    title: 'Resolución de Inscripción en el Registro Nacional de Asociaciones',
-    category: 'Certificados',
-    date: 'Registro Estatal Vigente',
-    csvCode: 'RNA Nº Nacional 632919 · Sección 1ª · Grupo 1',
-    fileSize: 'Certificado Oficial',
-    summary:
-      'Acreditación oficial de inscripción en el Registro Nacional de Asociaciones (Ministerio del Interior) como asociación sin ánimo de lucro de ámbito estatal (Clasificación 426: Promoción de la Salud).',
-    easyReadingSummary:
-      'Documento oficial del Ministerio del Interior que acredita que NutriDiversa es una asociación registrada de ámbito estatal.',
-    legalBasis: 'Ley Orgánica 1/2002 reguladora del Derecho de Asociación.',
-  },
-  {
-    id: 'estatutos-oficiales',
+    id: 'doc-estatutos-oficiales',
     title: 'Estatutos Oficiales de la Asociación NutriDiversa',
-    category: 'Estatutos',
-    date: 'Acto de Constitución',
-    csvCode: 'Estatutos Vigentes · Ámbito Estatal',
-    fileSize: 'Texto Estatutario',
+    version: 'Versión vigente inscrita · Noviembre 2026',
+    date: 'Noviembre de 2026',
+    pages: 'Texto estatutario íntegro',
+    fileName: 'Estatutos-Oficiales-NutriDiversa-RNA632919.pdf',
+    downloadUrl: '/transparencia#estatutos-resumen',
     summary:
-      'Normativa interna que regula los fines de la asociación, las clases de personas asociadas (promotoras, de número, colaboradoras y de honor), los órganos de gobierno (Asamblea General y Junta Directiva) y el régimen de transparencia.',
-    easyReadingSummary:
-      'Las normas de funcionamiento de NutriDiversa: cómo nos organizamos y cómo participar como persona asociada.',
-    legalBasis: 'Estatutos inscritos en el Registro Nacional de Asociaciones.',
+      'Texto íntegro de los Estatutos vigentes inscritos en el Registro Nacional de Asociaciones (Grupo 1, Sección 1, Número Nacional 632919), acogidos a la Ley Orgánica 1/2002.',
+    simpleSummary:
+      'Las normas oficiales de funcionamiento de NutriDiversa inscritas en el Registro Nacional de Asociaciones.',
   },
   {
-    id: 'marco-derechos-edad2020',
-    title: 'Marco de Derechos: Art. 28 Convención ONU y Encuesta EDAD 2020 (INE)',
-    category: 'Memorias',
-    date: 'Referencias Oficiales del Dosier',
-    csvCode: 'BOE 21/04/2008 · INE EDAD 2020',
-    fileSize: 'Fuentes Institucionales',
+    id: 'doc-resolucion-inscripcion',
+    title: 'Resolución de Inscripción en el Registro Nacional de Asociaciones',
+    version: 'Copia informativa RGPD · Noviembre 2026',
+    date: 'Noviembre de 2026',
+    pages: 'Resolución registral (RNA 632919)',
+    fileName: 'Resolucion-Inscripcion-RNA632919-NutriDiversa.pdf',
+    downloadUrl: '/transparencia#resolucion-resumen',
     summary:
-      'Fundamentación social recogida en el dosier: el artículo 28 de la Convención sobre los Derechos de las Personas con Discapacidad reconoce el derecho a una alimentación adecuada, y la encuesta EDAD 2020 del INE refleja 4,32 millones de personas con discapacidad en España.',
-    easyReadingSummary:
-      'Datos oficiales sobre los derechos de las personas con discapacidad a una alimentación adecuada en España.',
-    legalBasis: 'Convención ONU (BOE 21/04/2008) y Estrategia Española sobre Discapacidad 2022–2030.',
+      'Copia informativa de la resolución administrativa de inscripción en el Registro Nacional de Asociaciones del Ministerio del Interior (Grupo 1, Sección 1, Número Nacional 632919) con datos personales sensibles disociados conforme al RGPD.',
+    simpleSummary:
+      'Resolución administrativa de inscripción de NutriDiversa en el Registro Nacional de Asociaciones con el número 632919.',
+  },
+  {
+    id: 'doc-dossier-institucional-v1',
+    title: 'Dossier Institucional NutriDiversa (Versión 1.0 - Noviembre 2026)',
+    version: 'Versión 1.0 · Noviembre 2026',
+    date: 'Noviembre de 2026',
+    pages: '16 páginas',
+    fileName: 'Dossier-Institucional-NutriDiversa-2026-v1.pdf',
+    downloadUrl: '/documentos/Dossier-Institucional-NutriDiversa-2026-v1.pdf',
+    summary:
+      'Presentación general de la entidad, misión, visión, valores, líneas estratégicas y proyecto piloto inicial de alimentación y autismo en la provincia de Alicante (16 páginas).',
+    simpleSummary:
+      'Documento de 16 páginas con la presentación general de NutriDiversa, nuestra misión y el proyecto piloto de Alicante.',
   },
 ];
 
-export const GUIDES: GuideResource[] = [
-  {
-    id: 'recurso-apoyo-visual-comida',
-    title: 'Lámina de Apoyo Visual: "Durante la comida"',
-    subtitle: 'Ejemplo ilustrativo de lenguaje claro y apoyos visuales del Dossier Institucional',
-    pages: 1,
-    format: 'Lenguaje Claro y Apoyos Visuales',
-    topics: ['Me gusta', 'No me gusta', 'Necesito ayuda', 'Necesito una pausa'],
-    description:
-      'Tablero comunicativo diseñado con lenguaje claro y apoyos visuales para facilitar que la persona pueda expresar o señalar sus preferencias y necesidades durante el momento de la comida ("Me gusta", "No me gusta", "Necesito ayuda", "Necesito una pausa").',
-    easyReadingDescription:
-      'Una lámina con 4 dibujos claros para señalar durante la comida si algo te gusta, no te gusta, necesitas ayuda o necesitas una pausa.',
-    keyPoints: [
-      'Facilita la participación de las personas en las decisiones relacionadas con su alimentación.',
-      'Permite comunicar preferencias ("Me gusta" / "No me gusta") de forma oral o señalando.',
-      'Ofrece opciones de autorregulación y apoyo ("Necesito ayuda" / "Necesito una pausa").',
-      'Se revisará su comprensión y utilidad con personas de los colectivos a los que se dirija.',
-    ],
-    pictograms: ['🙂 Me gusta', '😐 No me gusta', '💬 Necesito ayuda', '⏸️ Necesito una pausa'],
-  },
-  {
-    id: 'materiales-piloto-autismo',
-    title: 'Materiales del Proyecto Piloto: Alimentación y Autismo (6–12 años)',
-    subtitle: 'Recursos prácticos basados en las prioridades de las familias en Alicante',
-    pages: 16,
-    format: 'Guías Breves y Fichas Informativas',
-    topics: [
-      'Selectividad y variedad alimentaria',
-      'Sensibilidad a texturas, olores y sabores',
-      'Rutinas en las comidas',
-      'Suficiencia nutricional y cuándo consultar',
-    ],
-    description:
-      'Materiales informativos y educativos en elaboración a partir de la recogida participativa de experiencias de madres, padres, tutores y personas cuidadoras de menores de 6 a 12 años con autismo o en valoración en la provincia de Alicante.',
-    easyReadingDescription:
-      'Guías prácticas pensadas junto a las familias de niñas y niños con autismo de 6 a 12 años para ayudar con los olores, las texturas y las rutinas en la mesa.',
-    keyPoints: [
-      'Orientación sobre selectividad alimentaria y sensibilidad sensorial (texturas, olores, sabores o presentaciones).',
-      'Pautas prácticas para las rutinas cotidianas y el momento de las comidas en familia.',
-      'Información comprensible sobre suficiencia nutricional y síntomas digestivos.',
-      'Criterios claros sobre cuándo consultar a profesionales sanitarios.',
-    ],
-    pictograms: ['📋 Escucha a familias', '🍽️ Rutinas en la mesa', '🧩 Apoyo sensorial', '🩺 Orientación sanitaria'],
-  },
-  {
-    id: 'guias-nutricion-inclusiva',
-    title: 'Guías Breves de Educación Alimentaria y Nutricional Inclusiva',
-    subtitle: 'Recursos comprensibles y aplicables a la vida cotidiana para personas con discapacidad y cuidadoras',
-    pages: 24,
-    format: 'Lenguaje Claro y Lectura Fácil (en colaboración especializada)',
-    topics: [
-      'Autonomía en la cocina cotidiana',
-      'Adaptación a dificultades funcionales o sensoriales',
-      'Bienestar de familias y personas cuidadoras',
-      'Evidencia científica accesible',
-    ],
-    description:
-      'Elaboración progresiva de guías breves, fichas informativas y explicaciones con apoyos visuales orientadas a reducir las barreras que dificultan una alimentación adecuada, teniendo en cuenta también el descanso y bienestar de quienes cuidan.',
-    easyReadingDescription:
-      'Fichas sencillas con consejos prácticos para cocinar y comer con más autonomía en casa, cuidando también a las familias.',
-    keyPoints: [
-      'Contenidos basados en la evidencia científica y en guías oficiales.',
-      'Respeto a los gustos, preferencias, capacidades y ritmos de cada persona.',
-      'Atención a las exigencias del cuidado en situaciones de dependencia.',
-      'Validación con personas de los colectivos destinatarios y entidades especializadas en lectura fácil.',
-    ],
-    pictograms: ['🌱 Nutrición inclusiva', '🤝 Apoyo al cuidador', '📖 Lenguaje claro', '🔬 Evidencia científica'],
-  },
-];
-
-export const ARTICLES: Article[] = [
-  {
-    id: 'proyecto-piloto-autismo-alicante-2026',
-    title: 'Proyecto piloto inicial: alimentación y autismo en la provincia de Alicante (6 a 12 años)',
-    slug: 'proyecto-piloto-alimentacion-autismo-alicante',
-    category: 'Proyectos y Pilotos',
-    date: 'Marzo de 2026',
-    readTime: '4 minutos',
-    author: 'Asociación NutriDiversa · Alicante',
-    standardContent: [
-      'NutriDiversa inicia su actividad con un proyecto piloto sobre alimentación y autismo en la provincia de Alicante, dirigido a madres, padres, tutores y personas cuidadoras de menores de entre 6 y 12 años, ambos incluidos, con autismo o en proceso de valoración por posible autismo.',
-      'Las dificultades alimentarias en el autismo pueden estar relacionadas con factores sensoriales, dificultades ante los cambios, ansiedad, comunicación, aprendizaje, habilidades orales, experiencias previas o problemas de salud. Por ello, el proyecto parte de una encuesta y espacios de escucha a las familias para conocer sus prioridades reales.',
-      'El proyecto se estructura en cinco fases: Preparación, Identificación de necesidades, Elaboración y revisión de materiales, Desarrollo de la primera actividad educativa y Evaluación y revisión. Tiene carácter estrictamente educativo, preventivo e informativo, sin sustituir la atención individualizada de los profesionales sanitarios.',
-    ],
-    easyReadingContent: [
-      'NutriDiversa pone en marcha su primer proyecto piloto en la provincia de Alicante.',
-      'Está dirigido a familias y personas que cuidan a niñas y niños de 6 a 12 años con autismo.',
-      'Primero escucharemos sus dudas sobre texturas, sabores y rutinas para crear materiales útiles y un taller educativo.',
-    ],
-    audioText:
-      'Proyecto piloto inicial sobre alimentación y autismo en la provincia de Alicante. Dirigido a familias y personas cuidadoras de menores de entre 6 y 12 años con autismo o en proceso de valoración.',
-  },
-  {
-    id: 'que-entendemos-por-nutricion-inclusiva',
-    title: '¿Qué entendemos por nutrición inclusiva y qué realidad social queremos atender?',
-    slug: 'que-entendemos-por-nutricion-inclusiva',
-    category: 'Nutrición Inclusiva y Derechos',
-    date: 'Febrero de 2026',
-    readTime: '4 minutos',
-    author: 'Junta Directiva de NutriDiversa',
-    standardContent: [
-      'La Convención sobre los Derechos de las Personas con Discapacidad reconoce, en su artículo 28, el derecho de las personas con discapacidad y sus familias a un nivel de vida adecuado, que incluye una alimentación adecuada. Asimismo, la Estrategia Española sobre Discapacidad 2022–2030 ofrece un marco para avanzar en la efectividad de estos derechos.',
-      'Según la Encuesta de Discapacidad, Autonomía Personal y Situaciones de Dependencia (EDAD 2020) del Instituto Nacional de Estadística, 4,32 millones de personas de seis o más años residentes en hogares en España declararon tener alguna discapacidad.',
-      'En NutriDiversa entendemos la nutrición inclusiva como un enfoque de promoción de la salud que busca reducir las barreras que dificultan una alimentación adecuada y el acceso a información, recursos y actividades educativas, respetando los gustos, preferencias, capacidades y dignidad de cada persona y apoyando también a sus familias y personas cuidadoras.',
-    ],
-    easyReadingContent: [
-      'En España hay más de 4 millones de personas con discapacidad.',
-      'Tener una alimentación adecuada es un derecho reconocido por las leyes internacionales.',
-      'La nutrición inclusiva busca eliminar barreras para que todas las personas puedan comer bien y participar en las decisiones sobre su comida.',
-    ],
-    audioText:
-      'Artículo sobre qué entendemos por nutrición inclusiva. Basado en el artículo 28 de la Convención sobre los Derechos de las Personas con Discapacidad y los datos de la encuesta EDAD 2020 del INE.',
-  },
-  {
-    id: 'rigor-evidencia-y-limites-actuacion',
-    title: 'Rigor científico, transparencia y naturaleza educativa de nuestras actividades',
-    slug: 'rigor-cientifico-transparencia-limites',
-    category: 'Evidencia Científica',
-    date: 'Enero de 2026',
-    readTime: '3 minutos',
-    author: 'Equipo de NutriDiversa',
-    standardContent: [
-      'Como asociación de reciente creación impulsada por personas graduadas en Nutrición Humana y Dietética, personas con discapacidad y colaboradores del ámbito educativo, uno de nuestros valores fundamentales es el rigor y la responsabilidad.',
-      'Ofrecemos información basada en la evidencia científica, diferenciando con claridad entre lo que está respaldado, lo que es incierto y lo que requiere valoración profesional especializada.',
-      'En esta fase inicial, nuestras iniciativas son de carácter educativo, informativo, divulgativo y comunitario. No sustituyen la valoración, el diagnóstico, el tratamiento ni el seguimiento sanitario que pueda necesitar una persona; cuando una situación exceda nuestro alcance, orientaremos siempre hacia los servicios o profesionales correspondientes.',
-    ],
-    easyReadingContent: [
-      'En NutriDiversa ofrecemos información segura basada en la ciencia.',
-      'Nuestras actividades son educativas e informativas.',
-      'No hacemos diagnósticos médicos ni ponemos dietas personales: cuando hace falta atención médica, orientamos hacia los profesionales sanitarios.',
-    ],
-    audioText:
-      'Rigor científico, transparencia y naturaleza de las actividades de NutriDiversa. Nuestras iniciativas son educativas, informativas y comunitarias basadas en la evidencia científica.',
-  },
-];
-
-export const BUDGET_BREAKDOWN_2024 = [
-  {
-    concept: 'Educación alimentaria y nutricional inclusiva y Proyecto Piloto (Alicante)',
-    percentage: 45,
-    amount: 'Prioridad 1',
-    detail: 'Identificación de necesidades, materiales adaptados y primera actividad educativa en autismo (6-12 años)',
-  },
-  {
-    concept: 'Información y recursos accesibles (Lenguaje claro y apoyos visuales)',
-    percentage: 25,
-    amount: 'Prioridad 2',
-    detail: 'Elaboración progresiva de guías breves, fichas informativas y validación en lectura fácil',
-  },
-  {
-    concept: 'Escucha activa, sensibilización y trabajo en red',
-    percentage: 20,
-    amount: 'Prioridad 3',
-    detail: 'Encuestas a familias, espacios de participación y alianzas con asociaciones, universidades e instituciones',
-  },
-  {
-    concept: 'Gestión asociativa, protección de datos y transparencia',
-    percentage: 10,
-    amount: 'Base operativa',
-    detail: 'Cumplimiento normativo, accesibilidad universal y comunicación clara de objetivos y límites',
-  },
-];
+// Legacy exports kept compatible for any shared context imports
+export const GUIDES: GuideResource[] = [];
+export const ARTICLES: Article[] = [];

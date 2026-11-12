@@ -1,185 +1,356 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import {
+  Sprout,
+  SlidersHorizontal,
+  Volume2,
+  Square,
+  Menu,
+  X,
+  Check,
+} from 'lucide-react';
 import { useAccessibility } from '../context/AccessibilityContext';
-import { useAuth } from '../context/AuthContext';
-import { RoutePath } from '../types';
-import { NutriDiversaLogo } from './NutriDiversaLogo';
-import { Menu, X, HeartHandshake, PhoneCall, Shield, BookOpen, Crown } from 'lucide-react';
-
-interface NavItem {
-  path: RoutePath;
-  label: string;
-  easyLabel: string;
-}
-
-const NAV_ITEMS: NavItem[] = [
-  { path: '/', label: 'Inicio', easyLabel: '🏠 Inicio' },
-  { path: '/conocenos', label: 'Conócenos', easyLabel: '👥 Quiénes somos' },
-  { path: '/servicios', label: 'Proyectos y Colectivos', easyLabel: '📋 Colectivos y Talleres' },
-  { path: '/actualidad', label: 'Actualidad', easyLabel: '📰 Noticias' },
-  { path: '/socios', label: 'Área Socios', easyLabel: '⭐ Área Socios' },
-  { path: '/colabora', label: 'Colabora', easyLabel: '🤝 Donar y Apoyar' },
-  { path: '/contacto', label: 'Contacto', easyLabel: '📞 Escríbenos' }
-];
+import { RoutePath, TextScale } from '../types';
 
 export const Header: React.FC = () => {
-  const { activeRoute, navigateTo, easyReading } = useAccessibility();
-  const { effectiveRole } = useAuth();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const {
+    activeRoute,
+    navigateTo,
+    fontScale,
+    setFontScale,
+    highContrast,
+    setHighContrast,
+    easyReading,
+    toggleEasyReading,
+    isSpeaking,
+    speakCurrentPage,
+    stopSpeech,
+    announcement,
+  } = useAccessibility();
 
-  const handleNavClick = (path: RoutePath) => {
+  const [readingMenuOpen, setReadingMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const navItems: { label: string; path: RoutePath }[] = [
+    { label: 'El proyecto', path: '/proyecto' },
+    { label: 'Guías', path: '/guias' },
+    { label: 'La asociación', path: '/asociacion' },
+    { label: 'Contacto', path: '/contacto' },
+  ];
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setReadingMenuOpen(false);
+      }
+    };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setReadingMenuOpen(false);
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
     navigateTo(path);
     setMobileMenuOpen(false);
   };
 
   return (
-    <header className="bg-emerald-950 text-white border-b-2 border-emerald-700/80 sticky top-[49px] z-40 shadow-md transition-colors">
-      {/* Skip to main content link for keyboard & screen reader accessibility */}
-      <a href="#main-content" className="skip-link">
-        Saltar al contenido principal (Presiona Enter)
+    <header
+      className="sticky top-0 z-40 w-full bg-[#FFFDF8] border-b border-[#E6E2D8] transition-colors"
+      role="banner"
+    >
+      {/* Región viva para lectores de pantalla */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        {announcement}
+      </div>
+
+      {/* Enlace de salto al contenido principal (WCAG 2.4.1) */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-[#176B50] focus:text-white focus:px-4 focus:py-2.5 focus:rounded-lg focus:font-bold focus:shadow-md"
+      >
+        Saltar al contenido principal
       </a>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-4">
-        {/* Zone 1: Official Brand Logo with Symbol and Typography */}
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => handleNavClick('/')}
-            className="text-left group focus:outline-none focus:ring-2 focus:ring-emerald-400 rounded-md p-0.5"
-            aria-label="Asociación NutriDiversa, ir a la página de inicio"
-          >
-            <NutriDiversaLogo variant="horizontal" size="sm" showSubtitle={false} lightText={true} />
-          </button>
-        </div>
-
-        {/* Zone 2: Navigation Links (Desktop) */}
-        <nav
-          className="hidden lg:flex items-center gap-1.5 xl:gap-2.5"
-          aria-label="Navegación principal de la web"
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[68px] max-h-[72px] flex items-center justify-between gap-2">
+        {/* Izquierda: Logotipo limpio de una sola línea */}
+        <a
+          href="/"
+          onClick={(e) => handleLinkClick(e, '/')}
+          className="inline-flex items-center gap-2.5 min-h-[44px] py-1 focus:outline-none rounded-lg group shrink-0"
+          aria-label="NutriDiversa - Ir a la página de inicio"
         >
-          {NAV_ITEMS.map((item) => {
+          <span
+            className="w-9 h-9 rounded-full bg-[#EAF5EF] border border-[#176B50]/20 flex items-center justify-center text-[#176B50] group-hover:bg-[#176B50] group-hover:text-white transition-colors"
+            aria-hidden="true"
+          >
+            <Sprout className="w-5 h-5" />
+          </span>
+          <span className="font-serif text-xl sm:text-2xl font-bold tracking-tight leading-none">
+            <span className="text-[#1D3532]">Nutri</span>
+            <span className="text-[#D96820]">Diversa</span>
+          </span>
+        </a>
+
+        {/* Centro: Enlaces de navegación semánticos <a href="..."> */}
+        <nav
+          aria-label="Navegación principal"
+          className="hidden md:flex items-center gap-1 lg:gap-2"
+        >
+          {navItems.map((item) => {
             const isActive = activeRoute === item.path;
-            const isSocios = item.path === '/socios';
             return (
-              <button
+              <a
                 key={item.path}
-                onClick={() => handleNavClick(item.path)}
-                className={`text-[15px] xl:text-base font-semibold whitespace-nowrap px-3 py-1.5 rounded-lg border transition-all duration-200 cursor-pointer ${
-                  isActive
-                    ? 'text-amber-300 bg-amber-400/15 border-amber-400/50 shadow-xs font-bold'
-                    : isSocios
-                    ? 'text-amber-300 hover:text-amber-200 bg-amber-400/10 hover:bg-amber-400/20 border-amber-400/30 font-semibold'
-                    : 'text-emerald-100 hover:text-white bg-emerald-900/30 hover:bg-emerald-800/60 border-emerald-800/40 hover:border-emerald-700/60'
-                }`}
+                href={item.path}
+                onClick={(e) => handleLinkClick(e, item.path)}
                 aria-current={isActive ? 'page' : undefined}
+                className={`inline-flex items-center justify-center min-h-[44px] px-4 py-2 rounded-lg text-[1rem] font-medium transition-colors ${
+                  isActive
+                    ? 'bg-[#EAF5EF] text-[#176B50] font-bold'
+                    : 'text-[#20282E] hover:bg-[#F7F3EB] hover:text-[#1D3532]'
+                }`}
               >
-                {easyReading ? item.easyLabel : item.label}
-              </button>
+                {item.label}
+              </a>
             );
           })}
         </nav>
 
-        {/* Zone 3: Primary Action & Mobile Toggle */}
-        <div className="flex items-center gap-2">
-          {/* Admin / CMS Quick Entry Button */}
-          <button
-            onClick={() => handleNavClick('/admin')}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg border transition-all ${
-              activeRoute === '/admin'
-                ? 'bg-purple-600 text-white border-purple-400 shadow-xs'
-                : 'bg-purple-950/80 hover:bg-purple-900 text-purple-200 border-purple-700/80'
-            }`}
-            title="Panel de Administración y CMS"
-          >
-            <Shield className="w-3.5 h-3.5 text-purple-300" />
-            <span className="hidden sm:inline">Panel CMS</span>
-            <span className="text-[10px] font-extrabold px-1.5 py-0.2 bg-purple-900 text-purple-200 rounded border border-purple-700">
-              {effectiveRole === 'admin' ? 'Superadmin' : effectiveRole}
-            </span>
-          </button>
+        {/* Derecha: Botón desplegable Opciones de lectura + Menú móvil */}
+        <div className="flex items-center gap-2" ref={dropdownRef}>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setReadingMenuOpen((prev) => !prev)}
+              aria-expanded={readingMenuOpen}
+              aria-haspopup="dialog"
+              aria-controls="reading-options-panel"
+              className={`inline-flex items-center gap-2 min-h-[44px] px-3.5 py-2 rounded-full border text-sm sm:text-[0.95rem] font-medium transition-colors ${
+                readingMenuOpen || easyReading || highContrast || fontScale !== '100' || isSpeaking
+                  ? 'bg-[#EAF5EF] border-[#176B50] text-[#176B50] font-bold'
+                  : 'bg-white border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
+              }`}
+            >
+              <SlidersHorizontal className="w-4 h-4 text-[#176B50] shrink-0" aria-hidden="true" />
+              <span>Opciones de lectura</span>
+            </button>
 
-          <button
-            onClick={() => handleNavClick('/socios')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-emerald-950 bg-amber-400 rounded-lg hover:bg-amber-300 transition-colors shadow-xs whitespace-nowrap min-touch-target"
-            aria-label="Área de socios"
-          >
-            <Crown className="w-3.5 h-3.5 text-emerald-950" aria-hidden="true" />
-            <span>Área Socios</span>
-          </button>
+            {/* Panel flotante limpio de Opciones de lectura */}
+            {readingMenuOpen && (
+              <div
+                id="reading-options-panel"
+                role="dialog"
+                aria-label="Opciones de lectura y accesibilidad"
+                className="absolute right-0 mt-2 w-[310px] sm:w-[350px] max-w-[calc(100vw-1.5rem)] bg-white border border-[#E6E2D8] rounded-2xl shadow-xl p-5 z-50 space-y-5"
+              >
+                <div className="flex items-center justify-between border-b border-[#E6E2D8] pb-3">
+                  <h2 className="font-serif text-lg font-bold text-[#1D3532]">
+                    Opciones de lectura
+                  </h2>
+                  <button
+                    type="button"
+                    onClick={() => setReadingMenuOpen(false)}
+                    className="inline-flex items-center justify-center min-w-[44px] min-h-[44px] -mr-2 rounded-lg text-[#5A6670] hover:text-[#20282E] hover:bg-[#F7F3EB]"
+                    aria-label="Cerrar opciones de lectura"
+                  >
+                    <X className="w-5 h-5" aria-hidden="true" />
+                  </button>
+                </div>
 
-          {/* Mobile Menu Hamburger Button */}
+                {/* 1. Tamaño de texto */}
+                <div>
+                  <span className="block text-sm font-bold text-[#20282E] mb-2">
+                    1. Tamaño de texto
+                  </span>
+                  <div className="grid grid-cols-3 gap-2" role="group" aria-label="Seleccionar tamaño de texto">
+                    {(
+                      [
+                        { scale: '100', label: 'Normal', pct: '100%' },
+                        { scale: '115', label: 'Grande', pct: '115%' },
+                        { scale: '130', label: 'Muy grande', pct: '130%' },
+                      ] as { scale: TextScale; label: string; pct: string }[]
+                    ).map((opt) => {
+                      const selected = fontScale === opt.scale;
+                      return (
+                        <button
+                          key={opt.scale}
+                          type="button"
+                          onClick={() => setFontScale(opt.scale)}
+                          aria-pressed={selected}
+                          className={`min-h-[44px] px-2 py-2 rounded-lg border text-xs sm:text-sm font-medium flex flex-col items-center justify-center transition-colors ${
+                            selected
+                              ? 'bg-[#176B50] text-white border-[#176B50] font-bold'
+                              : 'bg-[#FFFDF8] text-[#20282E] border-[#E6E2D8] hover:bg-[#F7F3EB]'
+                          }`}
+                        >
+                          <span>{opt.label}</span>
+                          <span className="text-[11px] opacity-85">({opt.pct})</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 2. Contraste */}
+                <div>
+                  <span className="block text-sm font-bold text-[#20282E] mb-2">
+                    2. Contraste visual
+                  </span>
+                  <div className="grid grid-cols-1 gap-2" role="group" aria-label="Seleccionar modo de contraste">
+                    <button
+                      type="button"
+                      onClick={() => setHighContrast(false)}
+                      aria-pressed={!highContrast}
+                      className={`min-h-[44px] px-3 py-2 rounded-lg border text-sm text-left flex items-center justify-between transition-colors ${
+                        !highContrast
+                          ? 'bg-[#EAF5EF] border-[#176B50] text-[#176B50] font-bold'
+                          : 'bg-[#FFFDF8] border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
+                      }`}
+                    >
+                      <span>Diseño cálido predeterminado</span>
+                      {!highContrast && <Check className="w-4 h-4 shrink-0" aria-hidden="true" />}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setHighContrast(true)}
+                      aria-pressed={highContrast}
+                      className={`min-h-[44px] px-3 py-2 rounded-lg border text-sm text-left flex items-center justify-between transition-colors ${
+                        highContrast
+                          ? 'bg-black border-[#FFD700] text-[#FFD700] font-bold'
+                          : 'bg-[#FFFDF8] border-[#E6E2D8] text-[#20282E] hover:bg-[#F7F3EB]'
+                      }`}
+                    >
+                      <span>Modo alto contraste</span>
+                      {highContrast && <Check className="w-4 h-4 shrink-0" aria-hidden="true" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* 3. Resumen sencillo */}
+                <div className="pt-1 border-t border-[#E6E2D8]">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <span className="block text-sm font-bold text-[#20282E]">
+                        3. Resumen sencillo
+                      </span>
+                      <span className="block text-xs text-[#5A6670]">
+                        Muestra una explicación cotidiana al inicio de cada página.
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      role="switch"
+                      aria-checked={easyReading}
+                      onClick={toggleEasyReading}
+                      className={`min-w-[64px] min-h-[44px] px-3 rounded-lg border text-sm font-bold transition-colors shrink-0 ${
+                        easyReading
+                          ? 'bg-[#176B50] text-white border-[#176B50]'
+                          : 'bg-[#F7F3EB] text-[#20282E] border-[#E6E2D8]'
+                      }`}
+                    >
+                      {easyReading ? 'Activo' : 'Activar'}
+                    </button>
+                  </div>
+                </div>
+
+                {/* 4. Lectura en voz alta */}
+                <div className="pt-1 border-t border-[#E6E2D8]">
+                  <span className="block text-sm font-bold text-[#20282E] mb-2">
+                    4. Lectura en voz alta
+                  </span>
+                  <button
+                    type="button"
+                    onClick={isSpeaking ? stopSpeech : speakCurrentPage}
+                    className={`w-full min-h-[44px] px-4 py-2.5 rounded-lg border text-sm font-bold flex items-center justify-center gap-2 transition-colors ${
+                      isSpeaking
+                        ? 'bg-[#D96820] text-white border-[#D96820]'
+                        : 'bg-[#1D3532] text-white border-[#1D3532] hover:bg-[#176B50]'
+                    }`}
+                  >
+                    {isSpeaking ? (
+                      <>
+                        <Square className="w-4 h-4 fill-current" aria-hidden="true" />
+                        <span>Detener lectura en voz alta</span>
+                      </>
+                    ) : (
+                      <>
+                        <Volume2 className="w-4 h-4" aria-hidden="true" />
+                        <span>Escuchar el contenido de esta página</span>
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Botón de menú móvil (44x44px mínimo garantizado) */}
           <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden min-touch-target p-2 text-emerald-100 hover:text-white hover:bg-emerald-900 rounded-md"
+            type="button"
+            onClick={() => setMobileMenuOpen((prev) => !prev)}
             aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-nav-panel"
+            aria-controls="mobile-nav-menu"
             aria-label={mobileMenuOpen ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+            className="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] rounded-lg border border-[#E6E2D8] bg-white text-[#20282E] hover:bg-[#F7F3EB]"
           >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {mobileMenuOpen ? (
+              <X className="w-5 h-5" aria-hidden="true" />
+            ) : (
+              <Menu className="w-5 h-5" aria-hidden="true" />
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Menú desplegable móvil */}
       {mobileMenuOpen && (
-        <div
-          id="mobile-nav-panel"
-          className="lg:hidden bg-emerald-950 border-t border-emerald-800 px-4 pt-3 pb-6 shadow-xl"
+        <nav
+          id="mobile-nav-menu"
+          aria-label="Navegación móvil"
+          className="md:hidden bg-[#FFFDF8] border-b border-[#E6E2D8] px-4 py-3 space-y-1 shadow-lg"
         >
-          <nav className="flex flex-col gap-2" aria-label="Menú móvil">
-            {/* Admin entry in mobile menu */}
-            <button
-              onClick={() => handleNavClick('/admin')}
-              className={`min-touch-target text-left px-3 py-2.5 rounded-md text-base font-bold transition-colors flex items-center justify-between ${
-                activeRoute === '/admin'
-                  ? 'bg-purple-900 text-purple-100 border-l-4 border-purple-400'
-                  : 'bg-purple-950/90 text-purple-200 border border-purple-800'
-              }`}
-            >
-              <span className="flex items-center gap-2">
-                <Shield className="w-4 h-4 text-purple-300" />
-                <span>⚙️ Panel de Administración CMS</span>
-              </span>
-              <span className="text-xs bg-purple-900 px-2 py-0.5 rounded font-bold uppercase text-purple-200 border border-purple-700">
-                {effectiveRole}
-              </span>
-            </button>
-
-            {NAV_ITEMS.map((item) => {
-              const isActive = activeRoute === item.path;
-              return (
-                <button
-                  key={item.path}
-                  onClick={() => handleNavClick(item.path)}
-                  className={`min-touch-target text-left px-3 py-2.5 rounded-md text-base font-semibold transition-colors flex items-center justify-between ${
-                    isActive
-                      ? 'bg-emerald-900 text-amber-400 border-l-4 border-amber-400'
-                      : 'text-emerald-100 hover:bg-emerald-900 hover:text-white'
-                  }`}
-                  aria-current={isActive ? 'page' : undefined}
-                >
-                  <span>{easyReading ? item.easyLabel : item.label}</span>
-                  {isActive && <span className="text-xs text-amber-400 font-bold">Activo</span>}
-                </button>
-              );
-            })}
-
-            <div className="pt-3 border-t border-emerald-800 flex flex-col gap-2.5 mt-2">
-              <button
-                onClick={() => handleNavClick('/socios')}
-                className="w-full min-touch-target py-2.5 px-4 text-center text-sm font-bold text-emerald-950 bg-amber-400 rounded-md hover:bg-amber-300 transition-colors flex items-center justify-center gap-2"
+          <a
+            href="/"
+            onClick={(e) => handleLinkClick(e, '/')}
+            aria-current={activeRoute === '/' ? 'page' : undefined}
+            className={`flex items-center min-h-[44px] px-4 py-2 rounded-lg text-base font-medium ${
+              activeRoute === '/'
+                ? 'bg-[#EAF5EF] text-[#176B50] font-bold'
+                : 'text-[#20282E] hover:bg-[#F7F3EB]'
+            }`}
+          >
+            Inicio
+          </a>
+          {navItems.map((item) => {
+            const isActive = activeRoute === item.path;
+            return (
+              <a
+                key={item.path}
+                href={item.path}
+                onClick={(e) => handleLinkClick(e, item.path)}
+                aria-current={isActive ? 'page' : undefined}
+                className={`flex items-center min-h-[44px] px-4 py-2 rounded-lg text-base font-medium ${
+                  isActive
+                    ? 'bg-[#EAF5EF] text-[#176B50] font-bold'
+                    : 'text-[#20282E] hover:bg-[#F7F3EB]'
+                }`}
               >
-                <Crown className="w-4 h-4" />
-                <span>Acceder al Área Privada de Socios</span>
-              </button>
-              <button
-                onClick={() => handleNavClick('/servicios')}
-                className="w-full min-touch-target py-2.5 px-4 text-center text-sm font-bold text-white bg-emerald-700 rounded-md hover:bg-emerald-600 transition-colors flex items-center justify-center gap-2 border border-emerald-500/30"
-              >
-                <HeartHandshake className="w-4 h-4 text-emerald-200" />
-                <span>Colaboración con Colectivos y Entidades</span>
-              </button>
-            </div>
-          </nav>
-        </div>
+                {item.label}
+              </a>
+            );
+          })}
+        </nav>
       )}
     </header>
   );
